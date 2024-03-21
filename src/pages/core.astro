@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Basic from "../components/core/basic/Basic.astro";
+import Flex from "../components/core/flex/Flex.astro";
+import Grid from "../components/core/grid/Grid.astro";
+
+import { core } from "../sections";
+---
+
+<Layout
+    title="Core"
+    sections={core}
+>
+    <main>
+        <Basic />
+        <Flex />
+        <Grid />
+    </main>
+</Layout>
+
+<style>
+    main {
+        padding: 1rem;
+        width: 100%;
+        max-width: calc(100% - 2rem);
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+        overflow-y: auto;
+        height: auto;
+        max-height: 100vh;
+    }
+</style>

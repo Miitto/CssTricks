@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { spice } from "../sections";
+
+import SpiceComp from "../components/spice/Spice.astro";
+---
+
+<Layout
+    title="Core"
+    sections={spice}
+>
+    <main>
+        <SpiceComp />
+    </main>
+</Layout>
+
+<style>
+    main {
+        padding: 1rem;
+        width: 100%;
+        max-width: calc(100% - 2rem);
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+        overflow-y: auto;
+        height: auto;
+        max-height: 100vh;
+    }
+</style>

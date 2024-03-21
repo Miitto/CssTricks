@@ -4,7 +4,7 @@ export interface Section {
     subsections?: Section[];
 }
 
-export const sections: Section[] = [
+export const core: Section[] = [
     {
         name: "Basic",
         id: "basic",
@@ -120,6 +120,35 @@ export const sections: Section[] = [
             {
                 name: "Subgrid",
                 id: "subgrid",
+            },
+        ],
+    },
+];
+
+export const spice: Section[] = [
+    {
+        name: "Colors",
+        id: "colors",
+        subsections: [
+            {
+                name: "Text Gradient",
+                id: "text-gradient",
+            },
+        ],
+    },
+    {
+        name: "Borders",
+        id: "borders",
+        subsections: [
+            {
+                name: "Border",
+                id: "border",
+                subsections: [
+                    {
+                        name: "Leaking",
+                        id: "leaking",
+                    },
+                ],
             },
         ],
     },
