@@ -17,7 +17,7 @@ const { title, sections = [] } = Astro.props;
         />
         <meta
             name="viewport"
-            content="width=device-width"
+            content="width=device-width, initial-scale=1"
         />
         <link
             rel="icon"
@@ -33,7 +33,7 @@ const { title, sections = [] } = Astro.props;
     <body>
         {
             sections.length > 0 ? (
-                <div class="categories">
+                <div id="categories">
                     <div>
                         <>
                             <a
@@ -100,10 +100,30 @@ const { title, sections = [] } = Astro.props;
             ) : null
         }
         <slot />
+        <div id="backToTop">
+            <a href="#categories">Back to top</a>
+        </div>
     </body>
 
     <style lang="scss">
-        .categories {
+        #backToTop {
+            position: fixed;
+            bottom: 1em;
+            right: 1em;
+            background: #5555;
+            padding: 0.5em;
+            border-radius: 0.5em;
+            display: none;
+            @media screen and (max-width: 800px) {
+                display: block;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+        #categories {
             color: #e6e6e6;
             border: 1px solid #5555;
             height: fit-content;
@@ -112,7 +132,9 @@ const { title, sections = [] } = Astro.props;
             display: flex;
             flex-direction: column;
             justify-self: center;
-            padding: 2rem;
+            padding: min(2em, 5vw);
+            height: auto;
+            overflow-y: auto;
             max-height: 90vh;
 
             > div:first-child {
@@ -169,6 +191,16 @@ const { title, sections = [] } = Astro.props;
             min-height: 100vh;
             max-height: 100vh;
             overflow: hidden;
+
+            @media screen and (max-width: 800px) {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+
+                #categories {
+                    width: 100%;
+                    max-height: unset;
+                }
+            }
         }
     </style>
     <style is:global lang="scss">
@@ -182,6 +214,13 @@ const { title, sections = [] } = Astro.props;
                 rgb(var(--accent-light)) 30%,
                 white 60%
             );
+        }
+
+        @media screen and (max-width: 800px) {
+            main {
+                overflow: unset !important;
+                max-height: unset !important;
+            }
         }
 
         div + h2 {
@@ -227,7 +266,7 @@ const { title, sections = [] } = Astro.props;
                 monospace;
         }
 
-        div:not(.categories) {
+        div:not(#categories) {
             display: flex;
 
             &:not(.inline) {
@@ -242,11 +281,25 @@ const { title, sections = [] } = Astro.props;
 
             .inline {
                 flex-direction: row;
+
+                @media screen and (max-width: 800px) {
+                    flex-direction: column;
+                }
             }
 
             .inline-2-grid {
                 display: grid;
                 grid-template-columns: auto auto;
+
+                @media screen and (max-width: 800px) {
+                    grid-template-columns: auto;
+                }
+            }
+
+            @media screen and (max-width: 800px) {
+                code {
+                    font-size: 0.75em;
+                }
             }
         }
 

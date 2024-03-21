@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="CSS Tricks">
     <main>
+        <div></div>
         <h1>CSS Tricks</h1>
         <div>
             <a href="/CssTricks/core">
@@ -19,6 +20,8 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </a>
         </div>
+        <div></div>
+        <div></div>
     </main>
 </Layout>
 
@@ -29,17 +32,13 @@ import Layout from "../layouts/Layout.astro";
         margin: auto;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         gap: 5em;
-        position: relative;
         width: 100vw;
         height: 100vh;
 
         > h1 {
-            position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            text-align: center;
             font-size: 5em;
             background: linear-gradient(
                 90deg,
@@ -60,6 +59,14 @@ import Layout from "../layouts/Layout.astro";
             place-items: center;
             gap: 2em;
             border: none;
+
+            > a {
+                width: 100%;
+            }
+
+            @media screen and (max-width: 400px) {
+                grid-template-columns: 1fr;
+            }
         }
     }
 
