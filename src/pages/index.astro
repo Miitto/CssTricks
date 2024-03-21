@@ -1,28 +1,125 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Basic from "../components/basic/Basic.astro";
-import Flex from "../components/flex/Flex.astro";
-import Grid from "../components/grid/Grid.astro";
 ---
 
-<Layout title="Core">
+<Layout title="CSS Tricks">
     <main>
-        <Basic />
-        <Flex />
-        <Grid />
+        <h1>CSS Tricks</h1>
+        <div>
+            <a href="/CssTricks/core">
+                <div class="card">
+                    <h2>Core</h2>
+                    <p>Core Concepts useful in every project</p>
+                </div>
+            </a>
+            <a href="/CssTricks/spice">
+                <div class="card spice">
+                    <h2>Spice</h2>
+                    <p>Spice up your site with some flashy visuals</p>
+                </div>
+            </a>
+        </div>
     </main>
 </Layout>
 
-<style>
+<style lang="scss">
     main {
-        padding: 1rem;
-        width: 100%;
-        max-width: calc(100% - 2rem);
+        grid-column: 1 / -1;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5em;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+
+        > h1 {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5em;
+            background: linear-gradient(
+                90deg,
+                rgb(var(--accent)),
+                rgb(var(--accent-light)) 60%,
+                white 98%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        > div {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+            gap: 2em;
+            border: none;
+        }
+    }
+
+    .card {
+        padding: 2em;
+        border-radius: 0.5em;
+        background-color: #1b1c22;
+        border: 2px solid #5555;
         color: white;
-        font-size: 20px;
-        line-height: 1.6;
-        overflow-y: auto;
-        height: auto;
-        max-height: 100vh;
+        width: 100%;
+
+        h2 {
+            padding: 0;
+            text-decoration: dashed underline;
+        }
+        &:hover h2 {
+            text-decoration: solid underline;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .spice {
+        overflow: hidden;
+        position: relative;
+        h2 {
+            background: linear-gradient(
+                90deg,
+                rgb(var(--accent)),
+                rgb(var(--accent-light)) 60%,
+                white 98%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &:hover::before {
+            background-position: 91% 100%;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+
+            background: linear-gradient(
+                -135deg,
+                rgb(var(--accent), 0.5),
+                rgb(var(--accent), 0.1) 60%
+            );
+            background-size: 200% 200%;
+
+            transition: background 0.5s ease-in-out;
+        }
     }
 </style>

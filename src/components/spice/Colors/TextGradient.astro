@@ -1,0 +1,33 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../colors";
+---
+
+<h3 id="colors-text-gradient">Text Gradient</h3>
+<div>
+    <hr />
+    <p>
+        Text gradients are not as immediatly apparent as background gradients,
+        but they can be used to create some interesting effects. The following
+        example shows a text gradient that goes from red to blue. Some care
+        should be taken as although you can only see the color on the text, the
+        gradient will cover the entire area of the element. This should usually
+        be used with <Code
+            code="width: fit-content"
+            lang="css"
+            inline
+        />, or a similar method to ensure the gradient is only as wide as the
+        text.
+    </p>
+    <div class="inline">
+        <Code
+            code={`.gradient {\n\tcolor: transparent;\n\tbackground: linear-gradient(90deg, red, blue);\n\tbackground-clip: text;\n\t-webkit-background-clip: text;\n}`}
+            lang="css"
+        />
+        <iframe
+            title="Text Gradient Example"
+            srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;} h1 {color: transparent; background: linear-gradient(90deg, red, blue); background-clip: text; -webkit-background-clip: text;}</style></head><body> <h1>Gradient</h1> </body>`
+        >
+        </iframe>
+    </div>
+</div>

@@ -1,10 +1,10 @@
 ---
+import type { Section } from "../sections";
 interface Props {
     title: string;
+    sections?: Section[];
 }
-const { title } = Astro.props;
-
-import { sections } from "../sections.ts";
+const { title, sections = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,54 +31,74 @@ import { sections } from "../sections.ts";
         <title>{title}</title>
     </head>
     <body>
-        <div class="categories">
-            {
-                sections.map((section) => (
+        {
+            sections.length > 0 ? (
+                <div class="categories">
                     <div>
-                        <a href={`#${section.id}`}>{section.name}</a>
-                        <ul>
-                            {section.subsections?.map((subsection) => (
-                                <li>
-                                    <a href={`#${section.id}-${subsection.id}`}>
-                                        {subsection.name}
-                                    </a>
-                                    <ul>
-                                        {subsection.subsections?.map(
-                                            (subsubsection) => (
-                                                <li>
-                                                    <a
-                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}`}
-                                                    >
-                                                        {subsubsection.name}
-                                                    </a>
-                                                    <ul>
-                                                        {subsubsection.subsections?.map(
-                                                            (
-                                                                subsubsubsection
-                                                            ) => (
-                                                                <li>
-                                                                    <a
-                                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}-${subsubsubsection.id}`}
-                                                                    >
-                                                                        {
-                                                                            subsubsubsection.name
-                                                                        }
-                                                                    </a>
-                                                                </li>
-                                                            )
-                                                        )}
-                                                    </ul>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
+                        <>
+                            <a
+                                class="core"
+                                href="/CssTricks/core"
+                            >
+                                Core
+                            </a>
+                            <a
+                                class="spice"
+                                href="/CssTricks/spice"
+                            >
+                                Spice
+                            </a>
+                        </>
                     </div>
-                ))
-            }
-        </div>
+                    {sections.map((section) => (
+                        <div>
+                            <a href={`#${section.id}`}>{section.name}</a>
+                            <ul>
+                                {section.subsections?.map((subsection) => (
+                                    <li>
+                                        <a
+                                            href={`#${section.id}-${subsection.id}`}
+                                        >
+                                            {subsection.name}
+                                        </a>
+                                        <ul>
+                                            {subsection.subsections?.map(
+                                                (subsubsection) => (
+                                                    <li>
+                                                        <a
+                                                            href={`#${section.id}-${subsection.id}-${subsubsection.id}`}
+                                                        >
+                                                            {subsubsection.name}
+                                                        </a>
+                                                        <ul>
+                                                            {subsubsection.subsections?.map(
+                                                                (
+                                                                    subsubsubsection
+                                                                ) => (
+                                                                    <li>
+                                                                        <a
+                                                                            href={`#${section.id}-${subsection.id}-${subsubsection.id}-${subsubsubsection.id}`}
+                                                                        >
+                                                                            {
+                                                                                subsubsubsection.name
+                                                                            }
+                                                                        </a>
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            ) : null
+        }
         <slot />
     </body>
 
@@ -94,6 +114,12 @@ import { sections } from "../sections.ts";
             justify-self: center;
             padding: 2rem;
             max-height: 90vh;
+
+            > div:first-child {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 1em;
+            }
 
             div {
                 gap: 0;
