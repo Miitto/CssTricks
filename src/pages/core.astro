@@ -31,3 +31,17 @@ import { core } from "../sections";
         max-height: 100vh;
     }
 </style>
+
+<style is:global lang="scss">
+    .core {
+        color: transparent !important;
+        background: linear-gradient(
+            90deg,
+            rgb(var(--accent)),
+            rgb(var(--accent-light)) 60%,
+            white 98%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+</style>

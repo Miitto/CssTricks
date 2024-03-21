@@ -141,14 +141,8 @@ export const spice: Section[] = [
         id: "borders",
         subsections: [
             {
-                name: "Border",
-                id: "border",
-                subsections: [
-                    {
-                        name: "Leaking",
-                        id: "leaking",
-                    },
-                ],
+                name: "Leaking",
+                id: "leaking",
             },
         ],
     },

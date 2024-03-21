@@ -3,73 +3,31 @@ import { Code } from "astro:components";
 import { parentBg, childBg } from "../../colors";
 ---
 
-<h3 id="basic-centering">Centering</h3>
+<h3 id="colors-text-gradient">Text Gradient</h3>
 <div>
     <hr />
-    <h4 id="basic-centering-flexbox">Flexbox</h4>
-    <div>
-        <hr />
-        <p>
-            Flexbox is an excellent way to center content within it. Content can
-            be centered along the flex direction with <Code
-                code="justify-content"
-                lang="css"
-                inline
-            /> and along the static axis with <Code
-                code="align-items"
-                lang="css"
-                inline
-            />.
-        </p>
-        <div class="inline">
-            <Code
-                code={`.center {\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n}`}
-                lang="css"
-            />
-            <iframe
-                title="Flexbox Centering Example"
-                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;} div div {
-						background-color: ${childBg}; width: 50%; height: 50%;}</style></head><body> <div>
-							<div></div> </div> </body>`
-            >
-            </iframe>
-        </div>
-    </div>
-    <h4 id="basic-centering-absolute">Absolute</h4>
-    <div>
-        <hr />
-        <p>
-            Absolute positioning is a powerful tool for positioning elements
-            relative to each other. Howver it is often less preferable to
-            flexbox as this method takes the element out of the usual element
-            flow and can cause siblings to be positioned in unexpected ways.
-            Through a combination of <Code
-                code="top"
-                lang="css"
-                inline
-            />, <Code
-                code="left"
-                lang="css"
-                inline
-            /> and <Code
-                code="transform: translate()"
-                lang="css"
-                inline
-            /> we can move the corner of the inner element to the center of the parent,
-            and then translate it back half way of the child.
-        </p>
-        <div class="inline">
-            <Code
-                code={`.parent {\n\tposition: relative;\n}\n.child {\n\tposition: absolute;\n\ttop: 50%;\n\tleft: 50%;\n\ttransform: translate(-50%, -50%);\n}`}
-                lang="css"
-            />
-            <iframe
-                title="Absolute Centering Example"
-                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; position: relative;} div div {
-							background-color: ${childBg}; width: 50%; height: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%);}</style></head><body> <div>
-								<div></div> </div> </body>`
-            >
-            </iframe>
-        </div>
+    <p>
+        Text gradients are not as immediatly apparent as background gradients,
+        but they can be used to create some interesting effects. The following
+        example shows a text gradient that goes from red to blue. Some care
+        should be taken as although you can only see the color on the text, the
+        gradient will cover the entire area of the element. This should usually
+        be used with <Code
+            code="width: fit-content"
+            lang="css"
+            inline
+        />, or a similar method to ensure the gradient is only as wide as the
+        text.
+    </p>
+    <div class="inline">
+        <Code
+            code={`.gradient {\n\tcolor: transparent;\n\tbackground: linear-gradient(90deg, red, blue);\n\tbackground-clip: text;\n\t-webkit-background-clip: text;\n}`}
+            lang="css"
+        />
+        <iframe
+            title="Text Gradient Example"
+            srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;} h1 {color: transparent; background: linear-gradient(90deg, red, blue); background-clip: text; -webkit-background-clip: text;}</style></head><body> <h1>Gradient</h1> </body>`
+        >
+        </iframe>
     </div>
 </div>
