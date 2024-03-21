@@ -1,0 +1,19 @@
+---
+import Template from "./template/Template.astro";
+import Subgrid from "./Subgrid.astro";
+---
+
+<h2 id="grid">Grid</h2>
+<div>
+    <hr />
+    <p>
+        Grids primary use is to create evenly sized columns and/ or rows. If you
+        need to create a layout with uneven column sizes, you should use
+        flexbox. A grid is composed of row and column templates. These templates
+        can range from static widths (such as 200px) to dyanmic widths (such as
+        1fr and auto). Grids can set the direction of element flow such as with
+        flexbox, either filling accross columns (default), or accross rows.
+    </p>
+    <Template />
+    <Subgrid />
+</div>

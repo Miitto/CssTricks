@@ -1,0 +1,83 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../colors";
+
+import Repeat from "./Repeat.astro";
+import Areas from "./Areas.astro";
+---
+
+<h3 id="grid-template">Templates</h3>
+<div>
+    <hr />
+    <h4 id="grid-template-column">Column</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="grid-template-columns"
+                lang="css"
+                inline
+            /> is the usual property used to set up a grid, and specifies the layout
+            for the columns for the grid.
+            <Code
+                code="grid-template-columns: 10px auto 1fr 2fr"
+                lang="css"
+                inline
+            /> will create a grid with 4 columns, the first being 10px wide, the
+            second being calculated based on content width and any remaining excess
+            space, the third taking up 1 fraction of the remaining space, and the
+            fourth taking up 2 fractions of the remaining space. Fractions are calculated
+            based on the total available space, and the fractions are divided up
+            accordingly. E.g. if the total available space is 1000px, then the third
+            column will be 250px wide, and the fourth column will be 500px wide.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.grid {\n\tdisplay: grid;\n\tgrid-template-columns: 20px\n\t\t\t       auto\n\t\t\t       1fr\n\t\t\t       2fr;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Grid Template Columns"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: grid; grid-template-columns: 20px auto 1fr 2fr; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 100%; height: 25%; display: flex; justify-content: center; align-items: center;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div><div>4</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+    <h4 id="grid-template-row">Row</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="grid-template-rows"
+                lang="css"
+                inline
+            /> works the same as <Code
+                code="grid-template-columns"
+                lang="css"
+                inline
+            />, but for rows. It specifies the layout for the rows for the grid.
+            Is usually used in conjunction with <Code
+                code="grid-auto-flow: column;"
+                lang="css"
+                inline
+            /> to set elements to fill columns one by one.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.grid {\n\tdisplay: grid;\n\tgrid-template-rows: 20px\n\t\t\t    auto\n\t\t\t    1fr\n\t\t\t    2fr;\n\tgrid-auto-flow: column;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Grid Template Columns"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: grid; grid-template-rows: 20px auto 1fr 2fr; grid-auto-flow: column; } div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div><div>4</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+    <Repeat />
+    <Areas />
+</div>

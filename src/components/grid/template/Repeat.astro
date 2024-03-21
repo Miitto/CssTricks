@@ -1,0 +1,80 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../colors";
+---
+
+<h4 id="grid-template-repeat">Repeat</h4>
+<div>
+    <hr />
+    <p>
+        <Code
+            code="repeat"
+            lang="css"
+            inline
+        /> can be used with both <Code code="grid-template-columns" lang="css" inline /> and <Code code="grid-template-rows" lang="css" inline /> properties to repeat the same value multiple times. The example below has 4 equal columns.
+    </p>
+    <div class="inline">
+        <Code
+            code={`.grid {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(4, 1fr);\n}`}
+            lang="css"
+        />
+        <iframe
+            title="Grid Template Columns"
+            srcdoc=`<head><style>* {padding: 0; margin: 0; box-sizing: border-box; color: white;}body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; grid-template-columns: repeat(4, 1fr); width: 100%; height: 100%; display: grid; padding: 5px; overflow: hidden;} div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+                    </style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div><div>4</div> </div> </body>`
+        >
+        </iframe>
+    </div>
+    <h5 id="grid-template-repeat-auto-fit">Auto-fit</h5>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="auto-fit"
+                lang="css"
+                inline
+            /> works the same as <Code code="auto-fill" lang="css" inline />, but the columns will grow to fit the space if there are no overflowing columns. The example below will grow the columns to fit the space if there are no overflowing columns.
+        </p>
+        <div class="inline">
+        <Code
+            code={`.grid {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fit, minmax(10px, 1fr));\n}`}
+            lang="css"
+        />
+        <iframe
+            title="Grid Template Columns"
+            srcdoc=`<head><style>* {padding: 0; margin: 0; box-sizing: border-box; color: white;}body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; grid-template-columns: repeat(auto-fit, minmax(10px, 1fr)); width: 100%; height: 100%; display: grid; padding: 5px; overflow: hidden;} div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+                    </style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div><div>4</div> </div> </body>`
+        >
+        </iframe>
+    </div>
+    </div>
+    <h5 id="grid-template-repeat-auto-fill">Auto-fill</h5>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="auto-fill"
+                lang="css"
+                inline
+            /> can be used with <Code code="repeat" lang="css" inline /> to fill the available space with as many columns as possible. The example below will as many columns with a minimum width of 10px as it can, and then overflow the rest. If no columns overflow, then the columns will not grow to fit the space. Rather, they will remain the same size and empty columns will be created to fit the remaining space.
+        </p>
+        <div class="inline">
+        <Code
+            code={`.grid {\n\tdisplay: grid;\n\tgrid-template-columns: repeat(auto-fill, minmax(10px, 1fr));\n}`}
+            lang="css"
+        />
+        <iframe
+            title="Grid Template Columns"
+            srcdoc=`<head><style>* {padding: 0; margin: 0; box-sizing: border-box; color: white;}body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; grid-template-columns: repeat(auto-fill, minmax(10px, 1fr)); width: 100%; height: 100%; display: grid; padding: 5px; overflow: hidden;} div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+                    </style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div><div>4</div> </div> </body>`
+        >
+        </iframe>
+    </div>
+    
+</div>
