@@ -1,0 +1,57 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../Section.astro";
+
+import HTML from "./html/HTML.astro";
+import Script from "./script/Script.astro";
+
+---
+
+<Section>
+    <h2
+        id="sections"
+        slot="title"
+    >
+        Sections
+    </h2>
+    <p>
+        Svelte files are split into three main sections: <Code
+            code="script"
+            lang="svelte"
+            inline
+        />, <Code
+            code="style"
+            lang="svelte"
+            inline
+        />, and free standing <Code
+            code="html"
+            lang="svelte"
+            inline
+        />. The <Code
+            code="script"
+            lang="svelte"
+            inline
+        /> and <Code
+            code="style"
+            lang="svelte"
+            inline
+        /> sections are optional. The <Code
+            code="html"
+            lang="svelte"
+            inline
+        /> section is formed by the remaining content of the file, and contains the
+        layout for the page. The <Code
+            code="script"
+            lang="svelte"
+            inline
+        /> section contains the JavaScript logic for the component, and holds functions,
+        state etc. for that component, and the <Code
+            code="style"
+            lang="svelte"
+            inline
+        /> section contains the CSS for the component, and is by default locally
+        scoped.
+    </p>
+    <HTML />
+    <Script />
+</Section>

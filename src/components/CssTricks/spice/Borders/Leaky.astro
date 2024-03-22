@@ -1,0 +1,73 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../../colors";
+---
+
+<h3 id="borders-leaking">Leaking</h3>
+<div>
+    <hr />
+    <p>
+        This border leaks the color of nearly internal elements into the border.
+        This is useful for creating a gradient as a border that is responsive to
+        internal content. The border uses internal space, so padding should be
+        set as (border-width + padding) to prevent content from touching the
+        border. The CSS variable <Code
+            code="--bw"
+            lang="css"
+            inline
+        /> is used for the border width. This class uses the before psuedo element
+        to create the border, though this could be replaced with ::after or an internal
+        div.
+    </p>
+    <div class="inline">
+        <Code
+            code={`.leaky {\n\t--bw: 10px;\n\tpadding: calc(10px + var(--bw));\n\tposition: relative;\n}\n.leaky::before {\n\tcontent: "";\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\ttop: 0;\n\tleft: 0;\n\tclip-path: polygon(\n\t\tevenodd,\n\t\t0% 0%,\n\t\t100% 0%,\n\t\t100% 100%,\n\t\t0% 100%,\n\t\t0 0,\n\t\tvar(--bw) var(--bw),\n\t\tcalc(100% - var(--bw)) var(--bw),\n\t\tcalc(100% - var(--bw)) calc(100% - var(--bw)),\n\t\tvar(--bw) calc(100% - var(--bw)),\n\t\tvar(--bw) var(--bw)\n\t);\n\tbackdrop-filter: blur(50px);\n}`}
+            lang="css"
+        />
+        <iframe
+            style="min-height: 400px;"
+            title="Text Gradient Example"
+            srcdoc=`<head><style>* {box-sizing: border-box; margin: 0; padding: 0;}body {margin: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 5px;} .leaky {
+	--bw: 10px; padding: calc(10px + var(--bw)); position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+}
+.leaky::before {
+	content: "";
+	position: absolute;
+    width: 100%;
+    height: 100%;
+	top: 0;
+	left: 0;
+	clip-path: polygon(
+		evenodd,
+		0% 0%,
+		100% 0%,
+		100% 100%,
+		0% 100%,
+		0 0,
+		var(--bw) var(--bw),
+		calc(100% - var(--bw)) var(--bw),
+		calc(100% - var(--bw)) calc(100% - var(--bw)),
+		var(--bw) calc(100% - var(--bw)),
+		var(--bw) var(--bw)
+	);
+	backdrop-filter: blur(50px);
+} button {
+    
+    border: none;
+    width: 100%;
+} .magenta {background-color: magenta;}
+.cyan { background-color: cyan;}
+.lime { background-color: lime;}
+.orange { background-color: orange;}
+.white { background-color: white;}
+</style></head><body> <div class="leaky">
+    <button class="magenta">Magenta</button>
+    <button class="cyan">Cyan</button>
+    <button class="lime">Lime</button>
+    <button class="orange">Orange</button>
+    <button class="white">White</button>
+</div> </body>`
+        >
+        </iframe>
+    </div>
+</div>

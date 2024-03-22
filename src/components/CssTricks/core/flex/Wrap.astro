@@ -1,0 +1,59 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../../colors";
+---
+
+<h3 id="flex-wrap">Flex Wrap</h3>
+<div>
+    <hr />
+    <h4 id="flex-wrap-wrap">Wrap</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="flex-wrap: wrap"
+                lang="css"
+                inline
+            /> will wrap the elements along the static axis when there is no more
+            space available.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Row Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; flex-wrap: wrap; column-gap: 10px; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 45%; height: 25%; flex-shrink: 0;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+    <h4 id="flex-wrap-no-wrap">No Wrap</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="flex-wrap: nowrap"
+                lang="css"
+                inline
+            /> is the default value. It will not wrap the elements along the static
+            axis, and will instead shrink (as 1 has) - then overflow (as 3 has).
+        </p>
+        <div class="inline">
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-wrap: nowrap;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Column Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; overflow: hidden; width: 100%; height: 100%; display: flex; flex-wrap: nowrap; column-gap: 10px; align-items: center; } div div {
+						background-color: ${childBg}; border: 2px solid magenta; width: 45%; height: 25%; min-width: 40px; justify-content: center;} div div:not(:first-child) {flex-shrink: 0;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+</div>

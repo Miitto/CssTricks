@@ -1,0 +1,18 @@
+---
+import Centering from "./Centering.astro";
+import Section from "../../../Section.astro";
+---
+
+<Section>
+    <h2
+        id="basic"
+        slot="title"
+    >
+        Basic
+    </h2>
+    <p>
+        Some base concepts that will likely be used in any project. From
+        centering a div to nesting rules
+    </p>
+    <Centering {...Astro.props} />
+</Section>

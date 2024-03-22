@@ -147,3 +147,70 @@ export const spice: Section[] = [
         ],
     },
 ];
+
+export const svelte: Section[] = [
+    {
+        name: "Sections",
+        id: "sections",
+        subsections: [
+            {
+                name: "HTML",
+                id: "html",
+                subsections: [
+                    {
+                        name: "Embedding Variables",
+                        id: "vars",
+                    },
+                    {
+                        name: "Blocks",
+                        id: "blocks",
+                        subsections: [
+                            {
+                                name: "IF",
+                                id: "if",
+                            },
+                            {
+                                name: "EACH",
+                                id: "each",
+                            },
+                            {
+                                name: "AWAIT",
+                                id: "await",
+                            },
+                            {
+                                name: "KEY",
+                                id: "key",
+                            },
+                        ],
+                    },
+                    {
+                        name: "Special Elements",
+                        id: "special-elements",
+                        subsections: [
+                            {
+                                name: "Slot",
+                                id: "slot",
+                            },
+                            {
+                                name: "Window",
+                                id: "window",
+                            },
+                            {
+                                name: "Head",
+                                id: "head",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                name: "Script",
+                id: "script",
+            },
+            {
+                name: "Style",
+                id: "style",
+            },
+        ],
+    },
+];

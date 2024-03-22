@@ -1,0 +1,105 @@
+---
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../../colors";
+---
+
+<h3 id="flex-direction">Flex Direction</h3>
+<div>
+    <hr />
+    <h4 id="flex-direction-row">Row</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="flex-direction: row"
+                lang="css"
+                inline
+            /> is the default value, and will place elements, aswell as grow / shrink,
+            along the horizontal axis.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-direction: row;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Row Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; flex-direction: row; gap: 10px; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; width: 25%; height: 25%;}</style></head><body> <div>
+							<div>1</div><div>2</div> <div>3</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+    <h4 id="flex-direction-column">Column</h4>
+    <div>
+        <hr />
+        <p>
+            <Code
+                code="flex-direction: column"
+                lang="css"
+                inline
+            /> will place elements, aswell as grow / shrink, along the vertical axis.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-direction: column;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Column Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; width: 25%; height: 25%;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+    <h4 id="flex-direction-reverse">Reverse</h4>
+    <div>
+        <hr />
+        <p>
+            Along with both <Code
+                code="row"
+                lang="css"
+                inline
+            /> and <Code
+                code="column"
+                lang="css"
+                inline
+            />, you can also use <Code
+                code="row-reverse"
+                lang="css"
+                inline
+            /> and <Code
+                code="column-reverse"
+                lang="css"
+                inline
+            /> to reverse the order of the elements.
+        </p>
+        <div class="inline-2-grid">
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-direction: row-reverse;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Row Reverse Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; flex-direction: row-reverse; gap: 10px; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; width: 25%; height: 25%;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div> </div> </body>`
+            >
+            </iframe>
+            <Code
+                code={`.row {\n\tdisplay: flex;\n\tflex-direction: column-reverse;\n}`}
+                lang="css"
+            />
+            <iframe
+                title="Flexbox Column Reverse Direction"
+                srcdoc=`<head><style>body {margin: 0; width: 100vw; height: 100vh; }div { background-color: ${parentBg}; width: 100%; height: 100%; display: flex; flex-direction: column-reverse; gap: 10px; align-items: center; justify-content: center;} div div {
+						background-color: ${childBg}; width: 25%; height: 25%;}</style></head><body> <div>
+							<div>1</div><div>2</div><div>3</div> </div> </body>`
+            >
+            </iframe>
+        </div>
+    </div>
+</div>

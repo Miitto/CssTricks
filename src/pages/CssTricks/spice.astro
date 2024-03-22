@@ -1,0 +1,48 @@
+---
+import Layout from "../../layouts/CatLayout.astro";
+
+import { spice } from "../../sections";
+
+import SpiceComp from "../../components/CssTricks/spice/Spice.astro";
+---
+
+<Layout
+    title="Spice"
+    sections={spice}
+>
+    <main>
+        <SpiceComp />
+    </main>
+</Layout>
+
+<style lang="scss">
+    main {
+        padding: 1em;
+        width: 100%;
+        max-width: 100%;
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+        overflow-y: auto;
+        height: auto;
+        max-height: 100vh;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5em;
+        }
+    }
+</style>
+
+<style is:global lang="scss">
+    .spice {
+        color: transparent !important;
+        background: linear-gradient(
+            90deg,
+            rgb(var(--accent)),
+            rgb(var(--accent-light)) 60%,
+            white 98%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+</style>

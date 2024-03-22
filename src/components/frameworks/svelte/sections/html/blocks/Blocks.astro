@@ -1,0 +1,170 @@
+---
+import Section from "../../../../../Section.astro";
+import { Code } from "astro:components";
+
+import If from "./If.svelte";
+import * as IfMd from "./If.md";
+
+import Each from "./Each.svelte";
+import * as EachMd from "./Each.md";
+
+import Await from "./Await.svelte";
+import * as AwaitMd from "./Await.md";
+
+import Key from "./Key.svelte";
+import * as KeyMd from "./Key.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="sections-html-blocks"
+    >
+        Blocks
+    </h4>
+    <Section>
+        <h5
+            id="sections-html-blocks-if"
+            slot="title"
+        >
+            IF
+        </h5>
+        <p>
+            The <Code
+                code="{#if condition}"
+                lang="svelte"
+                inline
+            /> syntax can be used to conditionally render an element. If the condition
+            is true, the element will be rendered, otherwise it will be removed from
+            the DOM. The <Code
+                code="{:else if condition}"
+                lang="svelte"
+                inline
+            /> syntax can be used to add additional conditions to the element. The
+            <Code
+                code="{:else}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render an element if all above conditions are
+            false. The condition can contain a reactive statement, and the element
+            will be updated whenever the condition changes.
+        </p>
+        <div class="inline">
+            <IfMd.Content />
+            <div class="example">
+                <If client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-blocks-each"
+        >
+            EACH
+        </h5>
+        <p>
+            The <Code
+                code="{#each array as item}"
+                lang="svelte"
+                inline
+            /> syntax can be used to loop over an iterable (such as an array) and
+            render an element for each item in the array. As usual, when the iterable
+            changes then the component will rerender. The <Code
+                code="{#each array as item, index}"
+                lang="svelte"
+                inline
+            /> syntax can be used to include the index of the item in the loop. The
+            <Code
+                code="{#each array as item (key)}"
+                lang="svelte"
+                inline
+            /> syntax can be used to include a key for each item in the loop. The
+            key is used to identify each item in the loop, and is used to determine
+            if an item has been added, removed or moved in the array. The key should
+            be a unique value for each item in the array.
+        </p>
+        <div class="inline">
+            <EachMd.Content />
+            <div class="example">
+                <Each client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-blocks-await"
+        >
+            AWAIT
+        </h5>
+        <p>
+            The <Code
+                code="{#await promise}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render a loading state while a promise is pending.
+            The <Code
+                code="{:then value}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render the resolved value of the promise. The
+            <Code
+                code="{:catch error}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render the rejected value of the promise. The
+            promise can be any promise, and the component will rerender when the
+            promise resolves or rejects.
+            <Code
+                code="{#await promise then value}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render the resolved value of the promise, and
+            will display nothing until the promise resolves. <br />The example
+            below creates an artificial delay of 1 seconds to demonstrate the
+            loading state.
+        </p>
+        <div class="inline">
+            <AwaitMd.Content />
+            <div class="example">
+                <Await client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-blocks-key"
+        >
+            KEY
+        </h5>
+        <p>
+            The <Code
+                code="{#key expression}"
+                lang="svelte"
+                inline
+            /> syntax can be used to specify a key for a block. When the expression
+            changes, the block will be entirely re-created. This will rerun any onMount
+            or onDestroy functions, and will cause the block to be re-inserted into
+            the DOM. This can be useful when you want to force a block to be re-created
+            when a value changes.<br />The below example features some extra
+            code to stop the alert from happening when this page loads for user
+            expirience.<br />This example works using <Code
+                code="use:action"
+                lang="svelte"
+                inline
+            />, which will run the given function (<Code
+                code="onCreate"
+                lang="svelte"
+                inline
+            />) whenever the element is created - in this case the button.
+        </p>
+        <div class="inline">
+            <KeyMd.Content />
+            <div class="example">
+                <Key client:load />
+            </div>
+        </div>
+    </Section>
+</Section>

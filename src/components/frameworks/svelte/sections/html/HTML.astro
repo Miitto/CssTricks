@@ -1,0 +1,71 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+
+import Vars from "./Vars.svelte";
+import * as VarsMd from "./Vars.md";
+
+import Blocks from "./blocks/Blocks.astro";
+import Elements from "./elements/Elements.astro";
+---
+
+<Section>
+    <h3
+        id="sections-html"
+        slot="title"
+    >
+        HTML
+    </h3>
+    <p>
+        Any code that is not within a <Code
+            code="script"
+            lang="svelte"
+            inline
+        /> or <Code
+            code="style"
+            lang="svelte"
+            inline
+        /> tag is considered HTML. This is where the structure of the page is defined.
+        Any valid HTML can be used here, including custom components that have been
+        imported in the <Code
+            code="script"
+            lang="svelte"
+            inline
+        /> tag. Svelte also includes a number of special syntaxes that can be used
+        in the HTML section for conditional elements, loops and more.
+    </p>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-html-vars"
+        >
+            Embedding Variables
+        </h4>
+        <p>
+            The <Code
+                code="{expression}"
+                lang="svelte"
+                inline
+            /> syntax can be used to embed a JavaScript expression in the HTML. The
+            expression can be any valid JavaScript expression, and the result will
+            be rendered in the HTML. The expression can be a reactive statement,
+            and the element will be updated whenever the expression changes.<br
+            />
+            The
+            <Code
+                code="{@html html}"
+                lang="svelte"
+                inline
+            /> syntax can be used to render raw HTML. Without this syntax, the HTML
+            will be escaped and displayed as text.
+        </p>
+        <div class="inline">
+            <VarsMd.Content />
+            <div class="example">
+                <Vars />
+            </div>
+        </div>
+    </Section>
+    <Blocks />
+    <Elements />
+</Section>

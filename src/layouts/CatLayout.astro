@@ -1,0 +1,283 @@
+---
+import type { Section } from "../sections";
+import Layout from "./Layout.astro";
+
+interface Props {
+    title: string;
+    sections: Section[];
+}
+
+const { title, sections = [] } = Astro.props;
+---
+
+<Layout title={title}>
+    {
+        sections.length > 0 ? (
+            <div id="categories">
+                <slot name="cats">
+                    <div>
+                        <a
+                            class="core"
+                            href="/CssTricks/core"
+                        >
+                            Core
+                        </a>
+                        <a
+                            class="spice"
+                            href="/CssTricks/spice"
+                        >
+                            Spice
+                        </a>
+                    </div>
+                </slot>
+                {sections.map((section) => (
+                    <div>
+                        <a href={`#${section.id}`}>{section.name}</a>
+                        <ul>
+                            {section.subsections?.map((subsection) => (
+                                <li>
+                                    <a href={`#${section.id}-${subsection.id}`}>
+                                        {subsection.name}
+                                    </a>
+                                    <ul>
+                                        {subsection.subsections?.map(
+                                            (subsubsection) => (
+                                                <li>
+                                                    <a
+                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}`}
+                                                    >
+                                                        {subsubsection.name}
+                                                    </a>
+                                                    <ul>
+                                                        {subsubsection.subsections?.map(
+                                                            (
+                                                                subsubsubsection
+                                                            ) => (
+                                                                <li>
+                                                                    <a
+                                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}-${subsubsubsection.id}`}
+                                                                    >
+                                                                        {
+                                                                            subsubsubsection.name
+                                                                        }
+                                                                    </a>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        ) : null
+    }
+    <slot />
+    <div id="backToTop">
+        <a href="#categories">Back to top</a>
+    </div>
+</Layout>
+
+<style lang="scss">
+    #backToTop {
+        position: fixed;
+        bottom: 0.5em;
+        right: 0.5em;
+        background: #2226;
+        padding: 0.5em;
+        border-radius: 0.5em;
+        display: none;
+        @media screen and (max-width: 800px) {
+            display: block;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    }
+    #categories {
+        color: #e6e6e6;
+        border: 1px solid #5555;
+        height: fit-content;
+        width: fit-content;
+        font-size: 1.25em;
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        padding: min(2em, 5vw);
+        height: auto;
+        overflow-y: auto;
+        max-height: 90vh;
+
+        div {
+            gap: 0;
+        }
+
+        li {
+            border-left: 1px solid #5555;
+        }
+
+        li {
+            font-size: 0.8em;
+
+            li li {
+                font-size: 0.9em;
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0.5em;
+
+            > li {
+                height: fit-content;
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0.25em 0.5em;
+            display: flex;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+</style>
+
+<style is:global lang="scss">
+    #categories > div:first-child {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1em;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0.25em 0.5em;
+            display: flex;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+
+    body {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 1fr 3fr;
+        min-height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+
+        @media screen and (max-width: 800px) {
+            grid-template-columns: 1fr;
+            overflow-y: auto;
+
+            #categories {
+                width: 100%;
+                max-height: unset;
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        main {
+            overflow: unset !important;
+            max-height: unset !important;
+        }
+    }
+
+    div + h2 {
+        padding-top: 1em;
+    }
+
+    div + h3 {
+        padding-top: 0.5em;
+    }
+
+    div + h4 {
+        padding-top: 0.25em;
+    }
+
+    div:not(#categories):not(#categories div) {
+        display: flex;
+
+        &:not(.inline) {
+            flex-direction: column;
+        }
+
+        gap: 0.5em;
+
+        &:has(div):has(hr) {
+            padding-left: 0.3em;
+            border-left: 1px solid #5555;
+        }
+
+        .inline {
+            flex-direction: row;
+
+            @media screen and (max-width: 800px) {
+                flex-direction: column;
+            }
+
+            @media screen and (min-width: 800px) {
+                pre {
+                    flex: 2 1 fit-content;
+                }
+                .example {
+                    flex: 1;
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        .inline-2-grid {
+            display: grid;
+            grid-template-columns: auto auto;
+
+            @media screen and (max-width: 800px) {
+                grid-template-columns: auto;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            code {
+                font-size: 0.75em;
+            }
+        }
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        padding-left: 0.3em;
+
+        &,
+        p {
+            width: fit-content;
+            &:target {
+                background: linear-gradient(135deg, #ff00e6, #faa0fd);
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+</style>

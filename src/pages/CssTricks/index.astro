@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/TitleLayout.astro";
+---
+
+<Layout
+    title="CSS Tricks"
+    columns={2}
+>
+    <h1 slot="title">CSS Tricks</h1>
+    <a href="/WebRef/CssTricks/core">
+        <div class="card">
+            <h2>Core</h2>
+            <p>Core Concepts useful in every project</p>
+        </div>
+    </a>
+    <a href="/WebRef/CssTricks/spice">
+        <div class="card spice">
+            <h2>Spice</h2>
+            <p>Spice up your site with some flashy visuals</p>
+        </div>
+    </a>
+</Layout>
+
+<style lang="scss">
+    h1 {
+        text-align: center;
+        font-size: 5em;
+        background: linear-gradient(
+            90deg,
+            rgb(var(--accent)),
+            rgb(var(--accent-light)) 60%,
+            white 98%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .spice {
+        overflow: hidden;
+        position: relative;
+        h2 {
+            background: linear-gradient(
+                90deg,
+                rgb(var(--accent)),
+                rgb(var(--accent-light)) 60%,
+                white 98%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &:hover::before {
+            background-position: 91% 100%;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+
+            background: linear-gradient(
+                -135deg,
+                rgb(var(--accent), 0.5),
+                rgb(var(--accent), 0.1) 60%
+            );
+            background-size: 200% 200%;
+
+            transition: background 0.5s ease-in-out;
+        }
+    }
+</style>
+
+<style is:global>
+    #backToTop {
+        display: none !important;
+    }
+</style>

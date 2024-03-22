@@ -1,0 +1,101 @@
+---
+import Section from "../../../../../Section.astro";
+import { Code } from "astro:components";
+
+import BasicSlotParent from "./BasicSlotParent.svelte";
+import * as BasicSlotParentMd from "./BasicSlotParent.md";
+import * as BasicSlotChildMd from "./BasicSlotChild.md";
+
+import NamedSlotParent from "./NamedSlotParent.svelte";
+import * as NamedSlotParentMd from "./NamedSlotParent.md";
+import * as NamedSlotChildMd from "./NamedSlotChild.md";
+
+import KeySlotParent from "./KeySlotParent.svelte";
+import * as KeySlotParentMd from "./KeySlotParent.md";
+import * as KeySlotChildMd from "./KeySlotChild.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="sections-html-special-elements"
+    >
+        Special Elements
+    </h4>
+    <p>
+        Svelte has a few special elements that can be used to better split your
+        application into components.
+    </p>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-special-elements-slot"
+        >
+            Slot
+        </h5>
+        <p>
+            The <Code
+                code="slot"
+                lang="svelte"
+                inline
+            /> element is used to create a slot in a component that can be filled
+            with content from the parent component. This is useful for wrapper components
+            that provide common functionality but need to be customized with different
+            content. - such as popups, modals, or dropdowns. Slots can have default
+            content that will be overridden by the parent component.<br /> As seen
+            below, the local styling of the parent component is applied to the content
+            provided by the parent to the slot.
+        </p>
+        <div class="inline">
+            <BasicSlotParentMd.Content />
+            <BasicSlotChildMd.Content />
+        </div>
+        <div class="example">
+            <BasicSlotParent />
+        </div>
+        <p>
+            Slots can be named to allow for the parent to choose where content
+            will go. This is achieved by adding the <Code
+                code="slot"
+                lang="svelte"
+                inline
+            /> attribute to an element. If no slot is chosen, the element will be
+            added to the unnamed slot - due to this there can only be one unnamed
+            slot in a component.<br />
+            As seen below, the parent component has two slots, one named <Code
+                code="title"
+                lang="svelte"
+                inline
+            /> and one unnamed. The child component fills the unnamed slot with the
+            <Code
+                code="<p>"
+                lang="html"
+                inline
+            /> tag, and the named slot with the <Code
+                code="<h1>"
+                lang="html"
+                inline
+            /> tag. The line divider is provided by the child.
+        </p>
+        <div class="inline">
+            <NamedSlotParentMd.Content />
+            <NamedSlotChildMd.Content />
+        </div>
+        <div class="example">
+            <NamedSlotParent />
+        </div>
+        <p>
+            Slots can also pass variables to the parent to include in the
+            provided content. This is useful when the child does any data
+            manipulation that needs to be dynamically included in middle of the
+            provided content.
+        </p>
+        <div class="inline">
+            <KeySlotParentMd.Content />
+            <KeySlotChildMd.Content />
+        </div>
+        <div class="example">
+            <KeySlotParent />
+        </div>
+    </Section>
+</Section>

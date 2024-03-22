@@ -1,0 +1,50 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+import Counter from "./Counter.svelte";
+import Double from "./Double.svelte";
+import * as CounterMd from "./Counter.md";
+import * as DoubleMd from "./Double.md";
+---
+
+<Section>
+    <h3
+        id="sections-script"
+        slot="title"
+    >
+        Script
+    </h3>
+    <p>
+        The <Code
+            code="script"
+            lang="svelte"
+            inline
+        /> tag is used to define the JavaScript code for this component. It holds
+        variables, functions, props and imports for the file. Variables defined at
+        the top level of the script block are reactive and will cause the component
+        to selectively re-render when they change. <br />Shown below is a simple
+        example of incrementing and decrementing a counter.
+    </p>
+    <div class="inline">
+        <CounterMd.Content />
+        <div class="example">
+            <Counter client:load />
+        </div>
+    </div>
+    <p>
+        A reactive statement can be created using the <Code
+            code="$:"
+            lang="svelte"
+            inline
+        /> syntax. This will cause the variable to update when any of the detected
+        state used in the calculation changes. Variables do not have to be declared
+        using let using this syntax, as shown below in the doubled example. <br
+        />This example builds off the above example of a counter.
+    </p>
+    <div class="inline">
+        <DoubleMd.Content />
+        <div class="example">
+            <Double client:load />
+        </div>
+    </div>
+</Section>

@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/CatLayout.astro";
+import CoreSec from "../../components/CssTricks/core/core.astro";
+
+import { core } from "../../sections";
+---
+
+<Layout
+    title="Core"
+    sections={core}
+>
+    <main>
+        <CoreSec />
+    </main>
+</Layout>
+
+<style lang="scss">
+    main {
+        padding: 1em;
+        width: 100%;
+        max-width: 100%;
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+        overflow-y: auto;
+        height: auto;
+        max-height: 100vh;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5em;
+        }
+    }
+</style>
+
+<style is:global lang="scss">
+    .core {
+        color: transparent !important;
+        background: linear-gradient(
+            90deg,
+            rgb(var(--accent)),
+            rgb(var(--accent-light)) 60%,
+            white 98%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+</style>
