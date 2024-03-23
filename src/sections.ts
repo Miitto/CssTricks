@@ -48,6 +48,24 @@ export const core: Section[] = [
                 ],
             },
             {
+                name: "Positioning",
+                id: "positioning",
+                subsections: [
+                    {
+                        name: "Justify",
+                        id: "justify",
+                    },
+                    {
+                        name: "Align",
+                        id: "align",
+                    },
+                    {
+                        name: "Gap",
+                        id: "gap",
+                    },
+                ],
+            },
+            {
                 name: "Responsiveness",
                 id: "responsiveness",
                 subsections: [
