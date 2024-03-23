@@ -28,7 +28,9 @@ const { title, columns = 2 } = Astro.props;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        height: 100%;
+        height: fit-content;
+        min-height: 100%;
+        margin-bottom: 1rem;
         width: 100%;
 
         > div:first-child {
@@ -38,7 +40,7 @@ const { title, columns = 2 } = Astro.props;
             align-items: center;
             justify-content: center;
             flex: 1;
-            max-width: 35%;
+            max-width: min(600px, 100vw - 2em);
         }
 
         > div:last-child {
@@ -55,13 +57,13 @@ const { title, columns = 2 } = Astro.props;
             border: none;
             padding-inline: 1em;
 
-            @media screen and (max-width: 400px) {
-                --max-columns: 1;
-            }
             @media screen and (max-width: 800px) {
                 --max-columns: 2;
             }
 
+            @media screen and (max-width: 400px) {
+                --max-columns: 1;
+            }
             :global(a) {
                 width: 100%;
                 text-decoration: none;
