@@ -263,6 +263,10 @@ export const svelte: Section[] = [
             },
         ],
     },
+    {
+        name: "Stores",
+        id: "stores",
+    },
 ];
 
 export const kit: Section[] = [

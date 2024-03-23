@@ -1,0 +1,107 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import BasicStore from "./BasicStore.svelte";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="stores"
+    >
+        Stores
+    </h2>
+    <p>
+        Stores are a way to manage the state of your application. Stores are
+        reactive, meaning that they automatically update when their content
+        change. This makes it easy to keep your UI in sync with your data.
+        Stores are similar to how top level variables work in svelte files,
+        however they can be created in external script files and imported into
+        your components.<br />Stores can be created through the <Code
+            code="writable()"
+            lang="ts"
+            inline
+        /> function. The function takes one parameter, which is the initial value
+        of the store. The function returns an object with a <Code
+            code="subscribe()"
+            lang="ts"
+            inline
+        /> method, which can be used to subscribe to the store. The method takes
+        a callback function that will run once when added, and then again every time
+        the stores value changes.<br />The <Code
+            code="set()"
+            lang="ts"
+            inline
+        /> method is used to set the value of the store. The <Code
+            code="update()"
+            lang="ts"
+            inline
+        /> method can be used to update the value of the store, using the current
+        value as a basis.<br /> Within a svelte component, you can use the <Code
+            code="$"
+            lang="ts"
+            inline
+        /> prefix to access the value of a store. This will automatically subscribe
+        to the store and update the component when the store changes.
+    </p>
+    <div class="inline">
+        <Code
+            code={`<script>
+    import { writable } from 'svelte/store';
+    import { onMount, onDestroy } from 'svelte';
+
+    // Create a store with an initial value of 0
+    const count = writable(0);
+
+    let pageLoaded = false;
+
+    let unsubscribe; // Hold unsubscribe function to unsubscribe when the component unmounts
+
+    // Subscribe to the store
+    onMount(() => {
+        unsubscribe = count.subscribe(value => {
+            if (pageLoaded) alert(value); // To prevent the alert from happening on page load / refresh
+        });
+        pageLoaded = true;
+    });
+
+    // Unsubscribe when the component unmounts
+    onDestroy(() => {
+        if (unsubscribe) unsubscribe();
+    });
+
+    // Update the store value, can also be done in .js/ts files.
+    function increment() {
+        count.update(value => value + 1);
+    }
+
+    // Set the store value, can also be done in .js/ts files.
+    function setTen() {
+        count.set(10);
+    }
+
+    // Update the store value, can only be done in .svelte files.
+    function decrement() {
+        $count -= 1;
+    }
+
+    // Set the store value, can only be done in .svelte files.
+    function setZero() {
+        $count = 0;
+    }
+</script>
+
+<p>{$count}</p>
+<button on:click={increment}>Increment</button>
+<button on:click={decrement}>Decrement</button>
+<button on:click={setTen}>Set Ten</button>
+<button on:click="{setZero}">Set Zero</button>
+`}
+            lang="svelte"
+        />
+        <div class="example">
+            <BasicStore client:load />
+        </div>
+    </div></Section
+>
