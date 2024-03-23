@@ -3,6 +3,12 @@ import { Code } from "astro:components";
 import Section from "../../../../Section.astro";
 
 import BasicStore from "./BasicStore.svelte";
+import Search from "./Search.svelte";
+import * as SearchMd from "./Search.md";
+
+import CustomStore from "./CustomStore.svelte";
+import * as CustomStoreSvelte from "./CustomStoreSvelte.md";
+import * as CustomStoreTS from "./CustomStoreTS.md";
 ---
 
 <Section>
@@ -103,5 +109,61 @@ import BasicStore from "./BasicStore.svelte";
         <div class="example">
             <BasicStore client:load />
         </div>
-    </div></Section
->
+    </div>
+    <Section>
+        <h3
+            slot="title"
+            id="stores-derived"
+        >
+            Derived Stores
+        </h3>
+        <p>
+            Derived stores are stores that are derived from other stores. They
+            are created using the <Code
+                code="derived()"
+                lang="ts"
+                inline
+            /> function. The function takes two parameters, the first is an array
+            of stores to derive from, and the second is a function that returns the
+            derived value. The function will be called whenever any of the stores
+            in the first array change. The derived store will then update with the
+            new value.<br />Derived stores can be used to create complex state
+            logic, or to create a store that is a combination of other stores.<br
+            />Below is a simple search implementation using stores.
+        </p>
+        <div class="inline">
+            <SearchMd.Content />
+            <div class="example">
+                <Search client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="stores-custom"
+        >
+            Custom Stores
+        </h3>
+        <p>
+            Custom stores can be created by destructuring the object returned
+            from the <Code
+                code="writable()"
+                lang="ts"
+                inline
+            /> function. The usual method for custom stores is to create your own
+            function that wraps the writable function, and returns a custom implementation.
+            This can be useful for creating stores that have additional methods or
+            properties, or for creating stores that have a specific structure.<br
+            />Below is an example of a custom store that has inbuilt methods for
+            incrementing and decrementing the value.
+        </p>
+        <div class="inline">
+            <CustomStoreTS.Content />
+            <CustomStoreSvelte.Content />
+            <div class="example">
+                <CustomStore client:load />
+            </div>
+        </div>
+    </Section>
+</Section>

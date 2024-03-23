@@ -266,6 +266,16 @@ export const svelte: Section[] = [
     {
         name: "Stores",
         id: "stores",
+        subsections: [
+            {
+                name: "Derived",
+                id: "derived",
+            },
+            {
+                name: "Custom",
+                id: "custom",
+            },
+        ],
     },
 ];
 
