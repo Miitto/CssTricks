@@ -1,8 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 ---
 
 <Layout title="WebRef">
-    <a href="/WebRef/CssTricks">CSS Tricks</a>
-    <a href="/WebRef/frameworks">Frameworks</a>
+    <main>
+        <Card
+            title="CssTricks"
+            body="A collection of basic and advanced CSS techniques"
+            href="/WebRef/CssTricks"
+        />
+        <Card
+            title="Frameworks"
+            body="A collection content on UI Frameworks and Meta-frameworks"
+            href="/WebRef/frameworks"
+        />
+    </main>
 </Layout>
+
+<style lang="scss">
+    main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 100%;
+    }
+</style>

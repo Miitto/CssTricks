@@ -264,3 +264,10 @@ export const svelte: Section[] = [
         ],
     },
 ];
+
+export const kit: Section[] = [
+    {
+        name: "Not Yet Added",
+        id: "not-yet-added",
+    },
+];

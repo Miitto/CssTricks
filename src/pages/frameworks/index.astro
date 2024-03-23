@@ -1,7 +1,25 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
 ---
 
 <Layout title="Frameworks">
-    <a href="./frameworks/svelte">Svelte</a>
+    <main>
+        <Card
+            title="Svelte"
+            body="A framework using a compiler to allow for a more efficient and faster runtime by hijacking native features."
+            href="/WebRef/frameworks/svelte"
+        />
+    </main>
 </Layout>
+
+<style lang="scss">
+    main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 100%;
+    }
+</style>
