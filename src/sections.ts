@@ -224,10 +224,42 @@ export const svelte: Section[] = [
             {
                 name: "Script",
                 id: "script",
+                subsections: [
+                    {
+                        name: "Typescript",
+                        id: "typescript",
+                    },
+                    {
+                        name: "Variables",
+                        id: "variables",
+                    },
+                    {
+                        name: "Reactivity",
+                        id: "reactivity",
+                    },
+                ],
             },
             {
                 name: "Style",
                 id: "style",
+                subsections: [
+                    {
+                        name: "Scoped",
+                        id: "scoped",
+                    },
+                    {
+                        name: "Global",
+                        id: "global",
+                    },
+                    {
+                        name: "Preprocessors",
+                        id: "preprocessor",
+                    },
+                    {
+                        name: "External",
+                        id: "external",
+                    },
+                ],
             },
         ],
     },

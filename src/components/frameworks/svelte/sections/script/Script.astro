@@ -14,37 +14,98 @@ import * as DoubleMd from "./Double.md";
     >
         Script
     </h3>
-    <p>
-        The <Code
-            code="script"
-            lang="svelte"
-            inline
-        /> tag is used to define the JavaScript code for this component. It holds
-        variables, functions, props and imports for the file. Variables defined at
-        the top level of the script block are reactive and will cause the component
-        to selectively re-render when they change. <br />Shown below is a simple
-        example of incrementing and decrementing a counter.
-    </p>
-    <div class="inline">
-        <CounterMd.Content />
-        <div class="example">
-            <Counter client:load />
+    <Section>
+        <h4
+            slot="title"
+            id="sections-script-typescript"
+        >
+            Typescript
+        </h4>
+        <p>
+            Svelte has full support for typescript. To use typescript in a
+            svelte component, simply add <Code
+                code='lang="ts"'
+                lang="svelte"
+                inline
+            /> to the script tag. <br />Shown below is a simple example of a
+            typescript component.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<script lang="ts">
+    let name: string = "Miitto";
+    let age: number = 20;
+
+    let miitto: { name: string, age: number } = { name, age };
+
+    let div: HTMLDivElement;
+</script>
+<div bind:this={div}></div>
+`}
+                lang="svelte"
+            />
         </div>
-    </div>
-    <p>
-        A reactive statement can be created using the <Code
-            code="$:"
-            lang="svelte"
-            inline
-        /> syntax. This will cause the variable to update when any of the detected
-        state used in the calculation changes. Variables do not have to be declared
-        using let using this syntax, as shown below in the doubled example. <br
-        />This example builds off the above example of a counter.
-    </p>
-    <div class="inline">
-        <DoubleMd.Content />
-        <div class="example">
-            <Double client:load />
+        <p>
+            In the example above, explicit types are likely not required as they
+            can be inferred from the values assigned to them. However typescript
+            can be incredibly useful when a variable is not initially assigned a
+            value - as with <Code
+                code="let div: HTMLDivElement"
+                lang="ts"
+                inline
+            /> shown above - and in larger projects with more complex types.<br
+            />Most of the content on this site will not use typescript to both
+            simplify and reduce the width of examples for smaller devices.
+        </p>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-script-variables"
+        >
+            Variables
+        </h4>
+        <p>
+            The <Code
+                code="script"
+                lang="svelte"
+                inline
+            /> tag is used to define the JavaScript code for this component. It holds
+            variables, functions, props and imports for the file. Variables defined
+            at the top level of the script block are reactive and will cause the
+            component to selectively re-render when they change. <br />Shown
+            below is a simple example of incrementing and decrementing a
+            counter.
+        </p>
+        <div class="inline">
+            <CounterMd.Content />
+            <div class="example">
+                <Counter client:load />
+            </div>
         </div>
-    </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-script-reactivity"
+        >
+            Reactivity
+        </h4>
+        <p>
+            A reactive statement can be created using the <Code
+                code="$:"
+                lang="svelte"
+                inline
+            /> syntax. This will cause the variable to update when any of the detected
+            state used in the calculation changes. Variables do not have to be declared
+            using let using this syntax, as shown below in the doubled example. <br
+            />This example builds off the above example of a counter.
+        </p>
+        <div class="inline">
+            <DoubleMd.Content />
+            <div class="example">
+                <Double client:load />
+            </div>
+        </div>
+    </Section>
 </Section>

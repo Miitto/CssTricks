@@ -1,0 +1,181 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+
+import BasicStyle from "./BasicStyle.svelte";
+import GlobalStyleParent from "./GlobalStyleParent.svelte";
+import * as GlobalStyleParentMd from "./GlobalStyleParent.md";
+import * as GlobalStyleChildMd from "./GlobalStyleChild.md";
+
+import Preprocessor from "./Preprocessor.svelte";
+import External from "./External.svelte";
+---
+
+<Section>
+    <h3
+        id="sections-style"
+        slot="title"
+    >
+        Style
+    </h3>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-style-scoped"
+        >
+            Scoped Styles
+        </h4>
+        <p>
+            By default styles inside a style tag within a svelte file are
+            locally scoped to that component. This stops the styles from leaking
+            out and affecting other files. This helps with the common issue of
+            having to name classes across an entire project. Scoped styles are
+            also useful for preventing styles from being overridden by other
+            styles in the project.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<div>
+    <p>Some text</p>
+</div>
+
+<style>
+    div {
+        background-color: grey;
+    }
+    p {
+        color: lime;
+    }
+</style>
+`}
+                lang="svelte"
+            />
+            <div class="example">
+                <BasicStyle />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-style-global"
+        >
+            Global Styles
+        </h4>
+        <p>
+            Sometimes you want to apply styles globally across your entire
+            project from within a component. This can be done by using the <Code
+                code=":global(selector)"
+                lang="svelte"
+                inline
+            /> directive.
+        </p>
+        <div class="inline">
+            <GlobalStyleParentMd.Content />
+            <GlobalStyleChildMd.Content />
+            <div class="example">
+                <GlobalStyleParent />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-style-preprocessor"
+        >
+            Preprocessors
+        </h4>
+        <p>
+            You can also use a preprocessor like SCSS or LESS to write your
+            styles. This can be done by using the <Code
+                code="lang"
+                lang="svelte"
+                inline
+            /> attribute on the style tag.<br />Preprocessors can be used to
+            write more complex styles and can help with organization. They allow
+            nesting (as seen below) and variables, along with more complicated
+            systems such as functions and mixins.<br />When using a
+            preprocessor, the styles are compiled to CSS before being added to
+            the page, which means that none native css variables will be
+            statically converted at compile time.<br />The corresponding
+            preprocessor must be installed in the project for this to work, such
+            as running <Code
+                code="npm add -D sass"
+                lang="bash"
+                inline
+            /> or <Code
+                code="npm add -D less"
+                lang="bash"
+                inline
+            />.<br />
+            The example below uses SCSS and demonstrates nesting and variables.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<div>
+    <p>Some text</p>
+</div>
+
+<style lang="scss">
+    div {
+        $color: lime;
+        background-color: grey;
+
+        /* This section is equivalent to \`div p {}\` */
+        p {
+            color: $color;
+        }
+    }
+</style>
+`}
+                lang="svelte"
+            />
+            <div class="example">
+                <Preprocessor />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="sections-style-external"
+        >
+            External Styles
+        </h4>
+        <p>
+            You can also use an external stylesheet in your svelte component by
+            importing it into the script section of the file. This can be useful
+            for sharing styles across multiple components or for using a
+            library.<br />When using an external stylesheet, the styles are
+            applied globally to the entire project. A common approach is to
+            import root styles in the main / root file of the project.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<!-- Component.svelte -->
+<script>
+    import "./styles.css";
+</script>
+    
+<div>
+    <p>Some text</p>
+</div>
+`}
+                lang="svelte"
+            />
+            <Code
+                code={`/* styles.css */
+div {
+    background-color: grey;
+}
+p {
+    color: lime;
+}`}
+                lang="css"
+            />
+            <div class="example">
+                <External />
+            </div>
+        </div></Section
+    >
+</Section>
