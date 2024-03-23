@@ -9,7 +9,7 @@
      so the default will be used -->
 <BasicSlot />
 <BasicSlot>
-    <p>Overriden Slot content</p>
+    <p>Overridden Slot content</p>
 </BasicSlot>
 
 <style>

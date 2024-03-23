@@ -41,24 +41,24 @@ const { title, sections = [] } = Astro.props;
                                     </a>
                                     <ul>
                                         {subsection.subsections?.map(
-                                            (subsubsection) => (
+                                            (subSubSection) => (
                                                 <li>
                                                     <a
-                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}`}
+                                                        href={`#${section.id}-${subsection.id}-${subSubSection.id}`}
                                                     >
-                                                        {subsubsection.name}
+                                                        {subSubSection.name}
                                                     </a>
                                                     <ul>
-                                                        {subsubsection.subsections?.map(
+                                                        {subSubSection.subsections?.map(
                                                             (
-                                                                subsubsubsection
+                                                                subSubSubSection
                                                             ) => (
                                                                 <li>
                                                                     <a
-                                                                        href={`#${section.id}-${subsection.id}-${subsubsection.id}-${subsubsubsection.id}`}
+                                                                        href={`#${section.id}-${subsection.id}-${subSubSection.id}-${subSubSubSection.id}`}
                                                                     >
                                                                         {
-                                                                            subsubsubsection.name
+                                                                            subSubSubSection.name
                                                                         }
                                                                     </a>
                                                                 </li>
@@ -229,6 +229,7 @@ const { title, sections = [] } = Astro.props;
 
         .inline {
             flex-direction: row;
+            flex-wrap: wrap;
 
             @media screen and (max-width: 800px) {
                 flex-direction: column;
@@ -236,11 +237,10 @@ const { title, sections = [] } = Astro.props;
 
             @media screen and (min-width: 800px) {
                 pre {
-                    flex: 2 1 fit-content;
+                    flex: 2 0 fit-content;
                 }
                 .example {
-                    flex: 1;
-                    flex-shrink: 0;
+                    flex: 1 0 fit-content;
                 }
             }
         }
@@ -251,12 +251,6 @@ const { title, sections = [] } = Astro.props;
 
             @media screen and (max-width: 800px) {
                 grid-template-columns: auto;
-            }
-        }
-
-        @media screen and (max-width: 800px) {
-            code {
-                font-size: 0.75em;
             }
         }
     }

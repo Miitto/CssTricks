@@ -7,7 +7,7 @@
 <BasicSlot />
 <hr />
 <BasicSlot>
-    <p>Overriden Slot content</p>
+    <p>Overridden Slot content</p>
 </BasicSlot>
 <hr />
 

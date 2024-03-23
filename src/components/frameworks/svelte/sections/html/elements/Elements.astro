@@ -2,17 +2,23 @@
 import Section from "../../../../../Section.astro";
 import { Code } from "astro:components";
 
-import BasicSlotParent from "./BasicSlotParent.svelte";
-import * as BasicSlotParentMd from "./BasicSlotParent.md";
-import * as BasicSlotChildMd from "./BasicSlotChild.md";
+import BasicSlotParent from "./slot/BasicSlotParent.svelte";
+import * as BasicSlotParentMd from "./slot/BasicSlotParent.md";
+import * as BasicSlotChildMd from "./slot/BasicSlotChild.md";
 
-import NamedSlotParent from "./NamedSlotParent.svelte";
-import * as NamedSlotParentMd from "./NamedSlotParent.md";
-import * as NamedSlotChildMd from "./NamedSlotChild.md";
+import NamedSlotParent from "./slot/NamedSlotParent.svelte";
+import * as NamedSlotParentMd from "./slot/NamedSlotParent.md";
+import * as NamedSlotChildMd from "./slot/NamedSlotChild.md";
 
-import KeySlotParent from "./KeySlotParent.svelte";
-import * as KeySlotParentMd from "./KeySlotParent.md";
-import * as KeySlotChildMd from "./KeySlotChild.md";
+import KeySlotParent from "./slot/KeySlotParent.svelte";
+import * as KeySlotParentMd from "./slot/KeySlotParent.md";
+import * as KeySlotChildMd from "./slot/KeySlotChild.md";
+
+import WindowEH from "./WindowEH.svelte";
+import * as WindowEHMd from "./WindowEH.md";
+
+import WindowBind from "./WindowBind.svelte";
+import * as WindowBindMd from "./WindowBind.md";
 ---
 
 <Section>
@@ -49,9 +55,9 @@ import * as KeySlotChildMd from "./KeySlotChild.md";
         <div class="inline">
             <BasicSlotParentMd.Content />
             <BasicSlotChildMd.Content />
-        </div>
-        <div class="example">
-            <BasicSlotParent />
+            <div class="example">
+                <BasicSlotParent />
+            </div>
         </div>
         <p>
             Slots can be named to allow for the parent to choose where content
@@ -80,9 +86,9 @@ import * as KeySlotChildMd from "./KeySlotChild.md";
         <div class="inline">
             <NamedSlotParentMd.Content />
             <NamedSlotChildMd.Content />
-        </div>
-        <div class="example">
-            <NamedSlotParent />
+            <div class="example">
+                <NamedSlotParent />
+            </div>
         </div>
         <p>
             Slots can also pass variables to the parent to include in the
@@ -93,9 +99,110 @@ import * as KeySlotChildMd from "./KeySlotChild.md";
         <div class="inline">
             <KeySlotParentMd.Content />
             <KeySlotChildMd.Content />
+            <div class="example">
+                <KeySlotParent />
+            </div>
         </div>
-        <div class="example">
-            <KeySlotParent />
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-special-elements-window"
+        >
+            Window
+        </h5>
+        <p>
+            <Code
+                code="<svelte:window />"
+                lang="svelte"
+                inline
+            /> can be used to access the window in a method that allows svelte functionality.<br
+            />Event Handlers can be added as follows:
+        </p>
+        <div class="inline">
+            <WindowEHMd.Content />
+            <div class="example">
+                <WindowEH client:load />
+            </div>
+        </div>
+        <p>
+            You can bind to some of the attributes of window, although only <Code
+                code="scrollY"
+                lang="svelte"
+                inline
+            /> and <Code
+                code="scrollX"
+                lang="svelte"
+                inline
+            /> are modifiable. The full list of bindable attributes can be found
+            <a
+                href="https://svelte.dev/docs/special-elements#svelte-window"
+                target="_blank"
+                >here</a
+            >.
+        </p>
+        <div class="inline">
+            <WindowBindMd.Content />
+            <div class="example">
+                <WindowBind client:load />
+            </div>
+        </div>
+        <p>
+            <Code
+                code="<svelte:document />"
+                lang="svelte"
+                inline
+            /> and <Code
+                code="<svelte:body />"
+                lang="svelte"
+                inline
+            /> work similarly to <Code
+                code="<svelte:window />"
+                lang="svelte"
+                inline
+            /> but for the document and body respectively. They all must only appear
+            at the top level of the component, and must never be inside a block or
+            element.
+        </p>
+    </Section>
+    <Section>
+        <h5
+            id="sections-html-special-elements-head"
+            slot="title"
+        >
+            Head
+        </h5>
+        <p>
+            <Code
+                code="<svelte:head>"
+                lang="svelte"
+                inline
+            /> allows for you to add anything to the head section of the document
+            from any component. This allows for meta tags to be added and the title
+            to be modified.<br />As with the <Code
+                code="<svelte:window />"
+                lang="svelte"
+                inline
+            />, <Code
+                code="<svelte:document />"
+                lang="svelte"
+                inline
+            /> and <Code
+                code="<svelte:body />"
+                lang="svelte"
+                inline
+            />, <Code
+                code="<svelte:head>"
+                lang="svelte"
+                inline
+            /> can only appear at the top level of the component, and must never
+            be inside a block or element.
+        </p>
+        <div class="inline">
+            <Code
+                code='<svelte:head>\n\t<title>My Page</title>\n\t<meta\n\t\tname="description"\n\t\tcontent="This is where the description goes for SEO"\n\t/>\n</div>'
+                lang="svelte"
+            />
         </div>
     </Section>
 </Section>
