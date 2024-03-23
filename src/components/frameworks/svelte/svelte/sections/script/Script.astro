@@ -83,6 +83,26 @@ import * as DoubleMd from "./Double.md";
                 <Counter client:load />
             </div>
         </div>
+        <p>
+            As a small caveat, with an object the variable will only register as
+            changed if there is an assignment to the object itself, instead of
+            fields within it. This is shown in the example below, as well as a
+            simple fix.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<script>
+    let obj = { a: 1, b: 2 };
+
+    function changeObj() {
+        obj.a = 3; // This by itself will not trigger a re-render.
+        obj = obj; // This will trigger a re-render.
+    }
+</script>
+`}
+                lang="svelte"
+            />
+        </div>
     </Section>
     <Section>
         <h4
