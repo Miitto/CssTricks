@@ -6,7 +6,8 @@ import Vars from "./Vars.svelte";
 import * as VarsMd from "./Vars.md";
 
 import Blocks from "./blocks/Blocks.astro";
-import Elements from "./elements/Elements.astro";
+import Elements from "./special-elements/Elements.astro";
+import Directives from "./element-directives/Directives.astro";
 ---
 
 <Section>
@@ -67,5 +68,6 @@ import Elements from "./elements/Elements.astro";
         </div>
     </Section>
     <Blocks />
+    <Directives />
     <Elements />
 </Section>

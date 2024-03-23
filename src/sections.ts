@@ -162,6 +162,24 @@ export const svelte: Section[] = [
                         id: "vars",
                     },
                     {
+                        name: "Element Directives",
+                        id: "element-directives",
+                        subsections: [
+                            {
+                                name: "Bind",
+                                id: "bind",
+                            },
+                            {
+                                name: "Class",
+                                id: "class",
+                            },
+                            {
+                                name: "On",
+                                id: "on",
+                            },
+                        ],
+                    },
+                    {
                         name: "Blocks",
                         id: "blocks",
                         subsections: [

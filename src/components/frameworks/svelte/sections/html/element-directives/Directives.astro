@@ -1,0 +1,98 @@
+---
+import Section from "../../../../../Section.astro";
+import { Code } from "astro:components";
+
+import Bind from "./Bind.svelte";
+import * as BindMd from "./Bind.md";
+
+import Class from "./Class.svelte";
+import * as ClassMd from "./Class.md";
+
+import On from "./On.svelte";
+import * as OnMd from "./On.md";
+---
+
+<Section>
+    <h4
+        id="sections-html-element-directives"
+        slot="title"
+    >
+        Directives
+    </h4>
+    <p>
+        Directives are special attributes that can be added to elements within
+        svelte files to add functionality beyond vanilla HTML.
+    </p>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-element-directives-bind"
+        >
+            Bind
+        </h5>
+        <p>
+            Bind can be used to ensure aa variable stays in sync with an
+            attribute of an element. For instance, if you bind to the value of
+            an input element then when the variable changes - the text in the
+            input will also change. However this also works vice versa - when
+            the user types in the input the variable will change accordingly
+        </p>
+        <div class="inline">
+            <BindMd.Content />
+            <div class="example">
+                <Bind client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-element-directives-class"
+        >
+            Class
+        </h5>
+        <p>
+            The class directive can be used to easily add conditional classes to
+            an element. This is useful for adding classes based on the state of
+            a variable.<br />In this example, when the length of the text is
+            greater than 5, the class long is added to the input, which will
+            turn the background green.
+        </p>
+        <div class="inline">
+            <ClassMd.Content />
+            <div class="example">
+                <Class client:load />
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="sections-html-element-directives-on"
+        >
+            On
+        </h5>
+        <p>
+            The on directive can be used to assign event handlers to an element,
+            such as click, mouseover, etc. The <Code
+                code="on:event={handler}"
+                lang="svelte"
+                inline
+            /> syntax is used to assign the event handler to the element. The event
+            handler can be a function or an inline function.<br /> The handler is
+            passed the event object as an argument, as can be seen with the <Code
+                code="inputChange"
+                lang="svelte"
+                inline
+            /> function in the example below.<br />In the below example, the
+            input has a handler that will fire when the input is typed in, and
+            the button has a handler that will fire when the button is clicked.
+        </p>
+        <div class="inline">
+            <OnMd.Content />
+            <div class="example">
+                <On client:load />
+            </div>
+        </div>
+    </Section>
+</Section>
