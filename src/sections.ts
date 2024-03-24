@@ -346,7 +346,7 @@ export const kit: Section[] = [
             },
             {
                 name: "Special Files",
-                id: "special-files",
+                id: "files",
                 subsections: [
                     {
                         name: "+page.svelte",
@@ -354,7 +354,23 @@ export const kit: Section[] = [
                     },
                     {
                         name: "+page.js",
-                        id: "hooks",
+                        id: "page-js",
+                    },
+                    {
+                        name: "+layout.svelte",
+                        id: "layout-svelte",
+                    },
+                    {
+                        name: "+layout.js",
+                        id: "layout-js",
+                    },
+                    {
+                        name: "+error.svelte",
+                        id: "error",
+                    },
+                    {
+                        name: "+server.js",
+                        id: "server",
                     },
                 ],
             },
