@@ -1,0 +1,262 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+
+import FolderView from "../../../../FolderStructure/FolderView.astro";
+import Folder from "../../../../FolderStructure/Folder.astro";
+import File from "../../../../FolderStructure/File.astro";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="project-files"
+    >
+        Special Files
+    </h3>
+    <p>SvelteKit uses a few special files for functionality.</p>
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-page-svelte"
+        >
+            +page.svelte
+        </h4>
+        <p>
+            This file is used to define the layout of the page. It is used
+            define the content of the page, styles for itself and script. This
+            file is the component used for the route it is at. It behaves like a
+            normal Svelte component, except that it can export a data prop that
+            will receive the page load data.<br />In the example below, the page
+            has been passed data of a user from the page load function. The
+            corresponding code for this page load function is shown below with <a
+                href="#project-files-page-js">+page.js</a
+            >.<br />
+            Any variables dependent on the data prop should use reactive statements
+            so that they update properly when the data prop changes.<br />The
+            data props has any data given to it by its load function, and any
+            data given to a parent component. For instance a <Code
+                code="+page.svelte"
+                inline
+            /> file can access any data given to any <Code
+                code="+layout.svelte"
+                inline
+            /> file that it is nested in.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<script lang="ts">
+    // For end to end type safety
+    import type { PageData } from './$types'; 
+
+    export let data: PageData;
+
+    $: user = data.user;
+</script>
+
+<p>{user.name}</p>
+<p>{user.age}</p>
+`}
+                lang="svelte"
+            />
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-page-js"
+        >
+            +page.js
+        </h4>
+        <p>
+            This file is used to define the page load function. This function is
+            called when the page is loaded and is used to fetch data for the
+            page. The data returned from this function is passed to the page
+            component as the data prop. In the example below, the page load
+            function creates a user object and returns it. The corresponding
+            code for the page component is shown above with <a
+                href="#project-files-page-svelte">+page.svelte</a
+            >.
+        </p>
+        <div class="inline">
+            <Code
+                code={`import type { PageLoad } from '$types';
+
+export const load: PageLoad = ({params, locals, cookies}) => {
+    return {
+        user: {
+            name: 'John Doe',
+            age: 30
+        }
+    };
+}`}
+                lang="ts"
+            />
+        </div>
+        <p>
+            The load function has access to a few parameters, some of which are
+            shown above.<br /><Code
+                code="params"
+                inline
+            /> is used to access any route parameters in the route hierarchy<br
+            /><Code
+                code="locals"
+                inline
+            /> is used to access any local state for this particular request. This
+            is commonly used to get a users session.<br /><Code
+                code="cookies"
+                inline
+            /> can be used to get the cookies of the request.
+        </p>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-layout-svelte"
+        >
+            +layout.svelte
+        </h4>
+        <p>
+            This file is used to define a common layout of any pages at or below
+            this file in the folder hierarchy. The layout behaves like a normal
+            svelte component, and like <Code
+                code="+page.svelte"
+                inline
+            /> can use a data prop to get access to page load data.<br />A
+            layout file needs to contain an unnamed slot that child pages will
+            be rendered into, and otherwise can contain any other content. A
+            common use case is to have navigation or a header in the layout
+            file, so that it is shared across all pages that use that layout.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<script lang="ts">
+    import type { PageServerData } from "./$types";
+
+    export let data: PageServerData;
+</script>
+
+<header>{data.user.name}</header>
+<main>
+    <slot />
+</main>
+`}
+                lang="svelte"
+            />
+        </div></Section
+    >
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-layout-js"
+        >
+            +layout.js
+        </h4>
+        <p>
+            This file is used to define the layout load function. This function
+            is called when the layout is loaded and is used to fetch data for
+            the layout. The data returned from this function is passed to the
+            layout component as the data prop. This file works identically to
+            the <a href="#project-files-page-js">+page.js</a> file so will not be
+            repeated.
+        </p>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-error"
+        >
+            +error.svelte
+        </h4>
+        <p>
+            This file is used to define the layout of the error page. Any error
+            (such as a 404) of a page at this files level, or below, will be
+            rendered using this file. It works as a standard svelte component,
+            and has access to the error that occurred.<br />Below is a simple
+            example of an error page that displays the error message, status
+            code. The example includes styling so can be copied and based into
+            an existing project as is.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<script>
+	import { page } from '$app/stores';
+	import './(app)/styles.scss';
+</script>
+
+<main>
+	<section>
+		<h1>
+			{$page.status}
+		</h1>
+		<span> </span>
+		<h1>
+			{$page.error?.message}
+		</h1>
+	</section>
+</main>
+
+<style>
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		width: 100%;
+		overflow: auto;
+		position: relative;
+		height: fit-content;
+		gap: 1rem;
+    }
+    
+    span {
+        width: 1px;
+        height: 100%;
+        background-color: var(--text);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: xxx-large;
+    }
+
+	main {
+		align-items: center;
+		justify-content: center;
+		background-color: var(--background);
+	}
+</style>
+`}
+                lang="svelte"
+            />
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="project-files-server"
+        >
+            +server.js
+        </h4>
+        <p>
+            This file contains functions for the HTTP verbs (GET, POST, PUT
+            etc.) that will be run on the server. This file is used to define
+            the server functions that will be run when a request is made to the
+            server, and is used for API routes.<br />Below is simple example of
+            a GET request handler that returns some JSON.
+        </p>
+        <div class="inline">
+            <Code
+                code={`import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
+
+export const GET: RequestHandler = async ({ params, locals }) => {
+    return json({ message: 'GET request' });
+};
+`}
+                lang="ts"
+            />
+            <div></div>
+        </div>
+    </Section></Section
+>

@@ -1,0 +1,30 @@
+---
+import Section from "../../../../Section.astro";
+
+import { Code } from "astro:components";
+
+import Structure from "./Structure.astro";
+import Files from "./Files.astro";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="project"
+    >
+        Project
+    </h2>
+    <p>
+        This section will go over some project fundamentals, such as folder
+        structure. <Code
+            code=".js"
+            inline
+        /> and <Code
+            code=".ts"
+            inline
+        /> file extensions are interchangeable, so you can use either one, or mix
+        and match as needed.
+    </p>
+    <Structure />
+    <Files />
+</Section>

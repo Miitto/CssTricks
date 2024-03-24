@@ -1,0 +1,12 @@
+---
+interface Props {
+    name: string;
+}
+
+let { name } = Astro.props;
+---
+
+<div>
+    <span><i class="folderIcon"></i>{name}</span>
+    <slot />
+</div>

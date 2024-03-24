@@ -299,7 +299,99 @@ export const svelte: Section[] = [
 
 export const kit: Section[] = [
     {
-        name: "Not Yet Added",
-        id: "not-yet-added",
+        name: "Project",
+        id: "project",
+        subsections: [
+            {
+                name: "Folder Structure",
+                id: "structure",
+                subsections: [
+                    {
+                        name: ".svelte-kit",
+                        id: "svelte-kit",
+                    },
+                    {
+                        name: "src",
+                        id: "src",
+                        subsections: [
+                            {
+                                name: "lib",
+                                id: "lib",
+                            },
+                            {
+                                name: "params",
+                                id: "params",
+                            },
+                            {
+                                name: "routes",
+                                id: "routes",
+                            },
+                            {
+                                name: "app.html",
+                                id: "app",
+                            },
+                            {
+                                name: "hooks.server.js",
+                                id: "hooks",
+                            },
+                        ],
+                    },
+                    {
+                        name: "static",
+                        id: "static",
+                    },
+                    {
+                        name: ".env",
+                        id: "env",
+                    },
+                    {
+                        name: "package.json",
+                        id: "package",
+                    },
+                    {
+                        name: "svelte.config.js",
+                        id: "svelte-config",
+                    },
+                    {
+                        name: "tsconfig.json",
+                        id: "tsconfig",
+                    },
+                    {
+                        name: "vite.config.js",
+                        id: "vite",
+                    },
+                ],
+            },
+            {
+                name: "Special Files",
+                id: "files",
+                subsections: [
+                    {
+                        name: "+page.svelte",
+                        id: "page-svelte",
+                    },
+                    {
+                        name: "+page.js",
+                        id: "page-js",
+                    },
+                    {
+                        name: "+layout.svelte",
+                        id: "layout-svelte",
+                    },
+                    {
+                        name: "+layout.js",
+                        id: "layout-js",
+                    },
+                    {
+                        name: "+error.svelte",
+                        id: "error",
+                    },
+                    {
+                        name: "+server.js",
+                        id: "server",
+                    },
+                ],
+            },
+        ],
     },
 ];
