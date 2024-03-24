@@ -1,0 +1,494 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+
+import FolderView from "../../../../FolderStructure/FolderView.astro";
+import Folder from "../../../../FolderStructure/Folder.astro";
+import File from "../../../../FolderStructure/File.astro";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="project-structure"
+    >
+        Folder Structure
+    </h3>
+    <p>
+        It is recommended to create a SvelteKit project by using <Code
+            code="npm create svelte@latest"
+            lang="bash"
+            inline
+        /> as this will provide options for creating the project with the correct
+        layout for the features you want to use, such as typescript support, linting
+        and formatting config, as well as bundler config for Vite.<br />Below is
+        an example of the main folders and files in a SvelteKit project:
+    </p>
+    <div class="inline">
+        <FolderView>
+            <Folder name=".svelte-kit" />
+            <Folder name="src">
+                <Folder name="lib" />
+                <Folder name="params" />
+                <Folder name="routes" />
+                <File name="app.html" />
+                <File name="hooks.server.js" />
+            </Folder>
+            <Folder name="static" />
+            <File name=".env" />
+            <File name="package.json" />
+            <File name="svelte.config.js" />
+            <File name="tsconfig.json" />
+            <File name="vite.config.ts" />
+        </FolderView>
+    </div>
+    <Section>
+        <h4
+            slot="title"
+            id="project-structure-svelte-kit"
+        >
+            .svelte-kit
+        </h4>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="project-structure-src"
+        >
+            src
+        </h4>
+        <p>
+            The <Code
+                code="src"
+                inline
+            /> folder is where the main source code of the project is stored. It
+            contains the following subfolders and files:
+        </p>
+        <div class="inline">
+            <FolderView>
+                <Folder name="lib" />
+                <Folder name="params" />
+                <Folder name="routes" />
+                <File name="app.html" />
+                <File name="hooks.server.js" />
+            </FolderView>
+        </div>
+        <Section>
+            <h5
+                slot="title"
+                id="project-structure-src-lib"
+            >
+                lib
+            </h5>
+            <p>
+                The <Code
+                    code="lib"
+                    inline
+                /> folder is used to store utility functions and other shared code
+                that can be used across multiple parts of the project. This folder
+                can be accessed from anywhere using <Code
+                    code=`"$lib/<path>"`
+                    lang="ts"
+                    inline
+                />, eg. <Code
+                    code={`import Component from "$lib/Component.svelte"`}
+                    lang="ts"
+                    inline
+                />.
+            </p>
+        </Section>
+        <Section>
+            <h5
+                slot="title"
+                id="project-structure-src-params"
+            >
+                params
+            </h5>
+            <p>
+                The <Code
+                    code="params"
+                    inline
+                /> folder is used to store parameterized routes. Each file in this
+                folder represents a filter that can be used to match routes based
+                on a boolean condition returned from the contained <Code
+                    code="match"
+                    lang="ts"
+                    inline
+                /> function.<br />In the example below, the route will only
+                match if the value of the <Code
+                    code="id"
+                    inline
+                /> parameter is an integer:
+            </p>
+            <div class="inline">
+                <FolderView>
+                    <Folder name="routes">
+                        <Folder name="[id=integer]" />
+                    </Folder>
+                    <Folder name="params">
+                        <File name="integer.ts" />
+                    </Folder>
+                </FolderView>
+                <Code
+                    code={`// integer.ts
+import type { ParamMatcher } from '@sveltejs/kit';
+
+export const match: ParamMatcher = (param) => {
+	return /^\d+$/.test(param);
+};
+`}
+                    lang="ts"
+                />
+            </div>
+        </Section>
+        <Section>
+            <h5
+                slot="title"
+                id="project-structure-src-routes"
+            >
+                routes
+            </h5>
+            <p>
+                The <Code
+                    code="routes"
+                    inline
+                /> folder is used to store the route components of the project. Each
+                folder under this directory represents a route, and needs to container
+                one, and only one, of a <Code
+                    code="+page.svelte"
+                    inline
+                /> or a <Code
+                    code="+server.js/ts"
+                    inline
+                /> file. The <Code
+                    code="+page.svelte"
+                    inline
+                /> file is used for a viewable page, whereas a <Code
+                    code="+server.js/ts"
+                    inline
+                /> file is used to define a server only route, for an API.<br
+                />The example below has three routes, the default index page at <Code
+                    code="/"
+                    inline
+                />, <Code
+                    code="/about"
+                    inline
+                /> and a server route at <Code
+                    code="/api/hello"
+                    inline
+                />:
+            </p>
+            <div class="inline">
+                <FolderView>
+                    <Folder name="routes">
+                        <Folder name="api">
+                            <Folder name="hello">
+                                <File name="+server.ts" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="about">
+                            <File name="+page.svelte" />
+                            <File name="+page.js" />
+                        </Folder>
+                        <File name="+page.svelte" />
+                        <File name="+page.server.js" />
+                    </Folder>
+                </FolderView>
+            </div>
+            <p>
+                The above example also includes two extra files called <Code
+                    code="+page.js"
+                    inline
+                /> and <Code
+                    code="+page.server.js"
+                    inline
+                />. These are files that contain a <Code
+                    code="load: PageLoad"
+                    inline
+                /> function that will run before the page loads, and can pass data
+                to the page by returning it from this function. The <Code
+                    code="+page.js"
+                    inline
+                /> file will run on both client and server, and the <Code
+                    code="+page.server.js"
+                    inline
+                /> file will only run on the server. The data returned from the load
+                function can be accessed in the page component using <Code
+                    code="export let data: PageData"
+                    inline
+                /> in the script tag. <br />The types of <Code
+                    code="PageLoad"
+                    inline
+                /> and <Code
+                    code="PageData"
+                    inline
+                /> are auto generated by SvelteKit and can be imported from <Code
+                    code="./$types"
+                    inline
+                />. The <Code
+                    code="PageLoad"
+                    inline
+                /> and <Code
+                    code="PageData"
+                    inline
+                /> should be replaced with <Code
+                    code="PageServerLoad"
+                    inline
+                /> and <Code
+                    code="PageServerData"
+                    inline
+                /> for a server side load function. These types are only used for
+                typescript usage, and can be ignored for javascript.
+            </p>
+        </Section>
+        <Section>
+            <h5
+                slot="title"
+                id="project-structure-src-app"
+            >
+                app.html
+            </h5>
+            <p>
+                The <Code
+                    code="app.html"
+                    inline
+                /> file is the main HTML template of the project. It is used to define
+                the structure of the application and includes
+                <Code
+                    code="%sveltekit.head%"
+                    inline
+                />
+                <Code
+                    code="%sveltekit.body%"
+                    inline
+                /> placeholders that are replaced with the head and body content
+                generated by each page. <Code
+                    code="%sveltekit.assets%"
+                    inline
+                /> is also available for linking files such as an icon and will be
+                replaced with the route of the static folder.<br />Below is a
+                basic example of the template:
+            </p>
+            <div class="inline"></div>
+            <Code
+                code={`<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>`}
+                lang="html"
+            />
+        </Section>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="project-structure-src-hooks"
+        >
+            hooks.server.js
+        </h5>
+        <p>
+            The <Code
+                code="hooks.server.js"
+                inline
+            /> file is used to define server hooks that run on any request received
+            by the server. Hooks have access to the entire request lifetime and can
+            read and modify the incoming request and the outgoing response. Variables
+            local to the current request can be defined, and then later accessed
+            in page load functions using the <Code
+                code="locals"
+                inline
+            />.<br />Access restrictions and user authentication should be
+            implemented here for best security practices, as a hook will always
+            be invoked.
+        </p>
+    </Section>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-static"
+    >
+        static
+    </h4>
+    <p>
+        The <Code
+            code="static"
+            inline
+        /> folder is used to store static files that are served by the server directly.
+        This folder is accessible from the root of the project, so a file called
+        <Code
+            code="favicon.png"
+            inline
+        /> in the static folder can be accessed at <Code
+            code="/favicon.png"
+            inline
+        />. Items within this folder will be copied directly to the build
+        output, and will not be renamed or hashed. This is useful for files that
+        need to be accessed with a set name, such as <Code
+            code="robots.txt"
+            inline
+        />.
+    </p>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-env"
+    >
+        .env
+    </h4>
+    <p>
+        The <Code
+            code=".env"
+            inline
+        /> file is used to store environment variables that can be accessed throughout
+        the project. This file should not be committed to version control, and should
+        be added to the <Code
+            code=".gitignore"
+            inline
+        /> file to prevent it from being added accidentally.<br />Below is an
+        example of the contents of the <Code
+            code=".env"
+            inline
+        /> file:
+    </p>
+    <div class="inline">
+        <Code
+            code={`PUBLIC_URL_ONE=https://api.example.com
+URL_TWO=https://example.com
+`}
+            lang="bash"
+        />
+    </div>
+    <p>
+        Sveltekit has two types of environment variables, static and dynamic, as
+        well as two privacy levels, public and private. Variables are defined in
+        the <Code
+            code=".env"
+            inline
+        />
+        file and can be accessed in the project using a variety of methods in sveltekit
+        depending on use case. Public variables must start with a defined prefix,
+        which defaults to <Code
+            code="PUBLIC_"
+            inline
+        />. All other variables are private by default.<br />Static variables
+        are statically injected into the build at compile time, and are more
+        efficient than dynamic variables. Dynamic variables are fetched when
+        needed at runtime, and are useful for variables that change frequently,
+        such as API keys. The format for importing environment variables is
+        <Code
+            code="$env/<type>/<privacy>"
+            inline
+        /> where <Code
+            code="<type>"
+            inline
+        /> is either <Code
+            code="static"
+            inline
+        /> or <Code
+            code="dynamic"
+            inline
+        /> and <Code
+            code="<privacy>"
+            inline
+        /> is either <Code
+            code="public"
+            inline
+        /> or <Code
+            code="private"
+            inline
+        />.<br />Below is an example of how to import a static public variable:
+    </p>
+    <div class="inline">
+        <Code
+            code={`import { PUBLIC_URL_ONE } from '$env/static/public';`}
+            lang="ts"
+        />
+    </div>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-package"
+    >
+        package.json
+    </h4>
+    <p>
+        The <Code
+            code="package.json"
+            inline
+        /> file is used to store metadata about the project, as well as the dependencies
+        and scripts used to build and run the project. This file is used by npm to
+        install the correct dependencies and run predefined scripts.
+    </p>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-svelte-config"
+    >
+        svelte.config.js
+    </h4>
+    <p>
+        The <Code
+            code="svelte.config.js"
+            inline
+        /> file is used to configure the SvelteKit project. This file is used to
+        define the plugins and preprocessors used in the project, as well as the
+        options for each of these. A full list of options can be found <a
+            href="https://kit.svelte.dev/docs/configuration"
+            target="_blank"
+            >here</a
+        >.
+    </p>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-tsconfig"
+    >
+        tsconfig.json
+    </h4>
+    <p>
+        The <Code
+            code="tsconfig.json"
+            inline
+        /> file is used to configure the typescript compiler for the project. This
+        file is used to define the options for the typescript compiler, such as the
+        target version of javascript to compile to, the module system to use, and
+        the location of the source files.
+    </p>
+</Section>
+<Section>
+    <h4
+        slot="title"
+        id="project-structure-vite"
+    >
+        vite.config.ts
+    </h4>
+    <p>
+        The <Code
+            code="vite.config.js"
+            inline
+        /> file is used to configure the Vite bundler for the project. This file
+        is used to define the options for the Vite bundler, such as the plugins to
+        use, the server options, and the build options. A full list of options can
+        be found <a
+            href="https://vitejs.dev/config/"
+            target="_blank"
+            >here</a
+        >. Most options should be set in the <Code
+            code="svelte.config.js"
+            inline
+        /> file instead, but some options are only available in the Vite config file.
+    </p>
+</Section>
