@@ -1,0 +1,86 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+---
+
+<Section>
+    <h4 id="basic-properties-display">Display</h4>
+    <p>
+        Display is used to set how the element, and its children are layed out.
+    </p>
+    <Section>
+        <h5 id="basic-properties-display-block">Block</h5>
+        <p>
+            Block elements take up the full width of their parent element and
+            stack on top of each other, with a small gap. Most containers such
+            as <Code
+                code="<div>"
+                lang="html"
+                inline
+            /> are block elements.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-display-inline">Inline</h5>
+        <p>
+            Inline elements only take up as much space as they need, and stack
+            next to each other. Most text elements such as <Code
+                code="<p>"
+                lang="html"
+                inline
+            /> are inline.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-display-inline-block">Inline Block</h5>
+        <p>
+            Inline block elements take up as much space as they need, but can
+            have padding and margin applied to them.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-display-flex">Flex</h5>
+        <p>
+            Flex elements are used to create a flexbox layout. They can be used
+            to create complex layouts with ease. Flex children can be set to
+            grow and shrink to fit available space, and can be aligned in many
+            ways.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-display-grid">Grid</h5>
+        <p>
+            Grid elements are used to create a grid layout. They can be used to
+            create regular layouts where children will be in a common alignment.
+        </p>
+    </Section>
+    <div class="inline">
+        <Code
+            code={`.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; }
+`}
+            lang="css"
+        />
+        <div class="example borders padding">
+            <div class="block">
+                <div class="block">Block 1</div>
+                <div class="block">Block 2</div>
+            </div>
+            <div class="inline">
+                <div class="inline">Inline 1</div>
+                <div class="inline">Inline 2</div>
+            </div>
+            <div class="inline-block">
+                <div class="inline-block">Inline Block 1</div>
+                <div class="inline-block">Inline Block 2</div>
+            </div>
+            <div class="flex">
+                <div class="flex">Flex 1</div>
+                <div class="flex">Flex 2</div>
+            </div>
+        </div>
+    </div>
+</Section>

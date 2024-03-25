@@ -1,6 +1,10 @@
 ---
-import Centering from "./Centering.astro";
 import Section from "../../../Section.astro";
+
+import Centering from "./Centering.astro";
+import Display from "./properties/Display.astro";
+import Position from "./properties/Position.astro";
+import Overflow from "./properties/Overflow.astro";
 ---
 
 <Section>
@@ -14,5 +18,40 @@ import Section from "../../../Section.astro";
         Some base concepts that will likely be used in any project. From
         centering a div to nesting rules
     </p>
-    <Centering {...Astro.props} />
+    <Section>
+        <h3 id="basic-properties">Properties</h3>
+        <Display />
+        <Position />
+        <Overflow />
+    </Section>
+    <Centering />
 </Section>
+
+<style lang="scss">
+    .example {
+        &.borders > * {
+            border: 1px solid #5555;
+        }
+
+        &.padding > * {
+            padding: 0.25em;
+        }
+        .block {
+            display: block;
+        }
+        .inline {
+            display: inline;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        .flex {
+            display: flex;
+            flex-direction: row;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>

@@ -1,0 +1,208 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+---
+
+<Section>
+    <h4 id="basic-properties-position">Position</h4>
+    <p>
+        Position is used to specify the type of positioning method used for an
+        element, which affects how it interacts with the layout.
+    </p>
+    <Section>
+        <h5 id="basic-properties-position-static">Static</h5>
+        <p>
+            Static is the default position. An element with position: static; is
+            not positioned in any special way; it is always positioned according
+            to the normal flow of the page.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-position-relative">Relative</h5>
+        <p>
+            An element with <Code
+                code="position: relative"
+                lang="css"
+                inline
+            /> is positioned relative to its normal position. Setting the top, right,
+            bottom, and left properties will offset it from its original position.
+            The offset does not effect any other elements.<br />In the example
+            below, the border shows the original position of the element.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.relative {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+`}
+                lang="css"
+            />
+            <div class="example">
+                <div class="border">
+                    <div class="relative">Relative Offset</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-position-absolute">Absolute</h5>
+        <p>
+            An element with <Code
+                code="position: absolute"
+                lang="css"
+                inline
+            /> is positioned relative to the nearest none static positioned ancestor.
+            If there is no positioned ancestor, it is positioned relative to the
+            initial containing block. The element is removed from the normal document
+            flow, and will not affect the position of other elements.<br />In
+            the example below, the border shows the normal position of the
+            element. The text appears at the bottom right as it is being
+            positioned relative to the outer container that has <Code
+                code="position: relative"
+                lang="css"
+                inline
+            />.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.absolute {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+`}
+                lang="css"
+            />
+            <div class="example">
+                <div class="border">
+                    <div class="absolute">Absolute Offset</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-position-sticky">Sticky</h5>
+        <p>
+            An element with <Code
+                code="position: sticky"
+                lang="css"
+                inline
+            /> is positioned based on the user's scroll position. It is treated as
+            relatively positioned until it reaches a specified point, then it is
+            treated as fixed until it reaches the end of its parent container.<br
+            />The example below will show the text at its normal position, but
+            as you scroll, as it reaches the point specified by its offset
+            values (10px from top and 20px from left), it will stick to that
+            position until the end of the parent container (the border in this
+            case).
+        </p>
+        <div class="inline">
+            <Code
+                code={`.sticky {
+    position: sticky;
+    top: 10px;
+    left: 20px;
+}
+`}
+                lang="css"
+            />
+            <div class="example">
+                <div class="overflow">
+                    <div>
+                        <div class="sticky">Sticky</div>
+                        <div>Static</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-position-fixed">Fixed</h5>
+        <p>
+            An element with <Code
+                code="position: fixed"
+                lang="css"
+                inline
+            /> is positioned relative to the viewport, which means it always stays
+            in the same place even if the page is scrolled. The element is removed
+            from the normal document flow, and will not affect the position of other
+            elements.<br />The example below is responsible for the "Fixed
+            Position Example" text in the top left of the screen
+            <p class="disclaimer">Your screen is too small for this example</p>
+        </p>
+        <div class="inline">
+            <Code
+                code={`.fixed {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+}
+`}
+                lang="css"
+            />
+            <div>
+                <div class="border">
+                    <div class="fixed">Fixed Position Example</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+</Section>
+<style lang="scss">
+    .border {
+        border: 1px solid #5555;
+        min-height: 2em;
+    }
+
+    .relative {
+        position: relative;
+        top: 10px;
+        left: 20px;
+    }
+
+    .absolute {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+    }
+
+    .fixed {
+        position: fixed;
+        top: 10px;
+        left: 20px;
+
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
+    }
+    @media screen and (min-width: 800px) {
+        .disclaimer {
+            display: none;
+        }
+    }
+
+    .sticky {
+        position: sticky;
+        top: 0;
+        height: fit-content;
+    }
+
+    .example {
+        position: relative;
+    }
+
+    .overflow {
+        height: 100%;
+        overflow: auto;
+
+        > div {
+            height: 200%;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: row;
+            padding-top: 2em;
+        }
+    }
+</style>

@@ -14,66 +14,70 @@ const { title, sections = [] } = Astro.props;
     {
         sections.length > 0 ? (
             <div id="categories">
-                <slot name="cats">
-                    <div>
+                <div>
+                    <slot name="cats">
                         <a
                             class="core"
-                            href="/CssTricks/core"
+                            href="/WebRef/CssTricks/core"
                         >
                             Core
                         </a>
                         <a
                             class="spice"
-                            href="/CssTricks/spice"
+                            href="/WebRef/CssTricks/spice"
                         >
                             Spice
                         </a>
-                    </div>
-                </slot>
-                {sections.map((section) => (
-                    <div>
-                        <a href={`#${section.id}`}>{section.name}</a>
-                        <ul>
-                            {section.subsections?.map((subsection) => (
-                                <li>
-                                    <a href={`#${section.id}-${subsection.id}`}>
-                                        {subsection.name}
-                                    </a>
-                                    <ul>
-                                        {subsection.subsections?.map(
-                                            (subSubSection) => (
-                                                <li>
-                                                    <a
-                                                        href={`#${section.id}-${subsection.id}-${subSubSection.id}`}
-                                                    >
-                                                        {subSubSection.name}
-                                                    </a>
-                                                    <ul>
-                                                        {subSubSection.subsections?.map(
-                                                            (
-                                                                subSubSubSection
-                                                            ) => (
-                                                                <li>
-                                                                    <a
-                                                                        href={`#${section.id}-${subsection.id}-${subSubSection.id}-${subSubSubSection.id}`}
-                                                                    >
-                                                                        {
-                                                                            subSubSubSection.name
-                                                                        }
-                                                                    </a>
-                                                                </li>
-                                                            )
-                                                        )}
-                                                    </ul>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+                    </slot>
+                </div>
+                <div>
+                    {sections.map((section) => (
+                        <div>
+                            <a href={`#${section.id}`}>{section.name}</a>
+                            <ul>
+                                {section.subsections?.map((subsection) => (
+                                    <li>
+                                        <a
+                                            href={`#${section.id}-${subsection.id}`}
+                                        >
+                                            {subsection.name}
+                                        </a>
+                                        <ul>
+                                            {subsection.subsections?.map(
+                                                (subSubSection) => (
+                                                    <li>
+                                                        <a
+                                                            href={`#${section.id}-${subsection.id}-${subSubSection.id}`}
+                                                        >
+                                                            {subSubSection.name}
+                                                        </a>
+                                                        <ul>
+                                                            {subSubSection.subsections?.map(
+                                                                (
+                                                                    subSubSubSection
+                                                                ) => (
+                                                                    <li>
+                                                                        <a
+                                                                            href={`#${section.id}-${subsection.id}-${subSubSection.id}-${subSubSubSection.id}`}
+                                                                        >
+                                                                            {
+                                                                                subSubSubSection.name
+                                                                            }
+                                                                        </a>
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
         ) : null
     }
@@ -86,6 +90,8 @@ const { title, sections = [] } = Astro.props;
         border: 1px solid #5555;
         height: fit-content;
         width: fit-content;
+        min-width: min(100vw, 10em);
+        max-width: 25vw;
         font-size: 1.25em;
         display: flex;
         flex-direction: column;
@@ -95,6 +101,23 @@ const { title, sections = [] } = Astro.props;
         overflow-y: auto;
         max-height: 90vh;
         margin-left: 1rem;
+
+        @media screen and (max-width: 800px) {
+            width: 100%;
+            max-height: unset;
+            height: fit-content;
+            flex-shrink: 0;
+            max-width: unset;
+            margin-left: 0;
+        }
+
+        > div:last-child {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            width: fit-content;
+        }
 
         div {
             gap: 0;
@@ -156,22 +179,19 @@ const { title, sections = [] } = Astro.props;
     }
 
     body {
-        display: grid;
+        display: flex;
         align-items: center;
         justify-content: center;
-        grid-template-columns: auto 1fr;
+        flex-direction: row;
         min-height: 100vh;
         max-height: 100vh;
         overflow: hidden;
 
         @media screen and (max-width: 800px) {
-            grid-template-columns: 1fr;
+            flex-direction: column;
             overflow-y: auto;
-
-            #categories {
-                width: 100%;
-                max-height: unset;
-            }
+            max-height: unset;
+            justify-content: start;
         }
     }
 
@@ -194,13 +214,12 @@ const { title, sections = [] } = Astro.props;
         padding-top: 0.25em;
     }
 
-    div:not(#categories):not(#categories div) {
+    div {
         display: flex;
+        flex-direction: column;
+    }
 
-        &:not(.inline) {
-            flex-direction: column;
-        }
-
+    div:not(#categories):not(#categories div) {
         gap: 0.5em;
 
         &:has(hr) {
@@ -228,7 +247,7 @@ const { title, sections = [] } = Astro.props;
 
         .inline-2-grid {
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: auto min-content;
 
             @media screen and (max-width: 800px) {
                 grid-template-columns: auto;

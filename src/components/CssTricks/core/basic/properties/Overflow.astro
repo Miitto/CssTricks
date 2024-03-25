@@ -1,0 +1,147 @@
+---
+import Section from "../../../../Section.astro";
+import { Code } from "astro:components";
+---
+
+<Section>
+    <h4 id="basic-properties-overflow">Overflow</h4>
+    <p>
+        Overflow is used to control how children who overflow the size of the
+        parent are handled. Overflow can be set for both the x and y axis
+        separately using <Code
+            code="overflow-x"
+            lang="css"
+            inline
+        /> and <Code
+            code="overflow-y"
+            lang="css"
+            inline
+        />.
+    </p>
+    <Section>
+        <h5 id="basic-properties-overflow-auto">Auto</h5>
+        <p>
+            The overflow is hidden, and a scrollbar is added if there is any
+            overflow.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-overflow-visible">Visible</h5>
+        <p>The overflow is shown, possibly over other elements.</p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-overflow-hidden">Hidden</h5>
+        <p>The overflow is hidden and a scrollbar is not created.</p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-overflow-scroll">Scroll</h5>
+        <p>
+            The overflow is hidden, and a scrollbar is created regardless if the
+            content is overflowing or not.
+        </p>
+    </Section>
+    <Section>
+        <h5 id="basic-properties-overflow-clip">Clip</h5>
+        <p>
+            The overflow is hidden, and a scrollbar is not created. This
+            property can be combined with <Code
+                code="overflow-clip-margin"
+                lang="css"
+                inline
+            /> to allow for a set length of content overflow.
+        </p>
+    </Section>
+
+    <div class="inline">
+        <Code
+            code={`.auto {
+    overflow: auto;
+}
+.visible {
+    overflow: visible;
+}
+.hidden {
+    overflow: hidden;
+}
+.scroll {
+    overflow: scroll;
+}
+.clip {
+    overflow: clip;
+    overflow-clip-margin: 2em;
+}
+`}
+            lang="css"
+        />
+        <div class="example">
+            <div class="border auto">
+                Auto | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Optio beatae dignissimos error, illum ipsam quas eaque ipsum
+                blanditiis dicta praesentium quidem quaerat, ut molestias
+                accusantium. Quod tempora delectus nobis nesciunt?
+            </div>
+            <div class="border visible">
+                Visible | Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Nihil libero dolore quidem sed quo esse accusamus
+                cupiditate! Suscipit dicta ducimus sequi esse nostrum,
+                consequatur quia consequuntur, excepturi rem earum
+                reprehenderit!
+            </div>
+            <div class="border hidden">
+                Hidden | Lorem ipsum dolor sit, amet consectetur adipisicing
+                elit. Velit obcaecati dicta harum cum dolor eaque hic quaerat,
+                similique cumque provident, aliquam perferendis quo corrupti
+                omnis! Nemo iste tenetur sint cupiditate?
+            </div>
+            <div class="border scroll">
+                Scroll | Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Repellat laborum optio illo veritatis doloribus ex nisi
+                magnam impedit. Animi fugiat omnis hic culpa eligendi veritatis
+                debitis aperiam ut earum impedit.
+            </div>
+            <div class="border clip">
+                Clip | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Laborum accusantium quisquam sit sequi quaerat quae dignissimos
+                modi voluptate autem, est nostrum minus, rem perferendis iusto
+                dolorum cupiditate enim distinctio molestiae?
+            </div>
+        </div>
+    </div>
+</Section>
+<style lang="scss">
+    .border {
+        border: 1px solid #5555;
+        min-height: 2em;
+        padding: 5px;
+    }
+
+    .auto,
+    .visible,
+    .hidden,
+    .scroll,
+    .clip {
+        max-width: 5em;
+        white-space: nowrap;
+    }
+
+    .auto {
+        overflow: auto;
+    }
+
+    .visible {
+        overflow: visible;
+    }
+
+    .hidden {
+        overflow: hidden;
+    }
+
+    .scroll {
+        overflow: scroll;
+    }
+
+    .clip {
+        overflow: clip;
+        overflow-clip-margin: 2em;
+    }
+</style>
