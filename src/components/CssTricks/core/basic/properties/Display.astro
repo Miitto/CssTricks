@@ -78,9 +78,40 @@ import { Code } from "astro:components";
                 <div class="inline-block">Inline Block 2</div>
             </div>
             <div class="flex">
-                <div class="flex">Flex 1</div>
-                <div class="flex">Flex 2</div>
+                <div>Flex 1</div>
+                <div>Flex 2</div>
+            </div>
+            <div class="grid">
+                <div>Grid 1</div>
+                <div>Grid 2</div>
+                <div>Grid 3</div>
+                <div>Grid 4</div>
             </div>
         </div>
     </div>
 </Section>
+
+<style lang="scss">
+    .example * {
+        width: fit-content;
+    }
+    .example {
+        .block {
+            display: block;
+        }
+        .inline {
+            display: inline;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        .flex {
+            display: flex;
+            flex-direction: row;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
