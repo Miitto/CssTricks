@@ -9,7 +9,10 @@ import { svelte } from "../../../sections";
     title="Svelte"
     sections={svelte}
 >
-    <div slot="cats">
+    <div
+        slot="cats"
+        class="contents"
+    >
         <a
             class="svelte"
             href="./svelte"
@@ -41,6 +44,10 @@ import { svelte } from "../../../sections";
         @media screen and (max-width: 768px) {
             padding: 0.5em;
         }
+    }
+
+    .contents {
+        display: contents;
     }
 </style>
 

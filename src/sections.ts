@@ -10,6 +10,90 @@ export const core: Section[] = [
         id: "basic",
         subsections: [
             {
+                name: "Properties",
+                id: "properties",
+                subsections: [
+                    {
+                        name: "Display",
+                        id: "display",
+                        subsections: [
+                            {
+                                name: "Block",
+                                id: "block",
+                            },
+                            {
+                                name: "Inline",
+                                id: "inline",
+                            },
+                            {
+                                name: "Inline Block",
+                                id: "inline-block",
+                            },
+                            {
+                                name: "Flex",
+                                id: "flex",
+                            },
+                            {
+                                name: "Grid",
+                                id: "grid",
+                            },
+                        ],
+                    },
+                    {
+                        name: "Position",
+                        id: "position",
+                        subsections: [
+                            {
+                                name: "Static",
+                                id: "static",
+                            },
+                            {
+                                name: "Relative",
+                                id: "relative",
+                            },
+                            {
+                                name: "Absolute",
+                                id: "absolute",
+                            },
+                            {
+                                name: "Sticky",
+                                id: "sticky",
+                            },
+                            {
+                                name: "Fixed",
+                                id: "fixed",
+                            },
+                        ],
+                    },
+                    {
+                        name: "Overflow",
+                        id: "overflow",
+                        subsections: [
+                            {
+                                name: "Auto",
+                                id: "auto",
+                            },
+                            {
+                                name: "Visible",
+                                id: "visible",
+                            },
+                            {
+                                name: "Hidden",
+                                id: "hidden",
+                            },
+                            {
+                                name: "Scroll",
+                                id: "scroll",
+                            },
+                            {
+                                name: "Clip",
+                                id: "clip",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
                 name: "Centering",
                 id: "centering",
                 subsections: [
