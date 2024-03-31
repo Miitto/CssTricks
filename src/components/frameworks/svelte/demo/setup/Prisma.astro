@@ -1,0 +1,36 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+---
+
+<Section>
+    <h3
+        id="setup-prisma"
+        slot="title"
+    >
+        Add Prisma
+    </h3>
+    <p>
+        Prisma is a modern database toolkit that makes it easy to work with most
+        types of database. In this tutorial we will be using Prisma with SQLite.
+        To add Prisma to your project, run the following command in your
+        terminal:
+    </p>
+    <Code
+        code="npm install prisma --save-dev"
+        lang="bash"
+    />
+    <p>Next, run the following command to initialize Prisma in your project:</p>
+    <Code
+        code="npx prisma init --datasource-provider sqlite"
+        lang="bash"
+    />
+    <p>
+        This will create all files for prisma, and sets the configuration to
+        work with the <Code
+            code="sqlite"
+            inline
+        /> database. In a production environment, a more robust database would be
+        used such as <a href="https://www.postgresql.org/">PostgreSQL</a>.
+    </p></Section
+>

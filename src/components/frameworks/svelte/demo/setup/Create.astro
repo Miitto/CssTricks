@@ -1,0 +1,65 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+---
+
+<Section>
+    <h3
+        id="setup-create"
+        slot="title"
+    >
+        Create a new project
+    </h3>
+    <p>
+        First ensure you have the latest version of node installed. You can
+        check this by running <Code
+            code="node -v"
+            lang="bash"
+            inline
+        /> in your terminal. If you don't have node installed, you can download it
+        from <a href="https://nodejs.org/en/download/">nodejs.org</a>.
+    </p>
+    <p>
+        To create a new SvelteKit project, run the following command in your
+        terminal:
+    </p>
+    <Code
+        code="npm create svelte@latest"
+        lang="bash"
+    />
+    <p>
+        For this project we will be starting from a skeleton project, and we
+        will be using typescript. <br />Setting up ESLint and Prettier are
+        recommended if you use VSCode as your editor. To select these checkboxes
+        you can use <Code
+            code="spacebar"
+            inline
+        />
+        to toggle the option, and arrow keys to navigate. Once you have selected
+        the options you want, press enter to continue. This will create a new blank
+        project with all the necessary files.
+    </p>
+    <p>
+        After the project is created, navigate into the project directory by
+        running
+        <Code
+            code="cd project-name"
+            lang="bash"
+            inline
+        />, replacing <Code
+            code="project-name"
+            inline
+        /> with the name of your project.
+        <br />
+        To install the dependencies, run <Code
+            code="npm install"
+            lang="bash"
+            inline
+        />. <br />To install the CSS Preprocessor that will be used in this
+        tutorial, run <Code
+            code="npm install sass"
+            lang="bash"
+            inline
+        />.
+    </p>
+</Section>

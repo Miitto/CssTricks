@@ -59,6 +59,16 @@ const { title } = Astro.props;
             );
         }
 
+        h2:not(:first-child) {
+            margin-top: 0.5rem;
+        }
+        h3:not(:first-child) {
+            margin-top: 0.25rem;
+        }
+        h4:not(:first-child) {
+            margin-top: 0.1rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -97,6 +107,8 @@ const { title } = Astro.props;
             line-height: 1.5;
             max-width: 100%;
             width: 100%;
+            padding-block: 0.5em;
+            border-radius: 5px;
 
             &.has-diff {
                 padding-left: 24px;

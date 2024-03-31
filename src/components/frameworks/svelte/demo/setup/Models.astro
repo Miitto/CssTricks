@@ -1,0 +1,298 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+---
+
+<Section>
+    <h3
+        id="setup-models"
+        slot="title"
+    >
+        Create Models
+    </h3>
+    <p>
+        When using Prisma, you define your database schema using a schema file.
+        This file is used to generate the database schema and the Prisma client.
+        The Prisma client is used to interact with the database. When setting up
+        prisma, it will create a folder in the root of your project called <Code
+            code="prisma"
+            inline
+        />. Inside this folder, you will find a file called <Code
+            code="schema.prisma"
+            inline
+        />. This file is where you define your database schema. Upon creation
+        the file will look like this:
+    </p>
+    <div class="inline">
+        <Code
+            code={`// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}`}
+            lang="prisma"
+        />
+    </div>
+    <p>
+        The <Code
+            code="generator"
+            inline
+        /> block is used to define the Prisma client. The <Code
+            code="datasource"
+            inline
+        /> block is used to define the database connection. In this case, it is using
+        SQLite. You can change this to any other database that Prisma supports. You
+        can find a list of supported databases <a
+            href="https://www.prisma.io/docs/concepts/database-connectors"
+            target="_blank"
+            rel="noopener"
+        >
+            here
+        </a>.<br />
+        The url field in the <Code
+            code="datasource"
+            inline
+        /> block is used to define the connection string to the database. In this
+        case, it points at an environment variable called <Code
+            code="DATABASE_URL"
+            inline
+        />. This is used to keep sensitive information out of the codebase. You
+        can set this environment variable in a <Code
+            code=".env"
+            inline
+        /> file in the root of your project. The <Code
+            code=".env"
+            inline
+        /> file should look like this (ignoring the comments):
+    </p>
+    <div class="inline">
+        <Code
+            lang="bash"
+            code={`DATABASE_URL="file:./dev.db"`}
+        />
+    </div>
+    <p>
+        This sets the <Code
+            code="DATABASE_URL"
+            inline
+        /> environment variable to point at a SQLite database called <Code
+            code="dev.db"
+            inline
+        />.
+    </p>
+    <p>
+        Now that you have your database set up, you can define your models in
+        the schema file. For this example, we will create four models called
+        <Code
+            code="Author"
+            inline
+        />,
+        <Code
+            code="Book"
+            inline
+        />,
+        <Code
+            code="User"
+            inline
+        /> and
+        <Code
+            code="Loan"
+            inline
+        />.
+    </p>
+    <Section>
+        <h3
+            slot="title"
+            id="setup-models-author"
+        >
+            Author
+        </h3>
+        <p>
+            The <Code
+                code="Author"
+                inline
+            /> model will contain a primary key called <Code
+                code="id"
+                inline
+            /> and a field called <Code
+                code="name"
+                inline
+            />. The <Code
+                code="books"
+                inline
+            /> field is a relation to the <Code
+                code="Book"
+                inline
+            /> model, and can be used to get all books by this author.
+        </p>
+        <div class="inline">
+            <Code
+                code={`model Author {
+    // Primary key, uses a unique string key
+    // Generated automatically
+    id    String     @id @default(cuid())
+    name  String
+    // Reverse Relation to the Book model
+    books Book[]
+}`}
+                lang="prisma"
+            />
+        </div>
+        <p>
+            The <Code
+                code="@id"
+                lang="prisma"
+                inline
+            /> attribute is used to define the primary key of the model.<br /> The
+            <Code
+                code="@default(cuid())"
+                lang="prisma"
+                inline
+            /> attribute is used to generate a unique string key automatically when
+            a new Author is created.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="setup-models-book"
+        >
+            Book
+        </h3>
+        <p>
+            The <Code
+                code="Book"
+                inline
+            /> model will contain a primary key called <Code
+                code="id"
+                inline
+            />, a field called <Code
+                code="title"
+                inline
+            /> and an optional field called <Code
+                code="description"
+                inline
+            /> (as shown by the ? after the type). The <Code
+                code="authorId"
+                inline
+            /> field stores the ID of an author which can then be accessed with the
+            <Code
+                code="author"
+                inline
+            /> field. The <Code
+                code="loans"
+                inline
+            /> field is a relation to the <Code
+                code="Loan"
+                inline
+            /> model, and can be used to get all loans of this book.
+        </p>
+        <div class="inline">
+            <Code
+                code={`model Book {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  // ID of the author
+  authorId    String
+  // Author of the book, uses the authorId field to get the author
+  author      Author  @relation(fields: [authorId], references: [id])
+  loans       Loan[]
+}`}
+                lang="prisma"
+            />
+        </div>
+        <p>
+            The <Code
+                code="@relation(fields: [authorId], references: [id])"
+                lang="prisma"
+                inline
+            /> attribute is used to define a relation between the <Code
+                code="Book"
+                inline
+            /> and <Code
+                code="Author"
+                inline
+            /> models. The <Code
+                code="fields"
+                inline
+            /> attribute is used to define the field in the <Code
+                code="Book"
+                inline
+            /> model that is used to reference the <Code
+                code="Author"
+                inline
+            /> model. The <Code
+                code="references"
+                inline
+            /> attribute is used to define the field in the <Code
+                code="Author"
+                inline
+            /> model that is being referenced.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="setup-models-user"
+        >
+            User
+        </h3>
+
+        <div class="inline">
+            <Code
+                code={`model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+  loans Loan[]
+}`}
+                lang="prisma"
+            />
+        </div>
+        <p>
+            The <Code
+                code="@unique"
+                lang="prisma"
+                inline
+            /> attribute is used to ensure that there are no duplicates of the field
+            - ie. two users cannot have the same email.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="setup-models-loan"
+        >
+            Loan
+        </h3>
+        <div class="inline">
+            <Code
+                code={`model Loan {
+  id       String   @id @default(cuid())
+  bookId   String
+  book     Book     @relation(fields: [bookId], references: [id])
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  dueDate  DateTime
+  returned Boolean  @default(false)
+}`}
+                lang="prisma"
+            />
+        </div>
+        <p>
+            The <Code
+                code="@default(false)"
+                lang="prisma"
+                inline
+            /> attribute is used to set returned to false on a loan creation, unless
+            it is set.
+        </p>
+    </Section>
+</Section>

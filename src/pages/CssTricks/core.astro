@@ -2,13 +2,30 @@
 import Layout from "../../layouts/CatLayout.astro";
 import CoreSec from "../../components/CssTricks/core/core.astro";
 
-import { core } from "../../sections";
+import { css } from "../../sections";
 ---
 
 <Layout
     title="Core"
-    sections={core}
+    sections={css.core}
 >
+    <div
+        class="contents"
+        slot="cats"
+    >
+        <a
+            class="core"
+            href="/WebRef/CssTricks/core"
+        >
+            Core
+        </a>
+        <a
+            class="spice"
+            href="/WebRef/CssTricks/spice"
+        >
+            Spice
+        </a>
+    </div>
     <main>
         <CoreSec />
     </main>

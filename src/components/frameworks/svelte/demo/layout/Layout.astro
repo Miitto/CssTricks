@@ -1,0 +1,63 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import Titlebar from "./Titlebar.astro";
+import Sidebar from "./Sidebar.astro";
+---
+
+<Section>
+    <h2
+        id="layout"
+        slot="title"
+    >
+        Layout
+    </h2>
+    <p>
+        The site will contain a common layout to hold navigation, and import
+        global styling. For this we will create a file called <Code
+            code="+layout.svelte"
+            inline
+        /> at <Code
+            code="src/routes/+layout.svelte"
+            inline
+        />.
+    </p>
+    <p>
+        The layout will contain three parts: a title-bar, a sidebar for
+        navigation, and an area for the content.
+    </p>
+    <Titlebar />
+    <Sidebar />
+    <Section>
+        <h3
+            id="layout-content"
+            slot="title"
+        >
+            Content
+        </h3>
+        <p>
+            The content area will be a slot that will be filled by the
+            individual pages. The slot will be wrapped in the <Code
+                code="<main>"
+                lang="html"
+                inline
+            /> tag.
+        </p>
+        <Code
+            code={`<main><slot /></main>`}
+            lang="svelte"
+        />
+        <p>
+            Some bare bones styling will be added in the style tag to ensure
+            that there is no overlap with the sidebar, and add some padding
+        </p>
+        <Code
+            code={`main {
+    margin-left: 200px;
+    padding: 20px;
+}`}
+            lang="scss"
+        />
+    </Section>
+</Section>

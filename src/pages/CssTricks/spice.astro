@@ -1,15 +1,32 @@
 ---
 import Layout from "../../layouts/CatLayout.astro";
 
-import { spice } from "../../sections";
+import { css } from "../../sections";
 
 import SpiceComp from "../../components/CssTricks/spice/Spice.astro";
 ---
 
 <Layout
     title="Spice"
-    sections={spice}
+    sections={css.spice}
 >
+    <div
+        class="contents"
+        slot="cats"
+    >
+        <a
+            class="core"
+            href="/WebRef/CssTricks/core"
+        >
+            Core
+        </a>
+        <a
+            class="spice"
+            href="/WebRef/CssTricks/spice"
+        >
+            Spice
+        </a>
+    </div>
     <main>
         <SpiceComp />
     </main>

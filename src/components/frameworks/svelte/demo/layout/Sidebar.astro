@@ -1,0 +1,121 @@
+---
+import { Code } from "astro/components";
+import * as PageStoreImport from "./PageStoreImport.md";
+import Section from "../../../../Section.astro";
+import * as SidebarLinks from "./SidebarLinks.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="layout-sidebar"
+    >
+        Sidebar
+    </h3>
+    <p>
+        The sidebar will contain navigation links to different pages within the
+        site.
+    </p>
+    <Section>
+        <h4
+            slot="title"
+            id="layout-sidebar-nav"
+        >
+            Navigation
+        </h4>
+        <p>
+            The sidebar will link to all top level pages within the site.
+            Styling will be applied conditionally to each link depending on
+            which page is currently being viewed. This will allow the user to
+            easily see which page they are currently on.
+        </p>
+        <p>
+            For the conditional styling to work, we will need to know which page
+            we are on. To do this we need to import the <Code
+                code="page"
+                inline
+            /> store that is provided by SvelteKit. This store will contain information
+            about the current page, including the url and pathname.
+        </p>
+        <div class="inline">
+            <PageStoreImport.Content />
+        </div>
+        <p>
+            The <Code
+                code="page"
+                inline
+            /> store can then be used to access the current page's pathname. This
+            is used in the conditional classes below, which apply the class <Code
+                code="active"
+                inline
+            /> to the link if the current page's pathname matches the link's href.
+        </p>
+        <div class="inline">
+            <SidebarLinks.Content />
+        </div>
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="layout-sidebar-style"
+        >
+            Style
+        </h4>
+        <p>
+            The sidebar will be styled to be fixed to the left side of the
+            screen. It will be 100% of the height of the screen, minus the
+            titlebar height of 50px.
+        </p>
+        <p>
+            The active link will be styled by the <Code
+                code="active"
+                inline
+            /> class to be different to the other links. This will make it clear
+            to the user which page they are currently on by setting the background
+            color to be lighter.<br /> The following should go in the style tag of
+            the layout:
+        </p>
+        <div class="inline">
+            <Code
+                code={`.sidebar {
+    background-color: #222;
+    height: 100%;
+    // Fixed Width of 200px
+    width: 200px;
+
+    // Fixed Position to the left of the screen
+    position: fixed;
+    top: 50px;
+    left: 0;
+
+    // Flexbox to stack items vertically
+    display: flex;
+    flex-direction: column;
+
+    // Style links to be 100% width of the container
+    // Set to inline block to allow padding and width to be set
+    a {
+        padding: 0.5rem 1rem;
+        display: inline-block;
+        width: 100%;
+        color: white;
+
+        // Remove the default underline from links
+        text-decoration: none;
+
+        // Style the active link differently
+        &.active {
+            background-color: #333;
+        }
+
+        // Hover effect
+        &:hover {
+            background-color: #333;
+        }
+    }
+}`}
+                lang="scss"
+            />
+        </div>
+    </Section>
+</Section>

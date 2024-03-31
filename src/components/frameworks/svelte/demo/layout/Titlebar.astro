@@ -1,0 +1,125 @@
+---
+import { Code } from "astro/components";
+import * as StyleImport from "./StyleImport.md";
+import Section from "../../../../Section.astro";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="layout-title"
+    >
+        Titlebar
+    </h3>
+    <p>
+        The titlebar will contain the title of the site which will be contained
+        within a store so that it can be updated from any page.
+    </p>
+    <Section>
+        <h4
+            slot="title"
+            id="layout-title-store"
+        >
+            Store
+        </h4>
+        <p>
+            Create a store to hold the title of the site. This will be a
+            writable store so that it can be updated from any page.<br />
+            In <Code
+                code="src/lib/index.ts"
+                inline
+            />, create a new store with the following:
+        </p>
+        <div class="inline">
+            <Code
+                code={`// Import writable from svelte/store to create a new store
+import { writable } from 'svelte/store';
+
+// Create a new writable store to hold the title of the site
+// Defaults to 'Library'
+// Exported so that it can be used in other files.
+export const title = writable('Library');`}
+                lang="ts"
+            />
+        </div>
+        <p>
+            At the top of <Code
+                code="+layout.svelte"
+                inline
+            /> we will import the title store so that we can use it within the markup
+            below.
+        </p>
+        <div class="inline"></div>
+        <Code
+            code={`<script lang="ts">
+    import { title } from '$lib';
+</script>`}
+            lang="svelte"
+        />
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="layout-title-html"
+        >
+            Markup
+        </h4>
+        <p>
+            The HTML should go above all other markup in the layout file, as the
+            titlebar should be at the top of the page.
+        </p>
+        <Code
+            code={`<div class="titlebar"><h1>{$title}</h1></div>`}
+            lang="svelte"
+        />
+    </Section>
+    <Section>
+        <h4
+            slot="title"
+            id="layout-title-style"
+        >
+            Style
+        </h4>
+        <p>
+            The layout file is where you should import global styles for all
+            pages within the layout. This will ensure that the styles are
+            applied to all pages within the layout. To import global styles, add
+            the following to the top of the layout file within the script tag:
+        </p>
+        <StyleImport.Content />
+        <p>
+            The <Code
+                code="styles.scss"
+                inline
+            /> file should be at <Code
+                code="src/styles.scss"
+                inline
+            />. The template for this project can be found <a
+                href="/WebRef/frameworks/svelte/demo/styles">here</a
+            >.
+        </p>
+        <p>
+            The titlebar is set to span the entire width of the page, have a set
+            height of 50px, and have a background color of #222. The title
+            itself will have a margin of 0 to remove any default margin that may
+            be applied by the browser. The padding is set to 0.5rem on the top
+            and bottom, and 1rem on the left and right to ensure space between
+            the title and the screen edge.
+        </p>
+        <Code
+            code={`<style lang="scss">
+	.titlebar {
+		background-color: #222;
+		height: 50px;
+		width: 100%;
+		padding: 0.5rem 1rem;
+
+		h1 {
+			margin: 0;
+		}
+    }
+</style>`}
+            lang="svelte"
+        />
+    </Section>
+</Section>
