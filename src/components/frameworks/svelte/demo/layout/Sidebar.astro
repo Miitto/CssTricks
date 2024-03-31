@@ -79,7 +79,7 @@ import * as SidebarLinks from "./SidebarLinks.md";
             <Code
                 code={`.sidebar {
     background-color: #222;
-    height: 100%;
+    height: calc(100% - 50px);
     // Fixed Width of 200px
     width: 200px;
 
@@ -91,6 +91,9 @@ import * as SidebarLinks from "./SidebarLinks.md";
     // Flexbox to stack items vertically
     display: flex;
     flex-direction: column;
+
+    // Remove the bullet points
+    list-style: none;
 
     // Style links to be 100% width of the container
     // Set to inline block to allow padding and width to be set

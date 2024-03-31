@@ -4,6 +4,8 @@ import Section from "../../../../Section.astro";
 
 import Titlebar from "./Titlebar.astro";
 import Sidebar from "./Sidebar.astro";
+
+import LayoutExample from "./Layout.svelte";
 ---
 
 <Section>
@@ -60,4 +62,10 @@ import Sidebar from "./Sidebar.astro";
             lang="scss"
         />
     </Section>
+    <p>
+        At this point, you should have a layout that will create the following:
+    </p>
+    <div class="example">
+        <LayoutExample client:load />
+    </div>
 </Section>
