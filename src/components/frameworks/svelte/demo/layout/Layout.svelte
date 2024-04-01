@@ -5,6 +5,9 @@
 
 <div class="wrapper">
     <div class="titlebar"><h1>Library</h1></div>
+    <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <ul class="sidebar">
         <li>
             <a
@@ -53,6 +56,7 @@
             margin: 0;
             height: fit-content;
             line-height: 1;
+            font-size: 30px;
         }
     }
 

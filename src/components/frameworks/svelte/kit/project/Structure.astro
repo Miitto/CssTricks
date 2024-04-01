@@ -39,7 +39,7 @@ import File from "../../../../FolderStructure/File.astro";
             <File name="package.json" />
             <File name="svelte.config.js" />
             <File name="tsconfig.json" />
-            <File name="vite.config.ts" />
+            <File name="vite.config.js" />
         </FolderView>
     </div>
     <Section>
@@ -131,17 +131,14 @@ import File from "../../../../FolderStructure/File.astro";
                         <Folder name="[id=integer]" />
                     </Folder>
                     <Folder name="params">
-                        <File name="integer.ts" />
+                        <File name="integer.js" />
                     </Folder>
                 </FolderView>
                 <Code
-                    code={`// integer.ts
-import type { ParamMatcher } from '@sveltejs/kit';
-
-export const match: ParamMatcher = (param) => {
+                    code={`// integer.js
+export const match = (param) => {
 	return /^\d+$/.test(param);
-};
-`}
+};`}
                     lang="ts"
                 />
             </div>
@@ -188,7 +185,7 @@ export const match: ParamMatcher = (param) => {
                     <Folder name="routes">
                         <Folder name="api">
                             <Folder name="hello">
-                                <File name="+server.ts" />
+                                <File name="+server.js" />
                             </Folder>
                         </Folder>
                         <Folder name="about">

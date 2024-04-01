@@ -6,4 +6,12 @@ interface Props {
 let { name } = Astro.props;
 ---
 
-<p><i class="fileIcon"></i>{name}</p>
+<p>
+    <i
+        class:list={[
+            "fileIcon",
+            { svelteIcon: name.endsWith(".svelte") },
+            { tsIcon: name.endsWith(".ts") },
+            { jsIcon: name.endsWith(".js") },
+        ]}></i>{name}
+</p>

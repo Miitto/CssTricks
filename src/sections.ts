@@ -559,5 +559,19 @@ export const svelte: { [key: string]: Section[] } = {
                 },
             ],
         },
+        {
+            name: "Routes",
+            id: "routes",
+            subsections: [
+                {
+                    name: "Pages",
+                    id: "pages",
+                },
+                {
+                    name: "API",
+                    id: "api",
+                },
+            ],
+        },
     ],
 };

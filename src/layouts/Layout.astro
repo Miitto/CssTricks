@@ -165,6 +165,7 @@ const { title } = Astro.props;
             display: flex;
             flex-direction: column;
             padding: 0;
+            padding-bottom: 0.5em;
             margin: 0;
             gap: 0 !important;
 
@@ -226,6 +227,73 @@ const { title } = Astro.props;
             height: 1em;
             display: inline-block;
             background-color: #708090;
+
+            &.svelteIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/Svelte_Logo.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 62%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
+            &.tsIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/typescript.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 75%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
+            &.jsIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/javascript.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 75%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
         }
     </style>
 </html>
