@@ -1,0 +1,22 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+
+import Script from "./Script.astro";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="authors-page"
+    >
+        Page
+    </h3>
+    <p>
+        This section will cover the <Code
+            code="+page.svelte"
+            inline
+        /> file for implementing the front end.
+    </p>
+    <Script />
+</Section>

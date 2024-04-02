@@ -1,0 +1,183 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+import * as FetchMd from "./Fetch.md";
+import * as ScriptBaseMd from "./ScriptBase.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="authors-page-script"
+    >
+        Script
+    </h4>
+    <p>
+        To set the title of this page we need to import the title store we
+        created earlier in <Code
+            code="src/lib/index.ts"
+            inline
+        />. To do this we can import the variable using the <Code
+            code="$lib"
+            inline
+        /> alias that SvelteKit has provided us. As in the layout, since the file
+        is called index.ts we can import it from the folder directly.
+    </p>
+    <div class="inline">
+        <Code
+            code=`import { title } from "$lib";`
+            lang="ts"
+        />
+    </div>
+    <p>
+        Now that we have the store we can set the title on page load using the <Code
+            code="onMount"
+            inline
+        /> callback from svelte. This function will be run once when the component
+        mounts, which in this case will be when the page loads.
+    </p>
+    <div class="inline">
+        <Code
+            code={`import { onMount } from "svelte";
+            
+onMount(() => {
+    title.set("Authors");
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        You should see the page title change to be "Authors" right after
+        loading.
+    </p>
+    <p>
+        To get the authors we returned from the page load function, we need to
+        export the data prop from the component. This will have the <Code
+            code="PageServerData"
+            inline
+        /> type.
+    </p>
+    <div class="inline">
+        <Code
+            code=`import type { PageServerData } from "./$types";
+
+export let data: PageServerData;`
+            lang="ts"
+        />
+    </div>
+    <p>
+        We will separate the authors into their own variable using a reactive
+        statement, which will ensure that the variable will update whenever the
+        data from the server changes.
+    </p>
+    <div class="inline">
+        <Code
+            code=`$: authors = data.authors;`
+            lang="ts"
+        />
+    </div>
+    <p>
+        To get the data returned by a form submission we need to export the <Code
+            code="form"
+            inline
+        /> prop, with type of <Code
+            code="ActionData"
+            inline
+        />. This variable will only be given a value after a form submission.
+    </p>
+    <div class="inline">
+        <Code
+            code={`import type { ActionData } from "./$types";
+
+export let form: ActionData;`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        To handle deleting authors we will create a function that will invoke
+        the API we will create in the next section. A variable called <Code
+            code="deleteSuccess"
+            inline
+        /> will also be created to track the success of the last delete attempt.
+        Initially the variable will be set to null to indicate that there has not
+        yet been an attempt.
+    </p>
+    <div class="inline">
+        <Code
+            code={`import type { Author } from '@prisma/client';
+
+let deleteSuccess: boolean | null = null;
+    
+async function deleteAuthor(author: Author) {
+    //...
+}`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        The <Code
+            code="deleteAuthor"
+            inline
+        /> function will be called when the delete button is clicked. The function
+        will make a request to the API to delete the author. If the request is successful,
+        the <Code
+            code="deleteSuccess"
+            inline
+        /> variable will be set to true. If the request fails, the variable will
+        be set to false.<br />
+        When the function is called, the authors array will be immediately filtered
+        to remove the author that is being removed - this will make the UI update
+        to reflect the change without waiting for network interaction. Although,
+        if the request fails, the author will be added back to the array.
+    </p>
+    <div class="inline">
+        <Code
+            code={`authors = authors.filter((a) => a.id !== author.id);`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        We fill fetch the url <Code
+            code="/api/authors/<author id>"
+            inline
+        /> (replacing <Code
+            code="<author id>"
+            inline
+        /> with the current authors id using template literals), with the method
+        <Code
+            code="DELETE"
+            inline
+        />.
+    </p>
+    <div class="inline">
+        <Code
+            code={'fetch(`/api/authors/${author.id}`, {\n\tmethod: "DELETE"\n});'}
+            lang="ts"
+        />
+    </div>
+    <p>
+        This fetch will return a promise we will access using <Code
+            code=".then()"
+            inline
+            lang="ts"
+        /> and catch any errors using <Code
+            code=".catch()"
+            inline
+            lang="ts"
+        />. If the request is successful, we will set the <Code
+            code="deleteSuccess"
+            inline
+        /> variable to true. If the request fails, or returns an error, we will set
+        the variable to false. The full function implementation is below.
+    </p>
+    <div class="inline">
+        <FetchMd.Content />
+    </div>
+    <p>
+        So far the script section should look as follows, although it will be
+        added to in the HTML section
+    </p>
+    <div class="inline">
+        <ScriptBaseMd.Content />
+    </div>
+</Section>

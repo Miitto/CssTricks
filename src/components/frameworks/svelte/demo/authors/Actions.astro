@@ -67,7 +67,16 @@ import * as ActionMd from "./Actions.md";
         and then assign this value to a variable called <Code
             code="data"
             inline
-        />. We can then use <Code
+        />.
+    </p>
+    <div class="inline">
+        <Code
+            code="const data = await request.formData();"
+            lang="ts"
+        />
+    </div>
+    <p>
+        We can then use <Code
             code=`data.get("<field name>")`
             lang="ts"
             inline
@@ -112,8 +121,8 @@ import * as ActionMd from "./Actions.md";
                 lang="ts"
                 inline
             />. Since we need to catch the error using try-catch in our project,
-            we will await the method call anyway, even if we are not taking the
-            return value.
+            we will await the method call anyway as this allows the error to be
+            caught, even if we are not taking the return value.
         </p>
         <p>
             The database creation call is wrapped in a try-catch block to catch
