@@ -1,0 +1,134 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as ActionMd from "./Actions.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="authors-actions"
+    >
+        Form Actions
+    </h3>
+    <p>
+        SvelteKit has the capability to define "Form Actions" which will run on
+        the server when a form on the client is submitted with the <Code
+            code="POST"
+            inline
+        /> method. These actions are defined in the <Code
+            code="+page.server.ts"
+            inline
+        /> file for the route.
+        <br />These actions can be given a name that can be used to reference
+        them from different forms on the same page. However in this project
+        there is at most one form to be submitted to the server per page, we
+        will be using the default action.
+    </p>
+    <p>
+        Actions are defined as an object called <Code
+            code="actions"
+            inline
+        /> with each key in the object being the name of the action - or default
+        for default behavior.<br />The type for these actions can be imported as
+        follows:
+    </p>
+    <div class="inline">
+        <Code
+            code='import type { Actions } from "./$types";'
+            lang="ts"
+        />
+    </div>
+    <p>
+        To create an action with default behavior, the skeleton below will be
+        used with the function content replacing the <Code
+            code="//..."
+            lang="ts"
+            inline
+        /> comment.
+    </p>
+    <div class="inline">
+        <Code
+            code={`export const actions = {
+    default: async ({ request }) => {
+        //...
+    }
+} satisfies Actions;`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        We will extract the data given from the form submission using <Code
+            code="request.formData()"
+            lang="ts"
+            inline
+        /> (which returns a promise, so this method call will have to be awaited)
+        and then assign this value to a variable called <Code
+            code="data"
+            inline
+        />. We can then use <Code
+            code=`data.get("<field name>")`
+            lang="ts"
+            inline
+        /> to get the value of a field in the form (replacing <Code
+            code="<field name>"
+            inline
+        /> with the name of the input you want to get the value of).
+    </p>
+    <p>
+        The <Code
+            code="data"
+            inline
+        /> object can get the name of the author for prisma to use to create a new
+        author in the database.<br />To create a new author in the database, we
+        call the <Code
+            code="prisma.author.create()"
+            lang="ts"
+            inline
+        /> method, and pass an object with a <Code
+            code="data"
+            inline
+        /> attribute containing the name of the author to be created under the key
+        of <Code
+            code="name"
+            inline
+        />.<br />This creation call would look like this:
+    </p>
+    <div class="inline">
+        <Code
+            code={`prisma.author.create({
+    data: {
+        name: data.get("name")
+    }
+});`}
+            lang="ts"
+        />
+        <p>
+            Since prisma calls are asynchronous operations, if we wanted to
+            retrieve the newly created author we would have to await the
+            operation, such as <Code
+                code="let author = await prisma.author.create( //..."
+                lang="ts"
+                inline
+            />. Since we need to catch the error using try-catch in our project,
+            we will await the method call anyway, even if we are not taking the
+            return value.
+        </p>
+        <p>
+            The database creation call is wrapped in a try-catch block to catch
+            any errors that may occur when trying to create the author in the
+            database, and depending on the success, we return a boolean called
+            success back to the client to indicate success or failure.
+        </p>
+        <p>
+            The final code for the <Code
+                code="+page.server.ts"
+                inline
+            /> file will look like this:
+        </p>
+        <div class="inline">
+            <ActionMd.Content />
+        </div>
+    </div>
+</Section>

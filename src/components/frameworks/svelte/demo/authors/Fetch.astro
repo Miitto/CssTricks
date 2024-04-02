@@ -1,0 +1,55 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as FetchMd from "./Fetch.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="authors-fetch"
+    >
+        Data Fetching
+    </h3>
+    <p>
+        The authors first need to be queried from the database on the server
+        before they can be sent to the client to be rendered. This is done by a
+        load function in the <Code
+            code="+page.server.ts"
+            inline
+        /> file.<br />This load function will be run every time that the page
+        loads, refreshes or after a form submission.
+    </p>
+    <p>
+        The load function needs access to the database through, which will be
+        imported using:
+    </p><Code
+        code=`import { prisma } from \"$lib/database.server.ts\"`
+        lang="ts"
+    />
+    <p>
+        The load function will be of type <Code
+            code="PageServerLoad"
+            inline
+        /> and needs to be exported. The function template is as follows:
+    </p>
+    <div class="inline">
+        <Code
+            code={`import type { PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async ({ params }) => {
+    // ...
+    return {};
+};`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        When adding the code to fetch all authors from the database the
+        following code will be added:
+    </p>
+    <div class="inline">
+        <FetchMd.Content />
+    </div>
+</Section>

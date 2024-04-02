@@ -560,12 +560,70 @@ export const svelte: { [key: string]: Section[] } = {
             ],
         },
         {
+            name: "Helper Components",
+            id: "helpers",
+            subsections: [
+                {
+                    name: "Modal",
+                    id: "modal",
+                },
+                {
+                    name: "Author Select",
+                    id: "author-select",
+                },
+                {
+                    name: "Book Select",
+                    id: "book-select",
+                },
+                {
+                    name: "User Select",
+                    id: "user-select",
+                },
+            ],
+        },
+        {
             name: "Routes",
             id: "routes",
             subsections: [
                 {
                     name: "Pages",
                     id: "pages",
+                },
+                {
+                    name: "API",
+                    id: "api",
+                },
+            ],
+        },
+        {
+            name: "Authors",
+            id: "authors",
+            subsections: [
+                {
+                    name: "Data Fetching",
+                    id: "fetch",
+                },
+                {
+                    name: "Form Actions",
+                    id: "actions",
+                },
+                {
+                    name: "Page",
+                    id: "page",
+                    subsections: [
+                        {
+                            name: "Script",
+                            id: "script",
+                        },
+                        {
+                            name: "HTML",
+                            id: "html",
+                        },
+                        {
+                            name: "Style",
+                            id: "style",
+                        },
+                    ],
                 },
                 {
                     name: "API",

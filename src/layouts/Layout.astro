@@ -98,6 +98,23 @@ const { title } = Astro.props;
             position: relative;
         }
 
+        button {
+            background: #0005;
+            color: white;
+            border: 1px solid #5555;
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            width: fit-content;
+
+            &:hover {
+                background: #0008;
+            }
+
+            &:active {
+                background: #0003;
+            }
+        }
+
         a:visited {
             color: rgb(var(--accent-light));
         }

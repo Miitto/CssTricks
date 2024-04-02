@@ -1,0 +1,20 @@
+---
+import Section from "../../../../Section.astro";
+import Fetch from "./Fetch.astro";
+import Actions from "./Actions.astro";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="authors"
+    >
+        Authors
+    </h2>
+    <p>
+        This section will cover the implementation of both server side logic and
+        client side interactivity with Authors
+    </p>
+    <Fetch />
+    <Actions />
+</Section>

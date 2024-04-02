@@ -1,6 +1,5 @@
 <script lang="ts">
     let active = "Loans";
-    import "./styles.scss";
 </script>
 
 <div class="wrapper">
