@@ -44,7 +44,7 @@ import { Code } from "astro:components";
             Flex elements are used to create a flexbox layout. They can be used
             to create complex layouts with ease. Flex children can be set to
             grow and shrink to fit available space, and can be aligned in many
-            ways.
+            ways. For more information see <a href="#flex">flex</a>.
         </p>
     </Section>
     <Section>
@@ -52,6 +52,7 @@ import { Code } from "astro:components";
         <p>
             Grid elements are used to create a grid layout. They can be used to
             create regular layouts where children will be in a common alignment.
+            For more information see <a href="#grid">grid</a>.
         </p>
     </Section>
     <div class="inline">
@@ -78,9 +79,40 @@ import { Code } from "astro:components";
                 <div class="inline-block">Inline Block 2</div>
             </div>
             <div class="flex">
-                <div class="flex">Flex 1</div>
-                <div class="flex">Flex 2</div>
+                <div>Flex 1</div>
+                <div>Flex 2</div>
+            </div>
+            <div class="grid">
+                <div>Grid 1</div>
+                <div>Grid 2</div>
+                <div>Grid 3</div>
+                <div>Grid 4</div>
             </div>
         </div>
     </div>
 </Section>
+
+<style lang="scss">
+    .example * {
+        width: fit-content;
+    }
+    .example {
+        .block {
+            display: block;
+        }
+        .inline {
+            display: inline;
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        .flex {
+            display: flex;
+            flex-direction: row;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>

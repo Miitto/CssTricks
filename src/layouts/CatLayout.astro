@@ -167,16 +167,21 @@ const { title, sections = [] } = Astro.props;
 
     body {
         display: flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
+        flex-direction: row;
         min-height: 100vh;
-        max-height: 100vh;
+        height: fit-content;
         overflow: hidden;
 
         @media screen and (max-width: 800px) {
             flex-direction: column;
+            flex-direction: column;
             overflow-y: auto;
+            max-height: unset;
+            justify-content: start;
             max-height: unset;
             justify-content: start;
         }
@@ -202,13 +207,18 @@ const { title, sections = [] } = Astro.props;
     }
 
     div {
+    div {
         display: flex;
+        flex-direction: column;
+    }
         flex-direction: column;
     }
 
     div:not(#categories):not(#categories div) {
+    div:not(#categories):not(#categories div) {
         gap: 0.5em;
 
+        &:has(hr) {
         &:has(hr) {
             padding-left: 0.3em;
             border-left: 1px solid #5555;
@@ -218,26 +228,22 @@ const { title, sections = [] } = Astro.props;
             flex-direction: row;
             flex-wrap: wrap;
 
-            @media screen and (max-width: 800px) {
-                flex-direction: column;
+            pre {
+                flex: 2 0 fit-content;
             }
-
-            @media screen and (min-width: 800px) {
-                pre {
-                    flex: 2 0 fit-content;
-                }
-                .example {
-                    flex: 1 0 fit-content;
-                }
+            .example,
+            iframe {
+                flex: 1 0 fit-content;
             }
         }
 
         .inline-2-grid {
             display: grid;
             grid-template-columns: auto min-content;
+            grid-template-columns: auto min-content;
 
             @media screen and (max-width: 800px) {
-                grid-template-columns: auto;
+                grid-template-columns: 1fr;
             }
         }
     }

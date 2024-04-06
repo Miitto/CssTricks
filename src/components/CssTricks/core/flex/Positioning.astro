@@ -1,0 +1,329 @@
+---
+import Section from "../../../Section.astro";
+
+import { Code } from "astro:components";
+import { parentBg, childBg } from "../../../colors";
+---
+
+<Section>
+    <h3
+        id="flex-positioning"
+        slot="title"
+    >
+        Positioning
+    </h3>
+    <Section>
+        <h4 id="flex-positioning-justify">Justify</h4>
+        <p>
+            <Code
+                code="justify-content"
+                lang="css"
+                inline
+            /> can be used to position children along the flexible axis. The default
+            value is <Code
+                code="flex-start"
+                lang="css"
+                inline
+            />.<br />
+            <Code
+                code="flex-start"
+                lang="css"
+                inline
+            /> will position all items at the start of the container.<br />
+            <Code
+                code="center"
+                lang="css"
+                inline
+            /> will center all items in the container.<br />
+            <Code
+                code="flex-end"
+                lang="css"
+                inline
+            /> will position all items at the end of the container.<br />
+            <Code
+                code="space-between"
+                lang="css"
+                inline
+            /> will space all items evenly between the start and end of the container,
+            with the first item flush with the start of the container, and the last
+            flush with the end.<br />
+            <Code
+                code="space-around"
+                lang="css"
+                inline
+            /> will distribute items evenly in the container. Start and end gaps
+            have half the size of space between elements.<br />
+            <Code
+                code="space-evenly"
+                lang="css"
+                inline
+            /> will distribute items evenly in the container, Start and end gaps
+            have equal size of space between elements.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.flex {
+    display: flex;
+}
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.justify-space-between {
+    justify-content: space-between;
+}
+.justify-space-around {
+    justify-content: space-around;
+}
+.justify-space-evenly {
+    justify-content: space-evenly;
+}`}
+                lang="css"
+            />
+            <div class="example grey-children">
+                <div style="display:flex; justify-content: start;">
+                    <div>Start 1</div>
+                    <div>Start 2</div>
+                </div>
+                <div style="display:flex; justify-content: center;">
+                    <div>Center 1</div>
+                    <div>Center 2</div>
+                </div>
+                <div style="display:flex; justify-content: end;">
+                    <div>End 1</div>
+                    <div>End 2</div>
+                </div>
+                <div style="display:flex; justify-content: space-between;">
+                    <div>Between 1</div>
+                    <div>Between 2</div>
+                    <div>Between 3</div>
+                </div>
+                <div style="display:flex; justify-content: space-around;">
+                    <div>Around 1</div>
+                    <div>Around 2</div>
+                    <div>Around 3</div>
+                </div>
+                <div style="display:flex; justify-content: space-evenly;">
+                    <div>Evenly 1</div>
+                    <div>Evenly 2</div>
+                    <div>Evenly 3</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h4
+            id="flex-positioning-align"
+            slot="title"
+        >
+            Align
+        </h4>
+        <p>
+            <Code
+                code="align-items"
+                lang="css"
+                inline
+            /> can be used to position children along the static axis. The default
+            value is either <Code
+                code="start"
+                lang="css"
+                inline
+            /> or <Code
+                code="stretch"
+                lang="css"
+                inline
+            /> depending on the elements position and container. A reference can
+            be found <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+                >here</a
+            >.<br />
+            <Code
+                code="flex-start"
+                lang="css"
+                inline
+            /> will position all items at the start of the container, this will be
+            the top for <Code
+                code="flex-direction: row"
+                lang="css"
+                inline
+            /> and the left for <Code
+                code="flex-direction: column"
+                lang="css"
+                inline
+            />.<br />
+            <Code
+                code="center"
+                lang="css"
+                inline
+            /> will center all items in the container.<br />
+            <Code
+                code="flex-end"
+                lang="css"
+                inline
+            /> will position all items at the end of the container, similar to flex-start
+            this will either be the bottom or the right of the container (or opposite
+            for reversed direction).<br />
+            <Code
+                code="stretch"
+                lang="css"
+                inline
+            /> will stretch all items to fill the container.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.flex {
+    display: flex;
+}
+.align-start {
+    align-items: flex-start;
+}
+.align-center {
+    align-items: center;
+}
+.align-end {
+    align-items: flex-end;
+}
+.align-stretch {
+    align-items: stretch;
+}
+`}
+                lang="css"
+            />
+            <div class="example grey-children align">
+                <div style="display:flex; align-items: start;">
+                    <div>Start 1</div>
+                    <div>Start 2</div>
+                </div>
+                <div style="display:flex; align-items: center;">
+                    <div>Center 1</div>
+                    <div>Center 2</div>
+                </div>
+                <div style="display:flex; align-items: end;">
+                    <div>End 1</div>
+                    <div>End 2</div>
+                </div>
+                <div style="display:flex; align-items: stretch;">
+                    <div>Stretch 1</div>
+                    <div>Stretch 2</div>
+                    <div>Stretch 3</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+    <Section>
+        <h4
+            id="flex-positioning-gap"
+            slot="title"
+        >
+            Gap
+        </h4>
+        <p>
+            Gap can be used to add space between children. The gap space will
+            not shrink and can cause overflowing or wrapping if the container is
+            not large enough. Gap size can be specified as an absolute value or
+            a percentage of the container size. The gap can be set for both the
+            row and column axis separately using <Code
+                code="row-gap"
+                lang="css"
+                inline
+            /> and <Code
+                code="column-gap"
+                lang="css"
+                inline
+            />. The gap can also be set for both axes using <Code
+                code="gap"
+                lang="css"
+                inline
+            />. The gap property can take one or two values, the first value
+            will set the row gap and the second value will set the column gap.
+            If only one value is present then that value will be used for both
+            axes.
+        </p>
+        <div class="inline">
+            <Code
+                code={`.flex {
+    display: flex;
+}
+.gap-1 {
+    gap: 1rem;
+}
+.gap-10 {
+    gap: 10%;
+}
+.gap-5-10 {
+    gap: 5px 10px;
+}
+.gap-10-5 {
+    row-gap: 10px;
+    column-gap: 5%;
+}`}
+                lang="css"
+            />
+            <div class="example grey-children gap">
+                <div style="display:flex; gap: 1rem;">
+                    <div>Gap 1rem</div>
+                    <div>Gap 1rem</div>
+                </div>
+                <div style="display:flex; gap: 10%;">
+                    <div>Gap 10%</div>
+                    <div>Gap 10%</div>
+                </div>
+                <div style="display:flex; gap: 5px 10px; flex-wrap: wrap;">
+                    <div style="width: calc(50% - 5px)">Gap 5px 10px</div>
+                    <div style="width: calc(50% - 5px)">Gap 5px 10px</div>
+                    <div style="width: calc(50% - 5px)">Gap 5px 10px</div>
+                    <div style="width: calc(50% - 5px)">Gap 5px 10px</div>
+                </div>
+                <div
+                    style="display:flex; row-gap: 10px; column-gap: 5%; flex-wrap: wrap;"
+                >
+                    <div style="width: calc(50% - 10px)">Gap 10px 5px</div>
+                    <div style="width: calc(50% - 10px)">Gap 10px 5px</div>
+                    <div style="width: calc(50% - 10px)">Gap 10px 5px</div>
+                    <div style="width: calc(50% - 10px)">Gap 10px 5px</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+
+    <style lang="scss">
+        .example {
+            &.grey-children {
+                > div {
+                    width: 100%;
+                    flex-direction: row;
+                    div {
+                        background-color: grey;
+                        text-align: center;
+                        width: fit-content;
+                        padding-inline: 0.25em;
+                    }
+                }
+            }
+        }
+
+        .align {
+            > div {
+                background-color: #333;
+                gap: 5px;
+                height: 25%;
+            }
+        }
+
+        .gap {
+            > div {
+                background-color: #333;
+                gap: 5px;
+                padding: 5px;
+                > div {
+                    flex: 1 0 45%;
+                }
+            }
+        }
+    </style>
+</Section>
