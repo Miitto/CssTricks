@@ -1,0 +1,61 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+---
+
+<Section>
+    <h3
+        id="setup-prisma"
+        slot="title"
+    >
+        Add Prisma
+    </h3>
+    <p>
+        Prisma is a modern database toolkit that makes it easy to work with most
+        types of database. In this tutorial we will be using Prisma with SQLite.
+        To add Prisma to your project, run the following command in your
+        terminal:
+    </p>
+    <Code
+        code="npm install prisma --save-dev"
+        lang="bash"
+    />
+    <p>Next, run the following command to initialize Prisma in your project:</p>
+    <Code
+        code="npx prisma init --datasource-provider sqlite"
+        lang="bash"
+    />
+    <p>
+        This will create all files for prisma, and sets the configuration to
+        work with the <Code
+            code="sqlite"
+            inline
+        /> database. In a production environment, a more robust database would be
+        used such as <a href="https://www.postgresql.org/">PostgreSQL</a>.
+    </p>
+    <p>
+        To create the prisma client, which is how you will query the database
+        from your code you will need to create a new instance of the <Code
+            code="PrismaClient"
+            inline
+        /> class. To do this, create a new file in the <Code
+            code="src/lib"
+            inline
+        /> directory called <Code
+            code="database.server.ts"
+            inline
+        />. Since the file ends with <Code
+            code=".server.ts"
+            inline
+        />, SvelteKit will not allow it to be imported on the client side, which
+        is important for security reasons. In this file, add the following code:
+    </p>
+    <div class="inline">
+        <Code
+            code={`import { PrismaClient } from '@prisma/client';
+
+export const prisma = new PrismaClient();`}
+            lang="typescript"
+        />
+    </div>
+</Section>

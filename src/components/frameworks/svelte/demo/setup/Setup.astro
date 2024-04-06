@@ -1,0 +1,18 @@
+---
+import Section from "../../../../Section.astro";
+import Create from "./Create.astro";
+import Models from "./Models.astro";
+import Prisma from "./Prisma.astro";
+---
+
+<Section>
+    <h3
+        id="setup"
+        slot="title"
+    >
+        Setup
+    </h3>
+    <Create />
+    <Prisma />
+    <Models />
+</Section>

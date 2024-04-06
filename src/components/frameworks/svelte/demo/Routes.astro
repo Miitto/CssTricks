@@ -1,0 +1,183 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../Section.astro";
+
+import File from "../../../FolderStructure/File.astro";
+import Folder from "../../../FolderStructure/Folder.astro";
+import FolderView from "../../../FolderStructure/FolderView.astro";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="routes"
+    >
+        Routes
+    </h2>
+    <p>
+        SvelteKit uses a directory based routing system that starts at the <Code
+            code="src/routes"
+            inline
+        /> folder being the root url at <Code
+            code="/"
+            inline
+        />.
+    </p>
+    <Section>
+        <h3
+            slot="title"
+            id="routes-pages"
+        >
+            Pages
+        </h3>
+        <p>
+            Our project will have 4 pages, including the index page. Since the
+            file for the index page should already be created at <Code
+                code="src/routes/+page.svelte"
+                inline
+            />.<br />Next to this file create the file <Code
+                code="src/routes/+page.server.ts"
+                inline
+            /> for the server side logic and data fetching for the index page.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/authors/+page.svelte"
+                inline
+            /> to create a page at <Code
+                code="/authors"
+                inline
+            /> which will be for adding and deleting authors.<br />
+            Alongside this file, create a file <Code
+                code="src/routes/authors/[id]/+page.server.ts"
+                inline
+            /> for the server side logic to delete authors.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/books/+page.svelte"
+                inline
+            /> to create a page at <Code
+                code="/books"
+                inline
+            /> which will be for adding and deleting books.<br />
+            Alongside this file, create a file <Code
+                code="src/routes/books/[id]/+page.server.ts"
+                inline
+            /> for the server side logic to delete books.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/users/+page.svelte"
+                inline
+            /> to create a page at <Code
+                code="/users"
+                inline
+            /> which will be for adding and deleting users.<br />
+            Alongside this file, create a file <Code
+                code="src/routes/users/[id]/+page.server.ts"
+                inline
+            /> for the server side logic to delete users.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="routes-api"
+        >
+            API
+        </h3>
+        <p>
+            API routes are urls than can be fetched from the client side to
+            interact with the server. In our project this is used to delete
+            existing data, and return whether the operation was successful or
+            not. An API route is defined with a <Code
+                code="server.ts"
+                inline
+            /> file within the routes hierarchy.<br />
+            The <Code
+                code="[id]"
+                inline
+            /> in the file path is a dynamic route that will be used to identify
+            the author to delete, eg. <Code
+                code="/api/authors/1"
+                inline
+            /> is the url for deleting the author with id 1.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/api/authors/[id]/server.ts"
+                inline
+            /> to create an API route at <Code
+                code="/api/authors/[id]"
+                inline
+            /> which will be for deleting authors.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/api/books/[id]/server.ts"
+                inline
+            /> to create an API route at <Code
+                code="/api/books/[id]"
+                inline
+            /> which will be for deleting books.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/api/users/[id]/server.ts"
+                inline
+            /> to create an API route at <Code
+                code="/api/users/[id]"
+                inline
+            /> which will be for deleting users.
+        </p>
+        <p>
+            Create the file <Code
+                code="src/routes/api/loans/[id]/server.ts"
+                inline
+            /> to create an API route at <Code
+                code="/api/loans/[id]"
+                inline
+            /> which will be for deleting loans.
+        </p>
+    </Section>
+    <p>
+        At this stage your route directory will not change and should look
+        similar to the following:
+    </p>
+    <div class="inline">
+        <FolderView>
+            <Folder name="routes">
+                <Folder name="api">
+                    <Folder name="authors/[id]">
+                        <File name="server.ts" />
+                    </Folder>
+                    <Folder name="books/[id]">
+                        <File name="server.ts" />
+                    </Folder>
+                    <Folder name="users/[id]">
+                        <File name="server.ts" />
+                    </Folder>
+                    <Folder name="loans/[id]">
+                        <File name="server.ts" />
+                    </Folder>
+                </Folder>
+                <Folder name="authors">
+                    <File name="+page.svelte" />
+                    <File name="+page.server.ts" />
+                </Folder>
+                <Folder name="books">
+                    <File name="+page.svelte" />
+                    <File name="+page.server.ts" />
+                </Folder>
+                <Folder name="users">
+                    <File name="+page.svelte" />
+                    <File name="+page.server.ts" />
+                </Folder>
+                <File name="+layout.svelte" />
+                <File name="+page.svelte" />
+                <File name="+page.server.ts" />
+            </Folder>
+        </FolderView>
+    </div>
+</Section>

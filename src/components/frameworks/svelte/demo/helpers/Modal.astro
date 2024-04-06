@@ -1,0 +1,59 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../components/Section.astro";
+
+import ModalSvelte from "./ModalExample.svelte";
+import * as ModalMd from "./Modal.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="helpers-modal"
+    >
+        Modal
+    </h3>
+    <p>
+        This is a modal component that will show as a popup and blur the
+        background when its <Code
+            code="show"
+            inline
+        /> prop is <Code
+            code="true"
+            inline
+        />.<br /> The component has a <Code
+            code="header"
+            inline
+        /> slot for a title element, and a default slot for content to be displayed
+        inside the modal.<br />When clicking outside of the dialog, the dialog
+        will close and set its show prop back to <Code
+            code="false"
+            inline
+        /> - which means that the show prop should be bound to.
+    </p>
+    <p>
+        Example code for using this component is below, and source code for the
+        Modal itself can be found by clicking the "Open Modal" button below, or <a
+            href="/WebRef/frameworks/svelte/demo/modal">here</a
+        >.
+    </p>
+    <div class="inline">
+        <Code
+            code={`<script lang="ts">
+    import Modal from "$lib/components/Modal.svelte";
+
+    let show = false;
+</script>
+
+<Modal bind:show>
+    <h2 slot="header">Modal Example</h2>
+    <p>This is a modal dialog.</p>
+    <button on:click={() => (show = false)}>Close</button>
+</Modal>`}
+            lang="svelte"
+        />
+        <div class="example">
+            <ModalSvelte client:load />
+        </div>
+    </div></Section
+>

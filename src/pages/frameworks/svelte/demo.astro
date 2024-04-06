@@ -1,31 +1,16 @@
 ---
 import Layout from "../../../layouts/CatLayout.astro";
-import SvelteSec from "../../../components/frameworks/svelte/svelte/Svelte.astro";
+import DemoSec from "../../../components/frameworks/svelte/demo/Demo.astro";
 
 import { svelte } from "../../../sections";
 ---
 
 <Layout
     title="Svelte"
-    sections={svelte.svelte}
+    sections={svelte.demo}
 >
-    <div
-        slot="cats"
-        class="contents"
-    >
-        <a
-            class="svelte"
-            href="./svelte"
-            >Svelte</a
-        >
-        <a
-            class="kit"
-            href="./kit"
-            >SvelteKit</a
-        >
-    </div>
     <main>
-        <SvelteSec />
+        <DemoSec />
     </main>
 </Layout>
 

@@ -1,0 +1,61 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+import Modal from "./Modal.astro";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="helpers"
+    >
+        Helper Components
+    </h2>
+    <p>
+        These are some components that will streamline functionality of the rest
+        of the project, such as popup dialogs and search components.<br />For
+        this project, we will assume that all of these components will be found
+        at <Code
+            code="src/lib/components"
+            inline
+        />.
+    </p>
+    <Modal />
+    <Section>
+        <h3
+            slot="title"
+            id="helpers-author-select"
+        >
+            Author Select
+        </h3>
+        <p>
+            There is no explanation for this component yet, source code can be
+            found <a href="/WebRef/frameworks/svelte/demo/author-select">here</a
+            >.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="helpers-book-select"
+        >
+            Book Select
+        </h3>
+        <p>
+            There is no explanation for this component yet, source code can be
+            found <a href="/WebRef/frameworks/svelte/demo/book-select">here</a>.
+        </p>
+    </Section>
+    <Section>
+        <h3
+            slot="title"
+            id="helpers-user-select"
+        >
+            User Select
+        </h3>
+        <p>
+            There is no explanation for this component yet, source code can be
+            found <a href="/WebRef/frameworks/svelte/demo/user-select">here</a>.
+        </p>
+    </Section>
+</Section>

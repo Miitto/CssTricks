@@ -1,0 +1,51 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+
+import Script from "./Script.astro";
+import Html from "./Html.astro";
+import * as Style from "./Style.md";
+
+import Example from "./Authors.svelte";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="authors-page"
+    >
+        Page
+    </h3>
+    <p>
+        This section will cover the <Code
+            code="+page.svelte"
+            inline
+        /> file for implementing the front end.
+    </p>
+    <Script />
+    <Html />
+    <Section>
+        <h4
+            slot="title"
+            id="authors-page-style"
+        >
+            Style
+        </h4>
+        <div class="inline"><Style.Content /></div>
+    </Section>
+    <p>
+        The full page should now function like the following example, except for
+        that state will persist page reloads:<br />
+        <small
+            ><i
+                >The layout has been omitted for clarity of what is relevant to
+                this page</i
+            ></small
+        >
+    </p>
+    <div class="inline">
+        <div class="example">
+            <Example client:load />
+        </div>
+    </div>
+</Section>

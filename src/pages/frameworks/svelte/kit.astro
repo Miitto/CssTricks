@@ -3,59 +3,68 @@ import Layout from "../../../layouts/CatLayout.astro";
 
 import KitSec from "../../../components/frameworks/svelte/kit/Kit.astro";
 
-import { kit } from "../../../sections";
+import { svelte } from "../../../sections";
 ---
 
 <Layout
     title="Svelte"
-    sections={kit}
+    sections={svelte.kit}
 >
     <div
         slot="cats"
         class="contents"
     >
-        <a
-            class="svelte"
-            href="svelte"
-            >Svelte</a
+        <div
+            slot="cats"
+            class="contents"
         >
-        <a
-            class="kit"
-            href="kit"
-            >SvelteKit</a
-        >
+            <a
+                class="svelte"
+                href="svelte"
+                >Svelte</a
+            >
+            <a
+                class="kit"
+                href="kit"
+                >SvelteKit</a
+            >
+        </div>
+        <main>
+            <KitSec />
+            <KitSec />
+        </main>
     </div>
-    <main>
-        <KitSec />
-    </main>
+
+    <style lang="scss">
+        main {
+            padding: 1em;
+            width: 100%;
+            max-width: 100%;
+            color: white;
+            font-size: 20px;
+            line-height: 1.6;
+            overflow-y: auto;
+            height: auto;
+            max-height: 100vh;
+
+            @media screen and (max-width: 768px) {
+                padding: 0.5em;
+            }
+            .contents {
+                display: contents;
+            }
+            .contents {
+                display: contents;
+            }
+        }
+    </style>
+
+    <style is:global lang="scss">
+        .kit {
+            color: transparent !important;
+            background: linear-gradient(90deg, #f96743, white);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+    </style>
 </Layout>
-
-<style lang="scss">
-    main {
-        padding: 1em;
-        width: 100%;
-        max-width: 100%;
-        color: white;
-        font-size: 20px;
-        line-height: 1.6;
-        overflow-y: auto;
-        height: auto;
-        max-height: 100vh;
-
-        @media screen and (max-width: 768px) {
-            padding: 0.5em;
-        }
-        .contents {
-            display: contents;
-        }
-    }
-</style>
-
-<style is:global lang="scss">
-    .kit {
-        color: transparent !important;
-        background: linear-gradient(90deg, #f96743, white);
-        background-clip: text;
-        -webkit-background-clip: text;
-    }
-</style>

@@ -12,15 +12,11 @@ const { title } = Astro.props;
         <meta
             name="description"
             content="A collection of information for web developers."
+            content="A collection of information for web developers."
         />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1"
-        />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            href="/CssTricks/favicon.svg"
         />
         <meta
             name="generator"
@@ -60,6 +56,16 @@ const { title } = Astro.props;
             );
         }
 
+        h2:not(:first-child) {
+            margin-top: 0.5rem;
+        }
+        h3:not(:first-child) {
+            margin-top: 0.25rem;
+        }
+        h4:not(:first-child) {
+            margin-top: 0.1rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -86,6 +92,24 @@ const { title } = Astro.props;
             border: 1px solid #5555;
             border-radius: 0.5rem;
             overflow: hidden;
+            position: relative;
+        }
+
+        button {
+            background: #0005;
+            color: white;
+            border: 1px solid #5555;
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            width: fit-content;
+
+            &:hover {
+                background: #0008;
+            }
+
+            &:active {
+                background: #0003;
+            }
         }
 
         a:visited {
@@ -98,6 +122,8 @@ const { title } = Astro.props;
             line-height: 1.5;
             max-width: 100%;
             width: 100%;
+            padding-block: 0.5em;
+            border-radius: 5px;
 
             &.has-diff {
                 padding-left: 24px;
@@ -153,6 +179,7 @@ const { title } = Astro.props;
             display: flex;
             flex-direction: column;
             padding: 0;
+            padding-bottom: 0.5em;
             margin: 0;
             gap: 0 !important;
 
@@ -214,6 +241,73 @@ const { title } = Astro.props;
             height: 1em;
             display: inline-block;
             background-color: #708090;
+
+            &.svelteIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/Svelte_Logo.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 62%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
+            &.tsIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/typescript.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 75%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
+            &.jsIcon {
+                mask-image: none;
+                background-color: transparent;
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    left: 50%;
+                    background-image: url("/WebRef/javascript.svg");
+                    background-color: transparent;
+                    background-repeat: no-repeat;
+                    background-size: 75%;
+                    background-position: center;
+                    overflow: visible;
+                    width: 0.5em;
+                    height: 0.5em;
+                    transform: translate(-50%, -40%);
+                    padding: 0.5em;
+                }
+            }
         }
     </style>
 </html>
