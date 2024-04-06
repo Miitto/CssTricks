@@ -1,0 +1,261 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+
+import * as ListItem from "./pageMd/ListItem.md";
+import * as FullWrapper from "./pageMd/FullWrapper.md";
+import { i } from "../../../../../../../dist/_astro/index.aGEhOvR0";
+
+import * as ModalTitle from "./pageMd/ModalTitle.md";
+import * as Modal from "./pageMd/Modal.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="authors-page-html"
+    >
+        HTML
+    </h4>
+    <Section>
+        <h5
+            slot="title"
+            id="authors-page-html-notifications"
+        >
+            Notifications
+        </h5>
+        <p>
+            To set up the popup notifications, we will be using <Code
+                code="key"
+                inline
+            /> blocks that will ensure that whenever the notification changes, the
+            block will completely rerender - which will replay the CSS fade out animation
+            set up on the <Code
+                code="notif"
+                inline
+            /> class.<br />
+            Inside we will conditionally render the notification based on their relevant
+            success state.<br />Since the form will only be given a value after
+            a form submission, we will also have to check if the form is null
+            before checking the success state.
+        </p>
+        <p>Creation Notifications</p>
+        <div class="inline">
+            <Code
+                code={`{#key form}
+	{#if form}
+		{#if form.success}
+			<p class="notif success">Author Successfully Created</p>
+		{:else if form.success === false}
+			<p class="notif error">Error Creating Author</p>
+		{/if}
+	{/if}
+{/key}`}
+                lang="svelte"
+            />
+        </div>
+        <p>Deletion Notifications</p>
+        <div class="inline">
+            <Code
+                code={`{#key deleteSuccess}
+	{#if deleteSuccess === true}
+		<p class="notif success">Author Successfully Deleted</p>
+	{:else if deleteSuccess === false}
+		<p class="notif error">Error Deleting Author</p>
+	{/if}
+{/key}`}
+                lang="svelte"
+            />
+            <div></div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="authors-page-html-list"
+        >
+            Authors List
+        </h5>
+        <p>
+            The authors list will be contained in a <Code
+                code="<div>"
+                lang="html"
+                inline
+            /> with a class called <Code
+                code="wrapper"
+                inline
+            />. Inside we will have an unordered list that will contain the list
+            of authors.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<div class="wrapper">
+	<h2>Authors</h2>
+	<ul>
+		<!-- ... -->
+	</ul>
+</div>`}
+                lang="svelte"
+            />
+        </div>
+        <p>
+            We will loop through the authors array and create a list item for
+            each author. Each author will have their id as a key, to optimize
+            rerender performance. If there are no authors, then the list will
+            display a message to say so.
+        </p>
+        <div class="inline">
+            <ListItem.Content />
+        </div>
+        <p>
+            Each list item will contain the author's name and a button that will
+            call the <Code
+                code="deleteAuthor"
+                inline
+            /> function when clicked.<br />Since <Code
+                code="deleteAuthor"
+                inline
+            /> requires an author, we must use an anonymous function to pass the
+            author to the function: <Code
+                code="() => deleteAuthor(author)"
+                lang="ts"
+                inline
+            />
+            .
+            <p>
+                <div class="inline">
+                    <FullWrapper.Content />
+                </div>
+            </p>
+        </p>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="authors-page-html-new"
+        >
+            New
+        </h5>
+        <p>
+            To open the modal to create a new author, we will have a button that
+            will be fixed to the bottom right of the screen. When clicked, it
+            will set a new variable called <Code
+                code="showNewAuthor"
+                inline
+            /> to <Code
+                code="true"
+                lang="ts"
+                inline
+            />.<br />
+            Firstly add a new variable to the script tag called <Code
+                code="showNewAuthor"
+                inline
+            /> and set it to <Code
+                code="false"
+                inline
+                lang="ts"
+            />.
+        </p>
+        <div class="inline">
+            <Code
+                code={`let showNewAuthor = false;`}
+                lang="ts"
+            />
+        </div>
+        <p>
+            Now in the HTML, we will add a button with the class <Code
+                code="new"
+                inline
+            /> that will set <Code
+                code="showNewAuthor"
+                inline
+            /> to <Code
+                code="true"
+                inline
+                lang="ts"
+            /> when clicked.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<button class="new" on:click={() => (showNewAuthor = true)}> + </button>`}
+                lang="svelte"
+            />
+        </div>
+        <p>
+            For the new author dialog, we will use the <Code
+                code="Modal"
+                inline
+            /> component that we made earlier.<br />We will bind the <Code
+                code="showNewAuthor"
+                inline
+            /> variable to the <Code
+                code="show"
+                inline
+            /> attribute of the modal. <br />This will open the modal when <Code
+                code="showNewAuthor"
+                inline
+            /> is <Code
+                code="true"
+                inline
+                lang="ts"
+            />, and when the modal closes the variable will be set back to false
+            by the component due to the two way binding.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<Modal bind:show={showNewAuthor}>
+    <!-- ... -->
+</Modal>`}
+                lang="svelte"
+            />
+        </div>
+        <p>
+            We will add an <Code
+                code="h2"
+                inline
+            /> element in the <Code
+                code="title"
+                inline
+            /> slot of the modal.
+        </p>
+        <div class="inline">
+            <ModalTitle.Content />
+        </div>
+        <p>
+            We will add a form to the <Code
+                code="Modal"
+                inline
+            /> component that will contain an input for the author's name and a submit
+            button. The form will submit via <Code
+                code="POST"
+                inline
+            /> back to the server, which will invoke the form action we set up earlier.<br
+            />
+            The form will use the <Code
+                code="enhance"
+                inline
+            /> directive to ensure that the form is submitted asynchronously, without
+            a page reload - although the page load functions will still rerun.<br
+            />
+            We will also an an event handler for the form submission that will set
+            <Code
+                code="showNewAuthor"
+                inline
+            /> to <Code
+                code="false"
+                inline
+                lang="ts"
+            />.
+        </p>
+        <div class="inline">
+            <Modal.Content />
+        </div>
+        <p>
+            The extra <Code
+                code="<div>"
+                lang="html"
+                inline
+            /> that the button is wrapped in is for the CSS to right align the button
+        </p>
+    </Section>
+</Section>

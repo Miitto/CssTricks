@@ -78,8 +78,9 @@ hr {
     // Disable pointer events, so the notification cannot be clicked - allows for elements behind it to be clicked
     pointer-events: none;
 
-    // Delay the fade out animation by 5 seconds, then fade out over 1 second
-    animation: fadeOut 1s 5s;
+    // Delay the fade out animation by 5 seconds, then fade out over 1 second.
+    // Forwards means that properties set by the animation will persist after it finishes
+    animation: fadeOut 1s 5s forwards;
 
     // If the element also has the success class, make the background green
     &.success {

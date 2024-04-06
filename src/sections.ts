@@ -618,6 +618,20 @@ export const svelte: { [key: string]: Section[] } = {
                         {
                             name: "HTML",
                             id: "html",
+                            subsections: [
+                                {
+                                    name: "Notifications",
+                                    id: "notifications",
+                                },
+                                {
+                                    name: "List",
+                                    id: "list",
+                                },
+                                {
+                                    name: "New",
+                                    id: "new",
+                                },
+                            ],
                         },
                         {
                             name: "Style",
