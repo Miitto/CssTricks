@@ -1,8 +1,5 @@
 <script lang="ts">
-    import Modal from "../../../../../Modal.svelte";
-    import { onMount } from "svelte";
-
-    let authors = [];
+    import Modal from "../../../../Modal.svelte";
 
     let nextId = 0;
 
@@ -11,6 +8,8 @@
     export let createSuccess: boolean | null = null;
 
     let deleteSuccess: boolean | null = null;
+
+    let authors = [];
 
     function deleteAuthor(author) {
         authors = authors.filter((a) => a.id !== author.id);

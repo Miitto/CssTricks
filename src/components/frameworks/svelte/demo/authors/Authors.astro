@@ -3,6 +3,9 @@ import Section from "../../../../Section.astro";
 import Fetch from "./Fetch.astro";
 import Actions from "./Actions.astro";
 import Page from "./page/Page.astro";
+import Api from "./API.astro";
+
+import AuthorsSvelte from "./Authors.svelte";
 ---
 
 <Section>
@@ -19,4 +22,21 @@ import Page from "./page/Page.astro";
     <Fetch />
     <Actions />
     <Page />
+    <Api />
+    <p>
+        <br />
+        The full page should now function like the following example, except for
+        that state will persist page reloads:<br />
+        <small
+            ><i
+                >The layout has been omitted for clarity of what is relevant to
+                this page</i
+            ></small
+        >
+    </p>
+    <div class="inline">
+        <div class="example">
+            <AuthorsSvelte client:load />
+        </div>
+    </div>
 </Section>

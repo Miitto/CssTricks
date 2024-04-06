@@ -1,0 +1,82 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as ApiTry from "./ApiTry.md";
+import * as ApiDelete from "./ApiDelete.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="authors-api"
+    >
+        API
+    </h3>
+    <p>
+        To implement the API for deleting authors, we need to set up an API
+        endpoint using a <Code
+            code="+server.ts"
+            inline
+        /> file at the route of the endpoint. In this project we will have this file
+        at <Code
+            code="src/routes/api/authors/[id]/+server.ts"
+            inline
+        />. The route takes the author's ID as a parameter.
+        <br />
+        The file with export a <Code
+            code="DELETE"
+            inline
+        /> function that will be invoked whenever this route is fetched with the
+        <Code
+            code="DELETE"
+            inline
+        /> method automatically by SvelteKit.
+    </p>
+    <p>
+        The method destructures its parameter to get access to the route
+        parameters given to it, and the function is async to allow for easier
+        invocation of prisma methods.
+    </p>
+    <div class="inline">
+        <Code
+            code={`export const DELETE = async ({ params }) => {
+    // ...
+};`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        Since the ID given to the route is arbitrary, and not necessarily a
+        legitimate author id, we should wrap the database query in a <Code
+            code="try/catch"
+            inline
+        /> block to catch any errors that may occur.<br />Also added below is
+        returning success based on if there was an error using the <Code
+            code="json"
+            inline
+        /> function from SvelteKit.
+    </p>
+    <div class="inline">
+        <ApiTry.Content />
+    </div>
+    <p>
+        Now we need to attempt to delete the author using the <Code
+            code="prisma"
+            inline
+        /> client. We import the client we made in the <Code
+            code="+database.server.ts"
+            inline
+        /> file and use the <Code
+            code="author.delete"
+            inline
+        /> method to delete the author with the given ID.<br />
+        We need to await this call to ensure that any error is caught by the <Code
+            code="try/catch"
+            inline
+        /> block.
+    </p>
+    <div class="inline">
+        <ApiDelete.Content />
+    </div>
+</Section>
