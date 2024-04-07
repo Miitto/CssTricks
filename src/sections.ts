@@ -480,7 +480,7 @@ export const svelte: { [key: string]: Section[] } = {
             ],
         },
     ],
-    demo: [
+    tutorial: [
         {
             name: "Initial Setup",
             id: "setup",

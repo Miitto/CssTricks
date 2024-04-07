@@ -1,16 +1,16 @@
 ---
 import Layout from "../../../layouts/CatLayout.astro";
-import DemoSec from "../../../components/frameworks/svelte/demo/Demo.astro";
+import TutorialSec from "../../../components/frameworks/svelte/tutorial/Tutorial.astro";
 
 import { svelte } from "../../../sections";
 ---
 
 <Layout
-    title="Svelte"
-    sections={svelte.demo}
+    title="SvelteKit Tutorial"
+    sections={svelte.tutorial}
 >
     <main>
-        <DemoSec />
+        <TutorialSec />
     </main>
 </Layout>
 
@@ -37,7 +37,7 @@ import { svelte } from "../../../sections";
 </style>
 
 <style is:global lang="scss">
-    .svelte {
+    .tutorial {
         color: transparent !important;
         background: linear-gradient(90deg, #f96743, white);
         background-clip: text;

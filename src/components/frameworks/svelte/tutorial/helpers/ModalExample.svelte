@@ -10,7 +10,7 @@
     <p>This is a modal dialog.</p>
     <p>
         You can find the source code for this component <a
-            href="/WebRef/frameworks/svelte/demo/modal">here</a
+            href="/WebRef/frameworks/svelte/tutorial/modal">here</a
         >.
     </p>
     <button on:click={() => (show = false)}>Close</button>
