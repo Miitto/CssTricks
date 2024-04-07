@@ -645,5 +645,55 @@ export const svelte: { [key: string]: Section[] } = {
                 },
             ],
         },
+        {
+            name: "Books",
+            id: "books",
+            subsections: [
+                {
+                    name: "Data Fetching",
+                    id: "fetch",
+                },
+                {
+                    name: "Form Actions",
+                    id: "actions",
+                },
+                {
+                    name: "Page",
+                    id: "page",
+                    subsections: [
+                        {
+                            name: "Script",
+                            id: "script",
+                        },
+                        {
+                            name: "HTML",
+                            id: "html",
+                            subsections: [
+                                {
+                                    name: "Notifications",
+                                    id: "notifications",
+                                },
+                                {
+                                    name: "List",
+                                    id: "list",
+                                },
+                                {
+                                    name: "New",
+                                    id: "new",
+                                },
+                            ],
+                        },
+                        {
+                            name: "Style",
+                            id: "style",
+                        },
+                    ],
+                },
+                {
+                    name: "API",
+                    id: "api",
+                },
+            ],
+        },
     ],
 };

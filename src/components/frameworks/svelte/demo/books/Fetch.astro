@@ -1,0 +1,21 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as FetchMd from "./Fetch.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="books-fetch"
+    >
+        Data Fetching
+    </h3>
+    <p>
+        Since the code is extremely similar to fetching the authors, the full code is shown below. The only addition is that we are fetching the books as well.
+    </p>
+    <div class="inline">
+        <FetchMd.Content />
+    </div>
+</Section>

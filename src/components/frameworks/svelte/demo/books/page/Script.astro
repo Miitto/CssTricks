@@ -1,0 +1,47 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+import * as FetchMd from "./Fetch.md";
+import * as ScriptBaseMd from "./ScriptBase.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="books-page-script"
+    >
+        Script
+    </h4>
+    <p>
+        Again we set the page title using the store. This time we will set the title to "Books".
+    </p>
+    <div class="inline">
+        <Code
+            code={`import { onMount } from "svelte";
+            
+onMount(() => {
+    title.set("Books");
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        To get the books and authors we returned from the page load function, we need to
+        export the data prop from the component.<br />
+        We will separate the both into their own variable using a reactive
+        statement, which will ensure that the variable will update whenever the
+        data from the server changes.<br>We will also need the form prop for form submission results.
+    </p>
+    <div class="inline">
+        <Code
+            code=`export let data: PageServerData;\n$: books = data.books;\n$: authors = data.authors;\n\nexport let form: ActionData;`
+            lang="ts"
+        />
+    </div>
+    <p>
+        As with authors, we will immediately filter the book list to remove the book, so that the front end updates immediately, and then we send a fetch request to the server to remove the book from the database.
+    </p>
+    <div class="inline">
+        <ScriptBaseMd.Content />
+    </div>
+</Section>
