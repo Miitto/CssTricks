@@ -22,7 +22,8 @@ import * as Modal from "./pageMd/Modal.md";
             Notifications
         </h5>
         <p>
-            The Notifications are identical to the ones we used in the authors page, with "author" replaced with "book".
+            The Notifications are identical to the ones we used in the authors
+            page, with "author" replaced with "book".
         </p>
         <p>Creation Notifications</p>
         <div class="inline">
@@ -62,12 +63,24 @@ import * as Modal from "./pageMd/Modal.md";
             Books List
         </h5>
         <p>
-            As with the authors page, we create an unordered list, and then populate it with the books array using an <Code code="each" inline /> loop.<br>
-            The list items contain an extra paragraph element that will display the author's name - or if the author is not set, it will display a blank string.</p><p>The question mark after author means that if author is undefined, it will short circuit the name access and instead immediately return undefined. The ?? operator will then return what comes after it (in this case an empty string) if the value before it (author) is undefined.
+            As with the authors page, we create an unordered list, and then
+            populate it with the books array using an <Code
+                code="each"
+                inline
+            /> loop.<br />
+            The list items contain an extra paragraph element that will display the
+            author's name - or if the author is not set, it will display a blank
+            string.
+        </p><p>
+            The question mark after author means that if author is undefined, it
+            will short circuit the name access and instead immediately return
+            undefined. The ?? operator will then return what comes after it (in
+            this case an empty string) if the value before it (author) is
+            undefined.
         </p>
-                <div class="inline">
-                    <FullWrapper.Content />
-                </div>
+        <div class="inline">
+            <FullWrapper.Content />
+        </div>
     </Section>
     <Section>
         <h5
@@ -77,8 +90,8 @@ import * as Modal from "./pageMd/Modal.md";
             New
         </h5>
         <p>
-            
-            To control if the new book modal is open, we need to add a new variable to the script tag called <Code
+            To control if the new book modal is open, we need to add a new
+            variable to the script tag called <Code
                 code="showNewBook"
                 inline
             /> and set it to <Code
@@ -108,7 +121,7 @@ import * as Modal from "./pageMd/Modal.md";
         </p>
         <div class="inline">
             <Code
-                code={`<button class="new" on:click={() => (showNewAuthor = true)}> + </button>`}
+                code={`<button class="new" on:click={() => (showNewBook = true)}> + </button>`}
                 lang="svelte"
             />
         </div>
@@ -116,10 +129,22 @@ import * as Modal from "./pageMd/Modal.md";
             Again we will use the <Code
                 code="Modal"
                 inline
-            /> component to create the modal. We will bind the <Code code="show" inline /> prop to <Code code="showNewBook" inline />.
+            /> component to create the modal. We will bind the <Code
+                code="show"
+                inline
+            /> prop to <Code
+                code="showNewBook"
+                inline
+            />.
         </p>
         <p>
-            We will add a form that uses <Code code="enhance" inline /> and will <Code code="POST" inline /> back to the server.<br>On submission we will set
+            We will add a form that uses <Code
+                code="enhance"
+                inline
+            /> and will <Code
+                code="POST"
+                inline
+            /> back to the server.<br />On submission we will set
             <Code
                 code="showNewBook"
                 inline
@@ -130,10 +155,23 @@ import * as Modal from "./pageMd/Modal.md";
             />.
         </p>
         <p>
-            The form contains an additional text area called <Code code="description" inline /> that will be used to store the book's description. A text area is an input specifically for longer text input.
+            The form contains an additional text area called <Code
+                code="description"
+                inline
+            /> that will be used to store the book's description. A text area is
+            an input specifically for longer text input.
         </p>
         <p>
-            The <Code code="AuthorSelect" inline /> component is used to select the author of the book. It is passed the <Code code="authors" inline /> array as a prop to pick the authors from. This is further explained in the <a href="#helpers-author-select">Author Select</a> section.
+            The <Code
+                code="AuthorSelect"
+                inline
+            /> component is used to select the author of the book. It is passed the
+            <Code
+                code="authors"
+                inline
+            /> array as a prop to pick the authors from. This is further explained
+            in the <a href="#helpers-author-select">Author Select</a> section.
+        </p>
         <div class="inline">
             <Modal.Content />
         </div>

@@ -1,0 +1,44 @@
+---
+import Section from "../../../../Section.astro";
+import Fetch from "./Fetch.astro";
+import Actions from "./Actions.astro";
+import Page from "./page/Page.astro";
+import Api from "./API.astro";
+
+import BooksSvelte from "./Layout.svelte";
+---
+
+<Section>
+    <h2
+        slot="title"
+        id="users"
+    >
+        User
+    </h2>
+    <p>
+        This section will cover the implementation of both server side logic and
+        client side interactivity with Users.<br />This project functions more
+        as an admin panel, so users are manually created and there is no sign up
+        process.
+    </p>
+    <Fetch />
+    <Actions />
+    <Page />
+    <Api />
+    <p>
+        <br />
+        The full page should now function like the following example, except for
+        that state will persist page reloads:<br />
+        <small
+            ><i
+                >The unfinished pages has been omitted, for clarity of what is
+                relevant to this page</i
+            ></small
+        >
+    </p>
+    <div class="inline">
+        <div class="example">
+            <BooksSvelte client:load />
+        </div>
+    </div>
+</Section>

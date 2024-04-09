@@ -1,0 +1,138 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+
+import * as FullWrapper from "./pageMd/FullWrapper.md";
+
+import * as Modal from "./pageMd/Modal.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="users-page-html"
+    >
+        HTML
+    </h4>
+    <Section>
+        <h5
+            slot="title"
+            id="users-page-html-notifications"
+        >
+            Notifications
+        </h5>
+        <p>
+            The Notifications are an identical format to the ones we in the
+            previous two pages
+        </p>
+        <p>Creation Notifications</p>
+        <div class="inline">
+            <Code
+                code={`{#key form}
+	{#if form}
+		{#if form.success}
+			<p class="notif success">User Successfully Created</p>
+		{:else if form.success === false}
+			<p class="notif error">Error Creating User</p>
+		{/if}
+	{/if}
+{/key}`}
+                lang="svelte"
+            />
+        </div>
+        <p>Deletion Notifications</p>
+        <div class="inline">
+            <Code
+                code={`{#key deleteSuccess}
+	{#if deleteSuccess === true}
+		<p class="notif success">User Successfully Deleted</p>
+	{:else if deleteSuccess === false}
+		<p class="notif error">Error Deleting User</p>
+	{/if}
+{/key}`}
+                lang="svelte"
+            />
+            <div></div>
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="users-page-html-list"
+        >
+            Users List
+        </h5>
+        <p>
+            We create an unordered list, and then populate it with the books
+            array using an <Code
+                code="each"
+                inline
+            /> loop.
+        </p><p>
+            The ?? operator will then return what comes after it (in this case
+            an empty string) if the value before it (user) is undefined.
+        </p>
+        <div class="inline">
+            <FullWrapper.Content />
+        </div>
+    </Section>
+    <Section>
+        <h5
+            slot="title"
+            id="users-page-html-new"
+        >
+            New
+        </h5>
+        <p>
+            We need to add a button with the class <Code
+                code="new"
+                inline
+            /> that will set <Code
+                code="showNewBook"
+                inline
+            /> to <Code
+                code="true"
+                inline
+                lang="ts"
+            /> when clicked, which will open the dialog.
+        </p>
+        <div class="inline">
+            <Code
+                code={`<button class="new" on:click={() => (showNewUser = true)}> + </button>`}
+                lang="svelte"
+            />
+        </div>
+        <p>
+            Again we will use the <Code
+                code="Modal"
+                inline
+            /> component to create the modal. We will bind the <Code
+                code="show"
+                inline
+            /> prop to <Code
+                code="showNewUser"
+                inline
+            />.
+        </p>
+        <p>
+            We will add a form that uses <Code
+                code="enhance"
+                inline
+            /> and will <Code
+                code="POST"
+                inline
+            /> back to the server.<br />On submission we will set
+            <Code
+                code="showNewUser"
+                inline
+            /> back to <Code
+                code="false"
+                inline
+                lang="ts"
+            />.
+        </p>
+        <div class="inline">
+            <Modal.Content />
+        </div>
+    </Section>
+</Section>

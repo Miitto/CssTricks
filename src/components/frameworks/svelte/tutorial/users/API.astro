@@ -1,0 +1,29 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as ApiDelete from "./ApiDelete.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="users-api"
+    >
+        API
+    </h3>
+    <p>
+        To implement the API for deleting users, we need to set up an API
+        endpoint using a <Code
+            code="+server.ts"
+            inline
+        /> file at the route of the endpoint. In this project we will have this file
+        at <Code
+            code="src/routes/api/users/[id]/+server.ts"
+            inline
+        />. The route takes the user's ID as a parameter.
+    </p>
+    <div class="inline">
+        <ApiDelete.Content />
+    </div>
+</Section>

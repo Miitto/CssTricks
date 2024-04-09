@@ -13,24 +13,26 @@ import * as ActionMd from "./Actions.md";
         Form Actions
     </h3>
     <p>
-        To link the book to the author we can either specify the authorId attribute in the data object or we can use the connect property such as below:
+        To link the book to the author we can either specify the authorId
+        attribute in the data object or we can use the connect property such as
+        below:
     </p>
     <div class="inline">
-        <Code code={`prisma.book.create({
+        <Code
+            code={`prisma.book.create({
     data: {
-        name: data.get("name"),
         author: {
             connect: {
                 id: data.get("author")
             }
         }
     }
-});`} lang="ts" />
+});`}
+            lang="ts"
+        />
     </div>
-        <p>
-            The final action will look like this:
-        </p>
-        <div class="inline">
-            <ActionMd.Content />
-        </div>
+    <p>The final action will look like this:</p>
+    <div class="inline">
+        <ActionMd.Content />
+    </div>
 </Section>

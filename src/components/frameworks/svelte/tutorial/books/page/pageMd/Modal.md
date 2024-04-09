@@ -1,6 +1,6 @@
 ```svelte
-<Modal bind:show={showNewAuthor}>
-	<h2 slot="header">New Author</h2>
+<Modal bind:show={showNewBook}>
+	<h2 slot="header">New Book</h2>
 	<form class="modal" use:enhance method="POST" on:submit={() => (showNewBook = false)}>
 		<label for="title">Title</label>
 		<input type="text" name="title" required placeholder="Title..." />

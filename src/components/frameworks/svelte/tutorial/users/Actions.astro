@@ -1,0 +1,38 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as ActionMd from "./Actions.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="users-actions"
+    >
+        Form Actions
+    </h3>
+    <p>
+        To create a user we invoke the prisma create method for user, and pass
+        in relevant data.<br />Since the name field is optional, we use the
+        nullish coalescing operator to check if the name field is present, and
+        if not, we pass in undefined to not set user. If we passed null instead
+        of undefined, then prisma would attempt to set the value of name to
+        null, instead of not setting it at all.
+    </p>
+    <div class="inline">
+        <Code
+            code={`prisma.user.create({
+    data: {
+        email: data.get("email"),
+        name: data.get("name") ?? undefined,
+    }
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>The final action will look like this:</p>
+    <div class="inline">
+        <ActionMd.Content />
+    </div>
+</Section>
