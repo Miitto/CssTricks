@@ -1,0 +1,89 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as FetchMd from "./Fetch.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="loans-fetch"
+    >
+        Data Fetching
+    </h3>
+    <p>
+        Fetching loan data is slightly more complex due to the fact that we are
+        filtering our query. We are splitting up loans into whether they are
+        late or not. We are also filtering out any returned loans. This is done
+        by passing an object with a <Code
+            code="where"
+            inline
+        /> attribute to the prisma <Code
+            code="findMany()"
+            inline
+        /> call.
+    </p>
+    <p>
+        To get late books we filter the due date by checking if the due date is
+        earlier the current time.
+    </p>
+    <div class="inline">
+        <Code
+            code={`const lateLoans = await prisma.loan.findMany({
+    where: {
+        dueDate: {
+            // Filter dueDate to be earlier than now
+            lt: new Date()
+        },
+        returned: false
+    },
+    include: {
+        // Include the book data in the loan. loan.book will be populated
+        book: {
+            // Include the author in the book data. loan.book.author
+            include: {
+                author: true
+            }
+        },
+    }
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        To get none late books we filter the due date by checking if the due
+        date is later than, or equal to, the current time.
+    </p>
+    <div class="inline">
+        <Code
+            code={`const loans = await prisma.loan.findMany({
+    where: {
+        dueDate: {
+            // Filter dueDate to be later than or equal to now
+            gte: new Date()
+        },
+        returned: false
+    },
+    include: {
+        // Include the book data in the loan. loan.book will be populated
+        book: {
+            // Include the author in the book data. loan.book.author
+            include: {
+                author: true
+            }
+        },
+    }
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        We also need to fetch the book and user data so that we can populate
+        their lists when creating a new loan, which are included in the code
+        snippet below.
+    </p>
+    <div class="inline">
+        <FetchMd.Content />
+    </div>
+</Section>

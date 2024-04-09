@@ -7,6 +7,10 @@ import Helpers from "./helpers/Helpers.astro";
 import Authors from "./authors/Authors.astro";
 import Books from "./books/Books.astro";
 import Users from "./users/Users.astro";
+import Loans from "./loans/Loans.astro";
+import Section from "../../../Section.astro";
+
+import Example from "./Layout.svelte";
 ---
 
 <p>
@@ -42,3 +46,21 @@ import Users from "./users/Users.astro";
 <Authors />
 <Books />
 <Users />
+<Loans />
+<Section>
+    <h2
+        slot="title"
+        id="finished"
+    >
+        Finished
+    </h2>
+    <p>
+        The project is now complete, and you should have a site that functions
+        similar to the following:
+    </p>
+    <div class="inline">
+        <div class="example">
+            <Example client:load />
+        </div>
+    </div>
+</Section>

@@ -5,25 +5,27 @@ import Section from "../../../../../Section.astro";
 import * as FullWrapper from "./pageMd/FullWrapper.md";
 
 import * as Modal from "./pageMd/Modal.md";
+
+import * as LoanListMd from "./pageMd/LoanList.md";
 ---
 
 <Section>
     <h4
         slot="title"
-        id="users-page-html"
+        id="loans-page-html"
     >
         HTML
     </h4>
     <Section>
         <h5
             slot="title"
-            id="users-page-html-notifications"
+            id="loans-page-html-notifications"
         >
             Notifications
         </h5>
         <p>
             The Notifications are an identical format to the ones we in the
-            previous two pages
+            previous pages
         </p>
         <p>Creation Notifications</p>
         <div class="inline">
@@ -31,46 +33,43 @@ import * as Modal from "./pageMd/Modal.md";
                 code={`{#key form}
 	{#if form}
 		{#if form.success}
-			<p class="notif success">User Successfully Created</p>
+			<p class="notif success">Loan Successfully Created</p>
 		{:else if form.success === false}
-			<p class="notif error">Error Creating User</p>
+			<p class="notif error">Error Creating Loan</p>
 		{/if}
 	{/if}
 {/key}`}
                 lang="svelte"
             />
         </div>
-        <p>Deletion Notifications</p>
-        <div class="inline">
-            <Code
-                code={`{#key deleteSuccess}
-	{#if deleteSuccess === true}
-		<p class="notif success">User Successfully Deleted</p>
-	{:else if deleteSuccess === false}
-		<p class="notif error">Error Deleting User</p>
-	{/if}
-{/key}`}
-                lang="svelte"
-            />
-            <div></div>
-        </div>
     </Section>
     <Section>
         <h5
             slot="title"
-            id="users-page-html-list"
+            id="loans-page-html-list"
         >
-            Users List
+            Loans List
         </h5>
         <p>
-            We create an unordered list, and then populate it with the users
-            array using an <Code
-                code="each"
+            Since we are creating two different lists in this page, that have
+            identical layout, we will be separating the list into a new
+            component called <Code
+                code="LoanList"
                 inline
-            /> loop.
-        </p><p>
-            The ?? operator will then return what comes after it (in this case
-            an empty string) if the value before it (user) is undefined.
+            />.
+            <br />This new component will be located at <Code
+                code="src/lib/components/LoanList.svelte"
+                inline
+            />.<br />Since the code is so similar to the previous lists, the
+            code is only explained with inline comments.
+        </p>
+        <div class="inline">
+            <LoanListMd.Content />
+        </div>
+        <p>
+            We have two wrapper elements which hold the list of loans. The first
+            is passed the late loans, and the second is passed the loans that
+            are not late.
         </p>
         <div class="inline">
             <FullWrapper.Content />
@@ -79,7 +78,7 @@ import * as Modal from "./pageMd/Modal.md";
     <Section>
         <h5
             slot="title"
-            id="users-page-html-new"
+            id="loans-page-html-new"
         >
             New
         </h5>
@@ -88,7 +87,7 @@ import * as Modal from "./pageMd/Modal.md";
                 code="new"
                 inline
             /> that will set <Code
-                code="showNewUser"
+                code="showNewLoan"
                 inline
             /> to <Code
                 code="true"
@@ -98,7 +97,7 @@ import * as Modal from "./pageMd/Modal.md";
         </p>
         <div class="inline">
             <Code
-                code={`<button class="new" on:click={() => (showNewUser = true)}> + </button>`}
+                code={`<button class="new" on:click={() => (showNewLoan = true)}> + </button>`}
                 lang="svelte"
             />
         </div>
@@ -123,13 +122,25 @@ import * as Modal from "./pageMd/Modal.md";
                 inline
             /> back to the server.<br />On submission we will set
             <Code
-                code="showNewUser"
+                code="showNewLoan"
                 inline
             /> back to <Code
                 code="false"
                 inline
                 lang="ts"
             />.
+        </p>
+        <p>
+            The <Code
+                code="BookSelect"
+                inline
+            /> and <Code
+                code="UserSelect"
+                inline
+            /> components function the same as the author select component in the
+            books page references can be found here:<br />
+            <a href="#helpers-book-select">BookSelect</a><br />
+            <a href="#helpers-user-select">UserSelect</a>
         </p>
         <div class="inline">
             <Modal.Content />

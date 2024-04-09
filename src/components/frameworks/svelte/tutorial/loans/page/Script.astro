@@ -1,0 +1,44 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+import * as FetchMd from "./Fetch.md";
+import * as ScriptBaseMd from "./ScriptBase.md";
+---
+
+<Section>
+    <h4
+        slot="title"
+        id="loans-page-script"
+    >
+        Script
+    </h4>
+    <p>
+        Again we set the page title using the store. This time we will set the
+        title to "Users".
+    </p>
+    <div class="inline">
+        <Code
+            code={`import { onMount } from "svelte";
+            
+onMount(() => {
+    title.set("Users");
+});`}
+            lang="ts"
+        />
+    </div>
+    <p>
+        To get the loans we returned from the page load function, we need to
+        export the data prop from the component.<br />We will also need the form
+        prop for form submission results.
+    </p>
+    <div class="inline">
+        <Code
+            code=`export let data: PageServerData;\n$: { lateBooks, loanedBooks, books, loans } = data;\n\nexport let form: ActionData;`
+            lang="ts"
+        />
+    </div>
+    <br />
+    <div class="inline">
+        <ScriptBaseMd.Content />
+    </div>
+</Section>

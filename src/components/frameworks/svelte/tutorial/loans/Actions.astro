@@ -1,0 +1,32 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../Section.astro";
+
+import * as ActionMd from "./Actions.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="loans-actions"
+    >
+        Form Actions
+    </h3>
+    <p>
+        The only difference between making a loan, and the other objects, is
+        that we need to convert the <Code
+            code="dueDate"
+            inline
+        /> into a date first, which can be done with the date constructor.
+    </p>
+    <div class="inline">
+        <Code
+            code="dueDate = new Date(data.get('dueDate') as string)"
+            lang="ts"
+        />
+    </div>
+    <p>The final action will look like this:</p>
+    <div class="inline">
+        <ActionMd.Content />
+    </div>
+</Section>

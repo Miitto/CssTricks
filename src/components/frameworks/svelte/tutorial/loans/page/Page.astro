@@ -1,0 +1,34 @@
+---
+import { Code } from "astro:components";
+import Section from "../../../../../Section.astro";
+
+import Script from "./Script.astro";
+import Html from "./Html.astro";
+import * as Style from "./Style.md";
+---
+
+<Section>
+    <h3
+        slot="title"
+        id="loans-page"
+    >
+        Page
+    </h3>
+    <p>
+        This section will cover the <Code
+            code="+page.svelte"
+            inline
+        /> file for implementing the front end.
+    </p>
+    <Script />
+    <Html />
+    <Section>
+        <h4
+            slot="title"
+            id="loans-page-style"
+        >
+            Style
+        </h4>
+        <div class="inline"><Style.Content /></div>
+    </Section>
+</Section>

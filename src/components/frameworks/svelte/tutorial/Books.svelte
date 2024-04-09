@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Modal from "../../../../Modal.svelte";
-    import AuthorSelect from "../AuthorSelect.svelte";
+    import Modal from "../../../Modal.svelte";
+    import AuthorSelect from "./AuthorSelect.svelte";
 
     let nextId = 0;
 
